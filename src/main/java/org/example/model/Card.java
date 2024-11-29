@@ -1,7 +1,7 @@
 package org.example.model;
 
 /**
- * Immutable struct-like class for representing cards
+ * Immutable record-like class for representing cards
  * Non-abstracting
  */
 public class Card {
