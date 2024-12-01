@@ -12,6 +12,9 @@ public abstract class Model {
 	protected Map<Player, Map<Card.Value, Integer>> scorecard;
 
 	protected Model(PlayerList players, Player self, Card[] known) {
+		if (players == null || self == null || known == null)
+			throw new IllegalArgumentException("Unexpected null argument");
+
 		// fill scorecard with maps
 		scorecard = new HashMap<>(players.getPlayerCount());
 		Iterator<Player> iter = players.iterator();
