@@ -5,6 +5,8 @@ package org.example.model;
  * Non-abstracting
  */
 public class Card {
+	public static final int NUM_CARDS = 21;
+
 	/**
 	 * The type of card this is
 	 */

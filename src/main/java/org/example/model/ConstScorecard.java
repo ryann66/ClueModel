@@ -1,5 +1,7 @@
 package org.example.model;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,10 +14,10 @@ import java.util.Map;
  *  	at least one card in the group
  */
 public class ConstScorecard {
-	protected int[][] scorecard;
+	protected Map<Player, Map<Card.Value, Integer>> scorecard;
 
 	/**
-	 * Builds a comprehensive scorecard of everything the player knows
+	 * Returns an unmodifiable view of the model's full scorecard
 	 * Special meaning for integer values in scorecard
 	 *  - negative numbers mean that the player does not have the card
 	 *  - 0 means that the player must have the card
@@ -26,7 +28,7 @@ public class ConstScorecard {
 	 * @return a comprehensive scorecard
 	 */
 	public Map<Player, Map<Card.Value, Integer>> getScorecard() {
-		// TODO
+		return Collections.unmodifiableMap(scorecard);
 	}
 
 	/**
@@ -38,6 +40,15 @@ public class ConstScorecard {
 	 * 		that the card could still be in the envelope
 	 */
 	public Map<Card.Value, Boolean> getSimpleScorecard() {
-		// TODO
+		Map<Card.Value, Boolean> retmap = new HashMap<>(Card.NUM_CARDS);
+		for (Card.Value v : Card.Value.values()) retmap.put(v, false);
+
+		for (Map<Card.Value, Integer> map : scorecard.values()) {
+			for (Map.Entry<Card.Value, Integer> kv : map.entrySet()) {
+				if (kv.getValue() == 0) retmap.put(kv.getKey(), true);
+			}
+		}
+
+		return retmap;
 	}
 }
