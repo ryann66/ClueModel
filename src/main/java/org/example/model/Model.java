@@ -1,15 +1,37 @@
 package org.example.model;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Interface for classes that model the scorecard
  */
 public abstract class Model {
-	protected Map<Player, Map<Card.Value, Integer>> scorecard;
+	public enum Knowledge {
+		HAS, NO_HAS, MIGHT_HAVE;
+
+		private final Set<Group> groups;
+
+		Knowledge() {
+			groups = new HashSet<>();
+		}
+
+		public Set<Group> getGroups() {
+			return Collections.unmodifiableSet(groups);
+		}
+	}
+
+	public static class Group {
+		private static int nid = 0;
+
+		public final int id;
+		private Set<Knowledge> contents;
+
+		private Group() {
+			id = nid++;
+		}
+	}
+
+	protected Map<Player, Map<Card.Value, Knowledge>> scorecard;
 
 	protected Model(PlayerList players, Player self, Card[] known) {
 		if (players == null || self == null || known == null)
@@ -20,12 +42,12 @@ public abstract class Model {
 		Iterator<Player> iter = players.iterator();
 		while (iter.hasNext()) scorecard.put(iter.next(), new HashMap<>());
 
-		HashMap<Card.Value, Integer> selfcards = new HashMap<>(Card.NUM_CARDS);
+		HashMap<Card.Value, Knowledge> selfcards = new HashMap<>(Card.NUM_CARDS);
 
 		// block all cards
-		for (Card.Value v : Card.Value.values()) selfcards.put(v, -1);
+		for (Card.Value v : Card.Value.values()) selfcards.put(v, Knowledge.NO_HAS);
 		// add known cards
-		for (Card c : known) selfcards.put(c.value, 0);
+		for (Card c : known) selfcards.put(c.value, Knowledge.HAS);
 
 		// replace self map in scorecard
 		scorecard.put(self, selfcards);
@@ -41,9 +63,10 @@ public abstract class Model {
 	 *  	at least one card in the group
 	 * @return a const wrapper to the scorecard
 	 */
+	/*
 	public final Map<Player, Map<Card.Value, Integer>> getScorecard() {
 		return Collections.unmodifiableMap(scorecard);
-	}
+	}*/
 
 	/**
 	 * Builds a simple scorecard for what the player knows
@@ -53,6 +76,7 @@ public abstract class Model {
 	 * 		that a card has been found/eliminated and false represents
 	 * 		that the card could still be in the envelope
 	 */
+	/*
 	public final Map<Card.Value, Boolean> getSimpleScorecard() {
 		Map<Card.Value, Boolean> retmap = new HashMap<>(Card.NUM_CARDS);
 		for (Card.Value v : Card.Value.values()) retmap.put(v, false);
@@ -64,7 +88,7 @@ public abstract class Model {
 		}
 
 		return retmap;
-	}
+	}*/
 
 	/**
 	 * Process the given query and add its knowledge to the model
