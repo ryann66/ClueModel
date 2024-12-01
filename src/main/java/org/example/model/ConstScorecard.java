@@ -4,7 +4,6 @@ import java.util.Map;
 
 /**
  * Const wrapper for scorecards
- *
  * Special meaning for integer values in scorecard
  *  - negative numbers mean that the player does not have the card
  *  - 0 means that the player must have the card
@@ -17,7 +16,6 @@ public class ConstScorecard {
 
 	/**
 	 * Builds a comprehensive scorecard of everything the player knows
-	 *
 	 * Special meaning for integer values in scorecard
 	 *  - negative numbers mean that the player does not have the card
 	 *  - 0 means that the player must have the card
