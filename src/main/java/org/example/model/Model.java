@@ -9,7 +9,7 @@ public abstract class Model {
 	/**
 	 * Abstract idea that something is known
 	 */
-	public enum Knowledge {
+	protected enum Knowledge {
 		HAS, NO_HAS, MIGHT_HAVE;
 
 		final Set<Group> groups;
@@ -23,7 +23,7 @@ public abstract class Model {
 		}
 	}
 
-	public static class Group {
+	protected static class Group {
 		private static int nid = 0;
 
 		public final int id;
