@@ -17,10 +17,6 @@ public abstract class Model {
 		Knowledge() {
 			groups = new HashSet<>();
 		}
-
-		public Set<Group> getGroups() {
-			return Collections.unmodifiableSet(groups);
-		}
 	}
 
 	protected static class Group {
