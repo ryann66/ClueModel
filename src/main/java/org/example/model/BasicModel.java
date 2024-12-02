@@ -49,7 +49,9 @@ public final class BasicModel extends Model {
 		if (answered == null) answered = query.asker();
 		Iterator<Player> iter = players.iterator(query.asker(), answered);
 		while (iter.hasNext()) {
-			unhandledAssertions.add(new PlayerHasNoneOfAssertion(iter.next(), query.cards()));
+			for (Card c : query.cards()) {
+				unhandledAssertions.add(new PlayerDoesNotHaveAssertion(iter.next(), c));
+			}
 		}
 
 		// handle all our assertions (and subsequently triggered assertions
@@ -145,23 +147,6 @@ public final class BasicModel extends Model {
 		Card[] cards;
 
 		public PlayerHasOneOfAssertion(Player p, Card[] c) {
-			player = p;
-			cards = c;
-		}
-
-		public void handle() {
-			// TODO
-		}
-	}
-
-	/**
-	 * This assertion represents the idea that we know a player has none of the given cards
-	 */
-	private class PlayerHasNoneOfAssertion implements Assertion {
-		Player player;
-		Card[] cards;
-
-		public PlayerHasNoneOfAssertion(Player p, Card[] c) {
 			player = p;
 			cards = c;
 		}
