@@ -10,23 +10,36 @@ public abstract class Model {
 	 * Abstract idea that something is known
 	 */
 	protected enum Knowledge {
-		HAS, NO_HAS, MIGHT_HAVE;
+		HAS(null), NO_HAS(null), MIGHT_HAVE(new HashSet<>());
 
 		final Set<Group> groups;
 
-		Knowledge() {
-			groups = new HashSet<>();
+		Knowledge(HashSet<Group> hs) {
+			groups = hs;
 		}
 	}
 
 	protected static class Group {
 		private static int nid = 0;
 
-		public final int id;
-		private Set<Knowledge> contents;
+		final int id;
+		final Set<Knowledge> contents = new HashSet<>();
 
 		private Group() {
 			id = nid++;
+		}
+
+		@Override
+		public boolean equals(Object o) {
+			if (this == o) return true;
+			if (o == null || getClass() != o.getClass()) return false;
+			Group group = (Group) o;
+			return id == group.id;
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(id);
 		}
 	}
 

@@ -2,6 +2,7 @@ package org.example.model;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 /**
@@ -86,6 +87,47 @@ public final class BasicModel extends Model {
 		Card card;
 
 		public PlayerHasAssertion(Player p, Card c) {
+			player = p;
+			card = c;
+		}
+
+		public void handle() {
+			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
+			Knowledge prior = playercard.getOrDefault(card.value, Knowledge.MIGHT_HAVE);
+
+			// already known
+			if (prior == Knowledge.HAS) return;
+
+			// problem has occurred
+			if (prior == Knowledge.NO_HAS)
+				throw new IllegalStateException("PlayerHasAssertion: Card " + card.toString() +
+						" already marked as not had by player " + player.toString());
+
+			// delete groups that contain this card
+			// they no longer have meaning because we know this exists
+			Group[] groups = new Group[prior.groups.size()];
+			prior.groups.toArray(groups);
+			for (Group g : groups) {
+				for (Knowledge k : g.contents) {
+					k.groups.remove(g);
+				}
+			}
+
+			// set as must have in scorecard
+			playercard.put(card.value, Knowledge.HAS);
+
+			// assert that no other player has this card
+			Iterator<Player> iter = players.iterator(player, player);
+			while (iter.hasNext())
+				unhandledAssertions.add(new PlayerDoesNotHaveAssertion(iter.next(), card));
+		}
+	}
+
+	private class PlayerDoesNotHaveAssertion implements Assertion {
+		Player player;
+		Card card;
+
+		public PlayerDoesNotHaveAssertion(Player p, Card c) {
 			player = p;
 			card = c;
 		}
