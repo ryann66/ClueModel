@@ -3,13 +3,16 @@ package org.example.model;
 import java.util.*;
 
 /**
- * Interface for classes that model the scorecard
+ * Basic starter class for models to share scoreboard usage
  */
 public abstract class Model {
+	/**
+	 * Abstract idea that something is known
+	 */
 	public enum Knowledge {
 		HAS, NO_HAS, MIGHT_HAVE;
 
-		private final Set<Group> groups;
+		final Set<Group> groups;
 
 		Knowledge() {
 			groups = new HashSet<>();
