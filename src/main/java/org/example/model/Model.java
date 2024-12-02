@@ -57,21 +57,6 @@ public abstract class Model {
 	}
 
 	/**
-	 * Get an unmodifiable view to what the model knows about the game
-	 * Special meaning for integer values in scorecard
-	 *  - negative numbers mean that the player does not have the card
-	 *  - 0 means that the player must have the card
-	 *  - positive numbers mean that the player might have the card
-	 *  	Each positive number represents a group; the player must have
-	 *  	at least one card in the group
-	 * @return a const wrapper to the scorecard
-	 */
-	/*
-	public final Map<Player, Map<Card.Value, Integer>> getScorecard() {
-		return Collections.unmodifiableMap(scorecard);
-	}*/
-
-	/**
 	 * Builds a simple scorecard for what the player knows
 	 * Consists of one column that is either card found (true) or
 	 * card not found (false)
@@ -79,19 +64,18 @@ public abstract class Model {
 	 * 		that a card has been found/eliminated and false represents
 	 * 		that the card could still be in the envelope
 	 */
-	/*
 	public final Map<Card.Value, Boolean> getSimpleScorecard() {
 		Map<Card.Value, Boolean> retmap = new HashMap<>(Card.NUM_CARDS);
 		for (Card.Value v : Card.Value.values()) retmap.put(v, false);
 
-		for (Map<Card.Value, Integer> map : scorecard.values()) {
-			for (Map.Entry<Card.Value, Integer> kv : map.entrySet()) {
-				if (kv.getValue() == 0) retmap.put(kv.getKey(), true);
+		for (Map<Card.Value, Knowledge> map : scorecard.values()) {
+			for (Map.Entry<Card.Value, Knowledge> kv : map.entrySet()) {
+				if (kv.getValue() == Knowledge.HAS) retmap.put(kv.getKey(), true);
 			}
 		}
 
 		return retmap;
-	}*/
+	}
 
 	/**
 	 * Process the given query and add its knowledge to the model
