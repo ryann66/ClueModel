@@ -110,7 +110,7 @@ public final class BasicModel extends Model {
 			Group[] groups = new Group[prior.groups.size()];
 			prior.groups.toArray(groups);
 			for (Group g : groups) {
-				for (Knowledge k : g.contents) {
+				for (Knowledge k : g.contents.values()) {
 					k.groups.remove(g);
 				}
 			}
@@ -135,7 +135,32 @@ public final class BasicModel extends Model {
 		}
 
 		public void handle() {
-			// TODO
+			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
+			Knowledge prior = playercard.getOrDefault(card.value, Knowledge.MIGHT_HAVE);
+
+			// already known
+			if (prior == Knowledge.NO_HAS) return;
+
+			// problem has occurred
+			if (prior == Knowledge.HAS)
+				throw new IllegalStateException("PlayerDoesNotHaveAssertion: Card " + card.toString() +
+						" already marked as had by player " + player.toString());
+
+			// delete this card from groups
+			for (Group g : prior.groups) {
+				g.contents.remove(card.value);
+
+				if (g.contents.size() == 1) {
+					// if the group size is now one, we know that the player has to have the last
+					// card remaining in the group
+					Card.Value value = g.contents.keySet().iterator().next();
+					unhandledAssertions.add(new PlayerHasAssertion(player, new Card(value)));
+				}
+				if (g.contents.isEmpty()) {
+					// player must have one of empty group?
+					throw new IllegalStateException("PlayerDoesNotHaveAssertion: player must have at least card from empty set");
+				}
+			}
 		}
 	}
 
