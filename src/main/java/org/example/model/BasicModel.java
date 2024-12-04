@@ -49,8 +49,9 @@ public final class BasicModel extends Model {
 		if (answered == null) answered = query.asker();
 		Iterator<Player> iter = players.iterator(query.asker(), answered);
 		while (iter.hasNext()) {
+			Player p = iter.next();
 			for (Card c : query.cards()) {
-				unhandledAssertions.add(new PlayerDoesNotHaveAssertion(iter.next(), c));
+				unhandledAssertions.add(new PlayerDoesNotHaveAssertion(p, c));
 			}
 		}
 

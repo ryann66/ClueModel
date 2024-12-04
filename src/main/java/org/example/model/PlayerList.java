@@ -65,7 +65,7 @@ public class PlayerList {
 		int si = -1, ei = -1;
 		for (int i = 0; i < players.length; i++) {
 			if (players[i].equals(begin)) si = i;
-			else if (players[i].equals(end)) ei = i;
+			if (players[i].equals(end)) ei = i;
 		}
 		if (si == -1 || ei == -1) throw new IllegalArgumentException("Player not found");
 		return new PlayerIterator(si + 1, ei);

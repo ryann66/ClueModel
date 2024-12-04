@@ -3,6 +3,7 @@ package org.example;
 import org.example.model.*;
 
 import java.io.InputStream;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -20,12 +21,14 @@ public class ConsoleUI {
 		System.out.println("Enter the number of players:");
 		int np = 0;
 		do {
-			np = Integer.parseInt(cin.nextLine());
+			try {
+				np = Integer.parseInt(cin.nextLine());
+			} catch (NumberFormatException ignored) { }
 		} while (np < 3 || np > 6);
 		Player[] pls = new Player[np];
 		pls[0] = self;
 
-		System.out.println("Enter the names of players, starting from your left");
+		System.out.println("Enter the names of players (excluding you), starting from your left");
 		for (int i = 1; i < pls.length; i++) {
 			pls[i] = new Player(cin.nextLine());
 		}
@@ -34,7 +37,9 @@ public class ConsoleUI {
 		System.out.println("Enter the number of cards you know");
 		int nc = 0;
 		do {
-			nc = Integer.parseInt(cin.nextLine());
+			try {
+				nc = Integer.parseInt(cin.nextLine());
+			} catch (NumberFormatException ignored) { }
 		} while (nc < 0 || nc > Card.NUM_CARDS);
 		Card[] carr = new Card[nc];
 
@@ -53,6 +58,8 @@ public class ConsoleUI {
 
 	public void startUI() {
 		Scanner in = new Scanner(input);
+		System.out.print("$ ");
+		System.out.flush();
 		while (in.hasNextLine()) {
 			try {
 				Scanner line = new Scanner(in.nextLine());
@@ -79,14 +86,31 @@ public class ConsoleUI {
 					}
 					model.addQuery(new Query(self, answerer, cards, answer));
 				} else if (cmd.equals("get")) {
-					// GET
-					// todo
+					// GET simple?/full
+					String mode = line.hasNext() ? line.next().toLowerCase() : "simple";
+					if (mode.equals("simple")) {
+						Map<Card.Value, Boolean> card = model.getSimpleScorecard();
+						System.out.println("Cards:");
+						for (Card.Value v : Card.Value.values()) {
+							StringBuilder sb = new StringBuilder();
+							sb.append(v.toString());
+							sb.append(':');
+							while (sb.length() < Card.MAX_CARD_STRING_LENGTH + 1) sb.append(' ');
+							sb.append(' ');
+							sb.append(card.get(v) ? 'X' : ' ');
+							System.out.println(sb);
+						}
+					} else if (mode.equals("full")) {
+						// todo
+					} else {
+						throw new NoSuchElementException("Unknown asset");
+					}
 				} else if (cmd.equals("help")) {
 					// HELP
 					System.out.println("-----COMMANDS-----");
 					System.out.println("ADD asker card1 card2 card3 answerer?");
 					System.out.println("ASK card1 card2 card3 answerer? card?");
-					System.out.println("GET");
+					System.out.println("GET simple?/full");
 				} else {
 					// unknown command
 					throw new NoSuchElementException("Unknown case");
@@ -96,6 +120,8 @@ public class ConsoleUI {
 			} catch (NoSuchElementException nsee) {
 				System.out.println("Unparseable command");
 			}
+			System.out.print("$ ");
+			System.out.flush();
 		}
 	}
 }

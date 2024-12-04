@@ -7,7 +7,18 @@ import java.util.NoSuchElementException;
  * Non-abstracting
  */
 public class Card {
-	public static final int NUM_CARDS = 21;
+	public static final int NUM_CARDS;
+
+	public static final int MAX_CARD_STRING_LENGTH;
+
+	// initialize constants
+	static {
+		NUM_CARDS = Value.values().length;
+
+		int maxlen = 0;
+		for (Value v : Value.values()) maxlen = Math.max(v.toString().length(), maxlen);
+		MAX_CARD_STRING_LENGTH = maxlen;
+	}
 
 	/**
 	 * The type of card this is
