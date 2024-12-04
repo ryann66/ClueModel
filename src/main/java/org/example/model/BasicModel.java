@@ -180,19 +180,42 @@ public final class BasicModel extends Model {
 			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
 
 			Knowledge[] prior = new Knowledge[3];
-			Card mighthave = null;
 			int mighthavecount = 0;
 			for (int i = 0; i < prior.length; i++) {
 				prior[i] = playercard.get(cards[i].value);
 				if (prior[i] == Knowledge.HAS) return;
-				if (prior[i] == Knowledge.MIGHT_HAVE) {
-					mighthavecount++;
-					mighthave = cards[i];
-				}
+				if (prior[i] == null || prior[i] == Knowledge.MIGHT_HAVE) mighthavecount++;
 			}
 
 			if (mighthavecount == 1) {
-				unhandledAssertions.add(new PlayerHasAssertion(player, mighthave));
+				// Find the 1 card they might have and assert that they must have it
+				// because we know that they don't have the other two cards
+				for (int i = 0; i < prior.length; i++) {
+					if (prior[i] == null || prior[i] == Knowledge.MIGHT_HAVE) {
+						unhandledAssertions.add(new PlayerHasAssertion(player, cards[i]));
+						return;
+					}
+				}
+				throw new IllegalStateException("Bad logic");
+			}
+
+			if (mighthavecount == 0)
+				throw new IllegalStateException("PlayerHasOneOfAssertion: player " + player.toString() +
+						" does not have any of " + cards[0].toString() + ", " +
+						cards[1].toString() + ", or " + cards[2].toString());
+
+			// Add all might haves into a group
+			Group g = new Group();
+			for (int i = 0; i < prior.length; i++) {
+				if (prior[i] == null) {
+					prior[i] = Knowledge.MIGHT_HAVE;
+					playercard.put(cards[i].value, prior[i]);
+				}
+
+				if (prior[i] == Knowledge.MIGHT_HAVE) {
+					prior[i].groups.add(g);
+					g.contents.put(cards[i].value, prior[i]);
+				}
 			}
 		}
 	}

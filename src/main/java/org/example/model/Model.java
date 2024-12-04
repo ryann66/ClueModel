@@ -25,7 +25,7 @@ public abstract class Model {
 		final int id;
 		final Map<Card.Value, Knowledge> contents = new HashMap<>(3);
 
-		private Group() {
+		protected Group() {
 			id = nid++;
 		}
 
