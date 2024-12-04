@@ -152,7 +152,23 @@ public final class BasicModel extends Model {
 		}
 
 		public void handle() {
-			// TODO
+			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
+
+			Knowledge[] prior = new Knowledge[3];
+			Card mighthave = null;
+			int mighthavecount = 0;
+			for (int i = 0; i < prior.length; i++) {
+				prior[i] = playercard.get(cards[i].value);
+				if (prior[i] == Knowledge.HAS) return;
+				if (prior[i] == Knowledge.MIGHT_HAVE) {
+					mighthavecount++;
+					mighthave = cards[i];
+				}
+			}
+
+			if (mighthavecount == 1) {
+				unhandledAssertions.add(new PlayerHasAssertion(player, mighthave));
+			}
 		}
 	}
 }
