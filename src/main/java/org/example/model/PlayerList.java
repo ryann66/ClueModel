@@ -18,7 +18,23 @@ public class PlayerList {
 	 */
 	public PlayerList(Player[] players) {
 		if (players == null || players.length <= 2) throw new IllegalArgumentException("Illegal players");
-		this.players = players;
+		this.players = new Player[players.length];
+		for (int i = 0; i < players.length; i++) {
+			for (int j = 0; j < i; j++) {
+				if (this.players[j].equals(players[i])) throw new IllegalArgumentException("Duplicate players");
+			}
+			this.players[i] = players[i];
+		}
+	}
+
+	/**
+	 * Finds the player with the given name or throws an exception if not found
+	 * @param playername the name of the player to find
+	 * @return the Player with the given name
+	 */
+	public Player get(String playername) {
+		for (Player p : players) if (p.name().equalsIgnoreCase(playername)) return p;
+		throw new NoSuchElementException("Player not found");
 	}
 
 	/**
