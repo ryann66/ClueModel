@@ -1,11 +1,24 @@
 package org.example.model;
 
+import java.util.NoSuchElementException;
+
 /**
  * Immutable record-like class for representing cards
  * Non-abstracting
  */
 public class Card {
-	public static final int NUM_CARDS = 21;
+	public static final int NUM_CARDS;
+
+	public static final int MAX_CARD_STRING_LENGTH;
+
+	// initialize constants
+	static {
+		NUM_CARDS = Value.values().length;
+
+		int maxlen = 0;
+		for (Value v : Value.values()) maxlen = Math.max(v.toString().length(), maxlen);
+		MAX_CARD_STRING_LENGTH = maxlen;
+	}
 
 	/**
 	 * The type of card this is
@@ -56,7 +69,7 @@ public class Card {
 	 * Gets the value of a card, given the string name of the card
 	 * Partial names are accepted
 	 * @param cardstr the string to get the value for
-	 * @throws IllegalArgumentException if a value could not be derived from cardstr   
+	 * @throws NoSuchElementException if a value could not be derived from cardstr
 	 * @return the value represented by cardstr
 	 */
 	public static Value toValue(String cardstr) {
@@ -87,7 +100,7 @@ public class Card {
 		else if (cardstr.contains("kitchen")) return Value.KITCHEN;
 		else if (cardstr.contains("dining")) return Value.DINING_ROOM;
 		else if (cardstr.contains("living")) return Value.LIVING_ROOM;
-		else throw new IllegalArgumentException("Unknown card");
+		else throw new NoSuchElementException("Unknown card");
 	}
 	
 	public static String toString(Value value) {

@@ -18,7 +18,23 @@ public class PlayerList {
 	 */
 	public PlayerList(Player[] players) {
 		if (players == null || players.length <= 2) throw new IllegalArgumentException("Illegal players");
-		this.players = players;
+		this.players = new Player[players.length];
+		for (int i = 0; i < players.length; i++) {
+			for (int j = 0; j < i; j++) {
+				if (this.players[j].equals(players[i])) throw new IllegalArgumentException("Duplicate players");
+			}
+			this.players[i] = players[i];
+		}
+	}
+
+	/**
+	 * Finds the player with the given name or throws an exception if not found
+	 * @param playername the name of the player to find
+	 * @return the Player with the given name
+	 */
+	public Player get(String playername) {
+		for (Player p : players) if (p.name().equalsIgnoreCase(playername)) return p;
+		throw new NoSuchElementException("Player not found");
 	}
 
 	/**
@@ -33,7 +49,7 @@ public class PlayerList {
 	 * @return an iterator of players
 	 */
 	public Iterator<Player> iterator() {
-		return new PlayerIterator(0, players.length);
+		return new ArrayIterator();
 	}
 
 	/**
@@ -49,7 +65,7 @@ public class PlayerList {
 		int si = -1, ei = -1;
 		for (int i = 0; i < players.length; i++) {
 			if (players[i].equals(begin)) si = i;
-			else if (players[i].equals(end)) ei = i;
+			if (players[i].equals(end)) ei = i;
 		}
 		if (si == -1 || ei == -1) throw new IllegalArgumentException("Player not found");
 		return new PlayerIterator(si + 1, ei);
@@ -86,6 +102,21 @@ public class PlayerList {
 			Player ret = players[idx];
 			idx = (idx + 1) % players.length;
 			return ret;
+		}
+	}
+
+	private class ArrayIterator implements Iterator<Player> {
+		int idx = 0;
+
+		@Override
+		public boolean hasNext() {
+			return idx != players.length;
+		}
+
+		@Override
+		public Player next() {
+			if (idx == players.length) throw new NoSuchElementException("Iteration finished");
+			return players[idx++];
 		}
 	}
 }

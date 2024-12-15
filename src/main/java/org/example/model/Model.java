@@ -23,9 +23,9 @@ public abstract class Model {
 		private static int nid = 0;
 
 		final int id;
-		final Set<Knowledge> contents = new HashSet<>();
+		final Map<Card.Value, Knowledge> contents = new HashMap<>(3);
 
-		private Group() {
+		protected Group() {
 			id = nid++;
 		}
 

@@ -49,8 +49,9 @@ public final class BasicModel extends Model {
 		if (answered == null) answered = query.asker();
 		Iterator<Player> iter = players.iterator(query.asker(), answered);
 		while (iter.hasNext()) {
+			Player p = iter.next();
 			for (Card c : query.cards()) {
-				unhandledAssertions.add(new PlayerDoesNotHaveAssertion(iter.next(), c));
+				unhandledAssertions.add(new PlayerDoesNotHaveAssertion(p, c));
 			}
 		}
 
@@ -91,6 +92,7 @@ public final class BasicModel extends Model {
 		public PlayerHasAssertion(Player p, Card c) {
 			player = p;
 			card = c;
+			System.out.println("Has " + p.toString() + " " + c.toString());
 		}
 
 		public void handle() {
@@ -110,7 +112,7 @@ public final class BasicModel extends Model {
 			Group[] groups = new Group[prior.groups.size()];
 			prior.groups.toArray(groups);
 			for (Group g : groups) {
-				for (Knowledge k : g.contents) {
+				for (Knowledge k : g.contents.values()) {
 					k.groups.remove(g);
 				}
 			}
@@ -132,10 +134,39 @@ public final class BasicModel extends Model {
 		public PlayerDoesNotHaveAssertion(Player p, Card c) {
 			player = p;
 			card = c;
+			System.out.println("Has not " + p.toString() + " " + c.toString());
 		}
 
 		public void handle() {
-			// TODO
+			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
+			Knowledge prior = playercard.getOrDefault(card.value, Knowledge.MIGHT_HAVE);
+
+			// already known
+			if (prior == Knowledge.NO_HAS) return;
+
+			// problem has occurred
+			if (prior == Knowledge.HAS)
+				throw new IllegalStateException("PlayerDoesNotHaveAssertion: Card " + card.toString() +
+						" already marked as had by player " + player.toString());
+
+			// delete this card from groups
+			for (Group g : prior.groups) {
+				g.contents.remove(card.value);
+
+				if (g.contents.size() == 1) {
+					// if the group size is now one, we know that the player has to have the last
+					// card remaining in the group
+					Card.Value value = g.contents.keySet().iterator().next();
+					unhandledAssertions.add(new PlayerHasAssertion(player, new Card(value)));
+				}
+				if (g.contents.isEmpty()) {
+					// player must have one of empty group?
+					throw new IllegalStateException("PlayerDoesNotHaveAssertion: player must have at least card from empty set");
+				}
+			}
+
+			// set this card as not had
+			playercard.put(card.value, Knowledge.NO_HAS);
 		}
 	}
 
@@ -149,25 +180,49 @@ public final class BasicModel extends Model {
 		public PlayerHasOneOfAssertion(Player p, Card[] c) {
 			player = p;
 			cards = c;
+			System.out.println("Has not " + p.toString() + " " + c.toString());
 		}
 
 		public void handle() {
 			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
 
 			Knowledge[] prior = new Knowledge[3];
-			Card mighthave = null;
 			int mighthavecount = 0;
 			for (int i = 0; i < prior.length; i++) {
 				prior[i] = playercard.get(cards[i].value);
 				if (prior[i] == Knowledge.HAS) return;
-				if (prior[i] == Knowledge.MIGHT_HAVE) {
-					mighthavecount++;
-					mighthave = cards[i];
-				}
+				if (prior[i] == null || prior[i] == Knowledge.MIGHT_HAVE) mighthavecount++;
 			}
 
 			if (mighthavecount == 1) {
-				unhandledAssertions.add(new PlayerHasAssertion(player, mighthave));
+				// Find the 1 card they might have and assert that they must have it
+				// because we know that they don't have the other two cards
+				for (int i = 0; i < prior.length; i++) {
+					if (prior[i] == null || prior[i] == Knowledge.MIGHT_HAVE) {
+						unhandledAssertions.add(new PlayerHasAssertion(player, cards[i]));
+						return;
+					}
+				}
+				throw new IllegalStateException("Bad logic");
+			}
+
+			if (mighthavecount == 0)
+				throw new IllegalStateException("PlayerHasOneOfAssertion: player " + player.toString() +
+						" does not have any of " + cards[0].toString() + ", " +
+						cards[1].toString() + ", or " + cards[2].toString());
+
+			// Add all might haves into a group
+			Group g = new Group();
+			for (int i = 0; i < prior.length; i++) {
+				if (prior[i] == null) {
+					prior[i] = Knowledge.MIGHT_HAVE;
+					playercard.put(cards[i].value, prior[i]);
+				}
+
+				if (prior[i] == Knowledge.MIGHT_HAVE) {
+					prior[i].groups.add(g);
+					g.contents.put(cards[i].value, prior[i]);
+				}
 			}
 		}
 	}
