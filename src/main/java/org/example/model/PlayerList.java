@@ -49,7 +49,7 @@ public class PlayerList {
 	 * @return an iterator of players
 	 */
 	public Iterator<Player> iterator() {
-		return new PlayerIterator(0, players.length);
+		return new ArrayIterator();
 	}
 
 	/**
@@ -102,6 +102,21 @@ public class PlayerList {
 			Player ret = players[idx];
 			idx = (idx + 1) % players.length;
 			return ret;
+		}
+	}
+
+	private class ArrayIterator implements Iterator<Player> {
+		int idx = 0;
+
+		@Override
+		public boolean hasNext() {
+			return idx != players.length;
+		}
+
+		@Override
+		public Player next() {
+			if (idx == players.length) throw new NoSuchElementException("Iteration finished");
+			return players[idx++];
 		}
 	}
 }

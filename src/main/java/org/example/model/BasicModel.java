@@ -92,6 +92,7 @@ public final class BasicModel extends Model {
 		public PlayerHasAssertion(Player p, Card c) {
 			player = p;
 			card = c;
+			System.out.println("Has " + p.toString() + " " + c.toString());
 		}
 
 		public void handle() {
@@ -133,6 +134,7 @@ public final class BasicModel extends Model {
 		public PlayerDoesNotHaveAssertion(Player p, Card c) {
 			player = p;
 			card = c;
+			System.out.println("Has not " + p.toString() + " " + c.toString());
 		}
 
 		public void handle() {
@@ -162,6 +164,9 @@ public final class BasicModel extends Model {
 					throw new IllegalStateException("PlayerDoesNotHaveAssertion: player must have at least card from empty set");
 				}
 			}
+
+			// set this card as not had
+			playercard.put(card.value, Knowledge.NO_HAS);
 		}
 	}
 
@@ -175,6 +180,7 @@ public final class BasicModel extends Model {
 		public PlayerHasOneOfAssertion(Player p, Card[] c) {
 			player = p;
 			cards = c;
+			System.out.println("Has not " + p.toString() + " " + c.toString());
 		}
 
 		public void handle() {
