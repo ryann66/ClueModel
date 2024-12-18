@@ -38,7 +38,7 @@ public final class BasicModel extends Model {
 		} else if (query.answer() != null && query.answered() != self) {
 			// if it wasn't our question; we know the answer, we must have answered it
 			throw new IllegalArgumentException("How do we know the answer?");
-		} else {
+		} else if (query.answered() != null) {
 			// we know that the player who answered must have one of the three cards
 			unhandledAssertions.add(new PlayerHasOneOfAssertion(query.answered(), query.cards()));
 		}
@@ -66,6 +66,7 @@ public final class BasicModel extends Model {
 	private void handleAssertions() {
 		while (!unhandledAssertions.isEmpty()) {
 			unhandledAssertions.remove().handle();
+			System.out.println("Assertion Handled\n");
 		}
 	}
 
@@ -180,7 +181,7 @@ public final class BasicModel extends Model {
 		public PlayerHasOneOfAssertion(Player p, Card[] c) {
 			player = p;
 			cards = c;
-			System.out.println("Has not " + p.toString() + " " + c.toString());
+			System.out.println("Has one of " + p.toString() + " " + c[0].toString() + " " + c[1].toString() + " " + c[2].toString());
 		}
 
 		public void handle() {
