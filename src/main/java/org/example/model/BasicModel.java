@@ -8,7 +8,7 @@ import java.util.Queue;
 /**
  * Basic modeler that fills out a scorecard based purely off known information
  */
-public final class BasicModel extends Model {
+public final class BasicModel extends AbstractModel {
 	private final PlayerList players;
 	private final Player self;
 
