@@ -7,10 +7,20 @@ import java.util.*;
  */
 public abstract class Model {
 	/**
-	 * Abstract idea that something is known
+	 * Abstract idea that something is known about a player's cards
 	 */
 	protected enum Knowledge {
-		HAS(null), NO_HAS(null), MIGHT_HAVE(new HashSet<>());
+		// Player has the card
+		HAS(null),
+
+		// Player does not have the card
+		NO_HAS(null),
+
+		// Player has one of the cards in the set
+		MIGHT_HAVE(new HashSet<>()),
+
+		// Player doesn't have the card but knows where it is
+		KNOWN(null);
 
 		final Set<Group> groups;
 
@@ -45,8 +55,8 @@ public abstract class Model {
 
 	protected Map<Player, Map<Card, Knowledge>> scorecard;
 
-	protected Model(PlayerList players, Player self, Card[] known) {
-		if (players == null || self == null || known == null)
+	protected Model(PlayerList players, Player self, Card[] known, Card[] owned) {
+		if (players == null || self == null || known == null || owned == null)
 			throw new IllegalArgumentException("Unexpected null argument");
 
 		// fill scorecard with maps
@@ -54,15 +64,20 @@ public abstract class Model {
 		Iterator<Player> iter = players.iterator();
 		while (iter.hasNext()) scorecard.put(iter.next(), new HashMap<>());
 
-		HashMap<Card, Knowledge> selfcards = new HashMap<>(Card.NUM_CARDS);
+		Map<Card, Knowledge> selfcards = new HashMap<>(Card.NUM_CARDS);
 
 		// block all cards
 		for (Card c : Card.values()) selfcards.put(c, Knowledge.NO_HAS);
-		// add known cards
-		for (Card c : known) selfcards.put(c, Knowledge.HAS);
+		// add owned cards
+		for (Card c : owned) selfcards.put(c, Knowledge.HAS);
 
 		// replace self map in scorecard
 		scorecard.put(self, selfcards);
+
+		// add common cards
+		for (Map<Card, Knowledge> player : scorecard.values()) {
+			for (Card k : known) player.put(k, Knowledge.KNOWN);
+		}
 	}
 
 	/**

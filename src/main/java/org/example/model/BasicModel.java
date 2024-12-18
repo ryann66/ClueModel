@@ -14,8 +14,8 @@ public final class BasicModel extends Model {
 
 	private final Queue<Assertion> unhandledAssertions = new LinkedList<>();
 
-	public BasicModel(PlayerList players, Player self, Card[] known) {
-		super(players, self, known);
+	public BasicModel(PlayerList players, Player self, Card[] known, Card[] owned) {
+		super(players, self, known, owned);
 		this.players = players;
 		this.self = self;
 	}
@@ -104,7 +104,7 @@ public final class BasicModel extends Model {
 			if (prior == Knowledge.HAS) return;
 
 			// problem has occurred
-			if (prior == Knowledge.NO_HAS)
+			if (prior == Knowledge.NO_HAS || prior == Knowledge.KNOWN)
 				throw new IllegalStateException("PlayerHasAssertion: Card " + card.toString() +
 						" already marked as not had by player " + player.toString());
 
@@ -143,7 +143,7 @@ public final class BasicModel extends Model {
 			Knowledge prior = playercard.getOrDefault(card, Knowledge.MIGHT_HAVE);
 
 			// already known
-			if (prior == Knowledge.NO_HAS) return;
+			if (prior == Knowledge.NO_HAS || prior == Knowledge.KNOWN) return;
 
 			// problem has occurred
 			if (prior == Knowledge.HAS)

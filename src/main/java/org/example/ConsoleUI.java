@@ -34,7 +34,7 @@ public class ConsoleUI {
 		}
 		players = new PlayerList(pls);
 
-		System.out.println("Enter the number of cards you know");
+		System.out.println("Enter the number of common cards you know");
 		int nc = 0;
 		do {
 			try {
@@ -43,7 +43,7 @@ public class ConsoleUI {
 		} while (nc < 0 || nc > Card.NUM_CARDS);
 		Card[] carr = new Card[nc];
 
-		System.out.println("Enter the cards you know:");
+		System.out.println("Enter the common cards you know:");
 		for (int i = 0; i < nc; i++) {
 			try {
 				carr[i] = Card.toCard(cin.nextLine());
@@ -53,7 +53,26 @@ public class ConsoleUI {
 			}
 		}
 
-		model = new BasicModel(players, self, carr);
+		System.out.println("Enter the number of cards in your hand");
+		nc = 0;
+		do {
+			try {
+				nc = Integer.parseInt(cin.nextLine());
+			} catch (NumberFormatException ignored) { }
+		} while (nc < 0 || nc > Card.NUM_CARDS);
+		Card[] charr = new Card[nc];
+
+		System.out.println("Enter the cards in your hand:");
+		for (int i = 0; i < nc; i++) {
+			try {
+				carr[i] = Card.toCard(cin.nextLine());
+			} catch (NoSuchElementException nsee) {
+				i--;
+				System.out.println("Unparseable card, try again");
+			}
+		}
+
+		model = new BasicModel(players, self, carr, charr);
 	}
 
 	public void startUI() {
