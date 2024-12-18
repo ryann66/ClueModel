@@ -46,7 +46,7 @@ public class ConsoleUI {
 		System.out.println("Enter the cards you know:");
 		for (int i = 0; i < nc; i++) {
 			try {
-				carr[i] = new Card(cin.nextLine());
+				carr[i] = Card.toCard(cin.nextLine());
 			} catch (NoSuchElementException nsee) {
 				i--;
 				System.out.println("Unparseable card, try again");
@@ -69,7 +69,7 @@ public class ConsoleUI {
 					Player asker = players.get(line.next());
 					Card[] cards = new Card[3];
 					for (int i = 0; i < cards.length; i++)
-						cards[i] = new Card(line.next());
+						cards[i] = Card.toCard(line.next());
 					Player answerer = null;
 					if (line.hasNext()) answerer = players.get(line.next());
 					model.addQuery(new Query(asker, answerer, cards, null));
@@ -77,21 +77,21 @@ public class ConsoleUI {
 					// ASK card1 card2 card3 answerer? card?
 					Card[] cards = new Card[3];
 					for (int i = 0; i < cards.length; i++)
-						cards[i] = new Card(line.next());
+						cards[i] = Card.toCard((line.next()));
 					Player answerer = null;
 					Card answer = null;
 					if (line.hasNext()) {
 						answerer = players.get(line.next());
-						answer = new Card(line.next());
+						answer = Card.toCard((line.next()));
 					}
 					model.addQuery(new Query(self, answerer, cards, answer));
 				} else if (cmd.equals("get")) {
 					// GET simple?/full
 					String mode = line.hasNext() ? line.next().toLowerCase() : "simple";
 					if (mode.equals("simple")) {
-						Map<Card.Value, Boolean> card = model.getSimpleScorecard();
+						Map<Card, Boolean> card = model.getSimpleScorecard();
 						System.out.println("Cards:");
-						for (Card.Value v : Card.Value.values()) {
+						for (Card v : Card.values()) {
 							StringBuilder sb = new StringBuilder();
 							sb.append(v.toString());
 							sb.append(':');

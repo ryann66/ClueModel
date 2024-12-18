@@ -23,7 +23,7 @@ public abstract class Model {
 		private static int nid = 0;
 
 		final int id;
-		final Map<Card.Value, Knowledge> contents = new HashMap<>(3);
+		final Map<Card, Knowledge> contents = new HashMap<>(3);
 
 		protected Group() {
 			id = nid++;
@@ -43,7 +43,7 @@ public abstract class Model {
 		}
 	}
 
-	protected Map<Player, Map<Card.Value, Knowledge>> scorecard;
+	protected Map<Player, Map<Card, Knowledge>> scorecard;
 
 	protected Model(PlayerList players, Player self, Card[] known) {
 		if (players == null || self == null || known == null)
@@ -54,12 +54,12 @@ public abstract class Model {
 		Iterator<Player> iter = players.iterator();
 		while (iter.hasNext()) scorecard.put(iter.next(), new HashMap<>());
 
-		HashMap<Card.Value, Knowledge> selfcards = new HashMap<>(Card.NUM_CARDS);
+		HashMap<Card, Knowledge> selfcards = new HashMap<>(Card.NUM_CARDS);
 
 		// block all cards
-		for (Card.Value v : Card.Value.values()) selfcards.put(v, Knowledge.NO_HAS);
+		for (Card c : Card.values()) selfcards.put(c, Knowledge.NO_HAS);
 		// add known cards
-		for (Card c : known) selfcards.put(c.value, Knowledge.HAS);
+		for (Card c : known) selfcards.put(c, Knowledge.HAS);
 
 		// replace self map in scorecard
 		scorecard.put(self, selfcards);
@@ -73,12 +73,12 @@ public abstract class Model {
 	 * 		that a card has been found/eliminated and false represents
 	 * 		that the card could still be in the envelope
 	 */
-	public final Map<Card.Value, Boolean> getSimpleScorecard() {
-		Map<Card.Value, Boolean> retmap = new HashMap<>(Card.NUM_CARDS);
-		for (Card.Value v : Card.Value.values()) retmap.put(v, false);
+	public final Map<Card, Boolean> getSimpleScorecard() {
+		Map<Card, Boolean> retmap = new HashMap<>(Card.NUM_CARDS);
+		for (Card c : Card.values()) retmap.put(c, false);
 
-		for (Map<Card.Value, Knowledge> map : scorecard.values()) {
-			for (Map.Entry<Card.Value, Knowledge> kv : map.entrySet()) {
+		for (Map<Card, Knowledge> map : scorecard.values()) {
+			for (Map.Entry<Card, Knowledge> kv : map.entrySet()) {
 				if (kv.getValue() == Knowledge.HAS) retmap.put(kv.getKey(), true);
 			}
 		}

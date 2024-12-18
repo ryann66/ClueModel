@@ -97,8 +97,8 @@ public final class BasicModel extends Model {
 		}
 
 		public void handle() {
-			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
-			Knowledge prior = playercard.getOrDefault(card.value, Knowledge.MIGHT_HAVE);
+			Map<Card, Knowledge> playercard = scorecard.get(player);
+			Knowledge prior = playercard.getOrDefault(card, Knowledge.MIGHT_HAVE);
 
 			// already known
 			if (prior == Knowledge.HAS) return;
@@ -119,7 +119,7 @@ public final class BasicModel extends Model {
 			}
 
 			// set as must have in scorecard
-			playercard.put(card.value, Knowledge.HAS);
+			playercard.put(card, Knowledge.HAS);
 
 			// assert that no other player has this card
 			Iterator<Player> iter = players.iterator(player, player);
@@ -139,8 +139,8 @@ public final class BasicModel extends Model {
 		}
 
 		public void handle() {
-			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
-			Knowledge prior = playercard.getOrDefault(card.value, Knowledge.MIGHT_HAVE);
+			Map<Card, Knowledge> playercard = scorecard.get(player);
+			Knowledge prior = playercard.getOrDefault(card, Knowledge.MIGHT_HAVE);
 
 			// already known
 			if (prior == Knowledge.NO_HAS) return;
@@ -152,13 +152,13 @@ public final class BasicModel extends Model {
 
 			// delete this card from groups
 			for (Group g : prior.groups) {
-				g.contents.remove(card.value);
+				g.contents.remove(card);
 
 				if (g.contents.size() == 1) {
 					// if the group size is now one, we know that the player has to have the last
 					// card remaining in the group
-					Card.Value value = g.contents.keySet().iterator().next();
-					unhandledAssertions.add(new PlayerHasAssertion(player, new Card(value)));
+					Card value = g.contents.keySet().iterator().next();
+					unhandledAssertions.add(new PlayerHasAssertion(player, value));
 				}
 				if (g.contents.isEmpty()) {
 					// player must have one of empty group?
@@ -167,7 +167,7 @@ public final class BasicModel extends Model {
 			}
 
 			// set this card as not had
-			playercard.put(card.value, Knowledge.NO_HAS);
+			playercard.put(card, Knowledge.NO_HAS);
 		}
 	}
 
@@ -185,12 +185,12 @@ public final class BasicModel extends Model {
 		}
 
 		public void handle() {
-			Map<Card.Value, Knowledge> playercard = scorecard.get(player);
+			Map<Card, Knowledge> playercard = scorecard.get(player);
 
 			Knowledge[] prior = new Knowledge[3];
 			int mighthavecount = 0;
 			for (int i = 0; i < prior.length; i++) {
-				prior[i] = playercard.get(cards[i].value);
+				prior[i] = playercard.get(cards[i]);
 				if (prior[i] == Knowledge.HAS) return;
 				if (prior[i] == null || prior[i] == Knowledge.MIGHT_HAVE) mighthavecount++;
 			}
@@ -217,12 +217,12 @@ public final class BasicModel extends Model {
 			for (int i = 0; i < prior.length; i++) {
 				if (prior[i] == null) {
 					prior[i] = Knowledge.MIGHT_HAVE;
-					playercard.put(cards[i].value, prior[i]);
+					playercard.put(cards[i], prior[i]);
 				}
 
 				if (prior[i] == Knowledge.MIGHT_HAVE) {
 					prior[i].groups.add(g);
-					g.contents.put(cards[i].value, prior[i]);
+					g.contents.put(cards[i], prior[i]);
 				}
 			}
 		}

@@ -22,7 +22,7 @@ public record Query(Player asker, Player answered, Card[] cards, Card answer) {
 			};
 			// if answer is not yet found, check if this card is answer
 			if (!anscon) {
-				anscon = c.value == answer.value;
+				anscon = c == answer;
 			}
 		}
 		if (sum != 7) throw new IllegalArgumentException("Must have a weapon, person, and location card");
