@@ -9,10 +9,10 @@ import java.util.Queue;
  * Basic modeler that fills out a scorecard based purely off known information
  */
 public class BasicModel extends AbstractModel {
-	private final PlayerList players;
-	private final Player self;
+	protected final PlayerList players;
+	protected final Player self;
 
-	private final Queue<Assertion> unhandledAssertions = new LinkedList<>();
+	protected final Queue<Assertion> unhandledAssertions = new LinkedList<>();
 
 	public BasicModel(PlayerList players, Player self, Card[] known, Card[] owned) {
 		super(players, self, known, owned);
@@ -69,10 +69,9 @@ public class BasicModel extends AbstractModel {
 	 * Handles all the assertions we know about the game state
 	 * Also handles all assertions spawned by handling assertions
 	 */
-	private void handleAssertions() {
+	protected void handleAssertions() {
 		while (!unhandledAssertions.isEmpty()) {
 			unhandledAssertions.remove().handle();
-			System.out.println("Assertion Handled\n");
 		}
 	}
 
@@ -92,14 +91,13 @@ public class BasicModel extends AbstractModel {
 	/**
 	 * This assertion represents the idea that we know a certain player has a certain card
 	 */
-	private class PlayerHasAssertion implements Assertion {
+	protected class PlayerHasAssertion implements Assertion {
 		Player player;
 		Card card;
 
 		public PlayerHasAssertion(Player p, Card c) {
 			player = p;
 			card = c;
-			System.out.println("Has " + p.toString() + " " + c.toString());
 		}
 
 		public void handle() {
@@ -134,14 +132,13 @@ public class BasicModel extends AbstractModel {
 		}
 	}
 
-	private class PlayerDoesNotHaveAssertion implements Assertion {
+	protected class PlayerDoesNotHaveAssertion implements Assertion {
 		Player player;
 		Card card;
 
 		public PlayerDoesNotHaveAssertion(Player p, Card c) {
 			player = p;
 			card = c;
-			System.out.println("Has not " + p.toString() + " " + c.toString());
 		}
 
 		public void handle() {
@@ -180,14 +177,13 @@ public class BasicModel extends AbstractModel {
 	/**
 	 * This assertion represents the idea that we know a player has one of a set of cards
 	 */
-	private class PlayerHasOneOfAssertion implements Assertion {
+	protected class PlayerHasOneOfAssertion implements Assertion {
 		Player player;
 		Card[] cards;
 
 		public PlayerHasOneOfAssertion(Player p, Card[] c) {
 			player = p;
 			cards = c;
-			System.out.println("Has one of " + p.toString() + " " + c[0].toString() + " " + c[1].toString() + " " + c[2].toString());
 		}
 
 		public void handle() {
