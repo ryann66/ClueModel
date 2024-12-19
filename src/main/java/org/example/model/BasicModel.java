@@ -8,7 +8,7 @@ import java.util.Queue;
 /**
  * Basic modeler that fills out a scorecard based purely off known information
  */
-public final class BasicModel extends AbstractModel {
+public class BasicModel extends AbstractModel {
 	private final PlayerList players;
 	private final Player self;
 
@@ -18,6 +18,12 @@ public final class BasicModel extends AbstractModel {
 		super(players, self, known, owned);
 		this.players = players;
 		this.self = self;
+	}
+
+	protected BasicModel(PlayerList players, Card[] known) {
+		super(players, known);
+		this.players = players;
+		this.self = null;
 	}
 
 	@Override
@@ -75,7 +81,7 @@ public final class BasicModel extends AbstractModel {
 	 * These assertions, when handled, will change the scorecard to reflect what
 	 * we know about the cards of each player
 	 */
-	private interface Assertion {
+	protected interface Assertion {
 		/**
 		 * Implement any changes caused by this assertion to the scorecard
 		 * This might spawn new assertions that will be added to unhandledAssertions

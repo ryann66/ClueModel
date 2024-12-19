@@ -81,13 +81,25 @@ abstract class AbstractModel implements Model {
 	}
 
 	/**
-	 * Builds a simple scorecard for what the player knows
-	 * Consists of one column that is either card found (true) or
-	 * card not found (false)
-	 * @return a simple one column scorecard where true represents
-	 * 		that a card has been found/eliminated and false represents
-	 * 		that the card could still be in the envelope
+	 * Builds an AbstractModel that only knows the common knowledge about the game
+	 * @param players the list of players in the game
+	 * @param known the array of cards that are known to everyone
 	 */
+	protected AbstractModel(PlayerList players, Card[] known) {
+		if (players == null || known == null)
+			throw new IllegalArgumentException("Unexpected null argument");
+
+		// fill scorecard with maps
+		scorecard = new HashMap<>(players.getPlayerCount());
+		Iterator<Player> iter = players.iterator();
+		while (iter.hasNext()) scorecard.put(iter.next(), new HashMap<>());
+
+		// add common cards
+		for (Map<Card, Knowledge> player : scorecard.values()) {
+			for (Card k : known) player.put(k, Knowledge.KNOWN);
+		}
+	}
+
 	public final Map<Card, Boolean> getSimpleScorecard() {
 		Map<Card, Boolean> retmap = new HashMap<>(Card.NUM_CARDS);
 		for (Card c : Card.values()) retmap.put(c, false);
