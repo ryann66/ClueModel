@@ -100,10 +100,4 @@ abstract class AbstractModel implements Model {
 
 		return retmap;
 	}
-
-	/**
-	 * Process the given query and add its knowledge to the model
-	 * @param query the query to process
-	 */
-	public abstract void addQuery(Query query);
 }
