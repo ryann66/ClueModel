@@ -65,4 +65,12 @@ abstract class AbstractModel implements Model {
 
 		return retmap;
 	}
+
+	public Map<Player, Map<Card, Knowledge>> getFullScorecard() {
+		Map<Player, Map<Card, Knowledge>> retmap = new HashMap<>(scorecard.size());
+		for (Map.Entry<Player, Map<Card, Knowledge>> entry : scorecard.entrySet()) {
+			retmap.put(entry.getKey(), Collections.unmodifiableMap(entry.getValue()));
+		}
+		return retmap;
+	}
 }

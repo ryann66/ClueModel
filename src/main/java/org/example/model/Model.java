@@ -14,6 +14,8 @@ public interface Model {
 	 */
 	Map<Card, Boolean> getSimpleScorecard();
 
+	Map<Player, Map<Card, Knowledge>> getFullScorecard();
+
 	/**
 	 * Process the given query and add its knowledge to the model
 	 * @param query the query to process
