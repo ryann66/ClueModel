@@ -72,107 +72,114 @@ public class ConsoleUI {
 			try {
 				Scanner line = new Scanner(in.nextLine());
 				String cmd = line.next().toLowerCase();
-				if (cmd.equals("add")) {
-					// ADD asker card1 card2 card3 answerer?
-					Player asker = players.get(line.next());
-					Card[] cards = new Card[3];
-					for (int i = 0; i < cards.length; i++)
-						cards[i] = Card.toCard(line.next());
-					Player answerer = null;
-					if (line.hasNext()) answerer = players.get(line.next());
-					model.addQuery(new Query(asker, answerer, cards, null));
-				} else if (cmd.equals("ask")) {
-					// ASK card1 card2 card3 answerer? card?
-					Card[] cards = new Card[3];
-					for (int i = 0; i < cards.length; i++)
-						cards[i] = Card.toCard((line.next()));
-					Player answerer = null;
-					Card answer = null;
-					if (line.hasNext()) {
-						answerer = players.get(line.next());
-						answer = Card.toCard((line.next()));
+				switch (cmd) {
+					case "add" -> {
+						// ADD asker card1 card2 card3 answerer?
+						Player asker = players.get(line.next());
+						Card[] cards = new Card[3];
+						for (int i = 0; i < cards.length; i++)
+							cards[i] = Card.toCard(line.next());
+						Player answerer = null;
+						if (line.hasNext()) answerer = players.get(line.next());
+						model.addQuery(new Query(asker, answerer, cards, null));
+						break;
 					}
-					model.addQuery(new Query(self, answerer, cards, answer));
-				} else if (cmd.equals("get")) {
-					// GET simple?/full
-					String mode = line.hasNext() ? line.next().toLowerCase() : "simple";
-					if (mode.equals("simple")) {
-						Map<Card, Boolean> card = model.getSimpleScorecard();
-						System.out.println("Cards:");
-						for (Card v : Card.values()) {
-							StringBuilder sb = new StringBuilder(Card.MAX_CARD_STRING_LENGTH + 3);
-							sb.append(v.toString());
-							sb.append(':');
-							while (sb.length() < Card.MAX_CARD_STRING_LENGTH + 1) sb.append(' ');
-							sb.append(' ');
-							sb.append(card.get(v) ? 'X' : ' ');
-							System.out.println(sb);
+					case "ask" -> {
+						// ASK card1 card2 card3 answerer? card?
+						Card[] cards = new Card[3];
+						for (int i = 0; i < cards.length; i++)
+							cards[i] = Card.toCard((line.next()));
+						Player answerer = null;
+						Card answer = null;
+						if (line.hasNext()) {
+							answerer = players.get(line.next());
+							answer = Card.toCard((line.next()));
 						}
-					} else if (mode.equals("full")) {
-						Map<Player, Map<Card, Knowledge>> card = model.getFullScorecard();
-
-						// collect all the player names in order
-						int maxlen = 0;
-						StringBuilder[] plns = new StringBuilder[players.getPlayerCount()];
-						{
-							int i = 0;
-							for (Player p : players) {
-								plns[i] = new StringBuilder(p.name());
-								maxlen = Math.max(maxlen, plns[i].length());
-								i++;
+						model.addQuery(new Query(self, answerer, cards, answer));
+						break;
+					}
+					case "get" -> {
+						// GET simple?/full
+						String mode = line.hasNext() ? line.next().toLowerCase() : "simple";
+						if (mode.equals("simple")) {
+							Map<Card, Boolean> card = model.getSimpleScorecard();
+							System.out.println("Cards:");
+							for (Card v : Card.values()) {
+								StringBuilder sb = new StringBuilder(Card.MAX_CARD_STRING_LENGTH + 3);
+								sb.append(v.toString());
+								sb.append(':');
+								while (sb.length() < Card.MAX_CARD_STRING_LENGTH + 1) sb.append(' ');
+								sb.append(' ');
+								sb.append(card.get(v) ? 'X' : ' ');
+								System.out.println(sb);
 							}
-						}
-						// pad out player names
-						for (StringBuilder str : plns) {
-							while (str.length() < maxlen) str.insert(0, ' ');
-						}
+						} else if (mode.equals("full")) {
+							Map<Player, Map<Card, Knowledge>> card = model.getFullScorecard();
 
-						// length of each line in the scorecard
-						final int buflen = Card.MAX_CARD_STRING_LENGTH + 1 + 2 * plns.length;
-
-						// print out player names
-						for (int i = 0; i < maxlen; i++) {
-							StringBuilder buf = new StringBuilder(buflen);
-							while (buf.length() < Card.MAX_CARD_STRING_LENGTH + 1) buf.append(' ');
+							// collect all the player names in order
+							int maxlen = 0;
+							StringBuilder[] plns = new StringBuilder[players.getPlayerCount()];
+							{
+								int i = 0;
+								for (Player p : players) {
+									plns[i] = new StringBuilder(p.name());
+									maxlen = Math.max(maxlen, plns[i].length());
+									i++;
+								}
+							}
+							// pad out player names
 							for (StringBuilder str : plns) {
-								buf.append(' ');
-								buf.append(str.charAt(i));
-							}
-							System.out.println(buf);
-						}
-
-						// print out card rows
-						for (Card c : Card.values()) {
-							StringBuilder buf = new StringBuilder(buflen);
-							buf.append(c.toString());
-							buf.append(':');
-							while (buf.length() < Card.MAX_CARD_STRING_LENGTH + 1) buf.append(' ');
-
-							for (Player ply : players) {
-								buf.append(' ');
-
-								Knowledge entry = card.get(ply).getOrDefault(c, Knowledge.NO_HAS);
-								buf.append(switch (entry) {
-									case HAS -> 'X';
-									case KNOWN -> 'k';
-									case NO_HAS, MIGHT_HAVE -> ' ';
-								});
+								while (str.length() < maxlen) str.insert(0, ' ');
 							}
 
-							System.out.println(buf);
+							// length of each line in the scorecard
+							final int buflen = Card.MAX_CARD_STRING_LENGTH + 1 + 2 * plns.length;
+
+							// print out player names
+							for (int i = 0; i < maxlen; i++) {
+								StringBuilder buf = new StringBuilder(buflen);
+								while (buf.length() < Card.MAX_CARD_STRING_LENGTH + 1) buf.append(' ');
+								for (StringBuilder str : plns) {
+									buf.append(' ');
+									buf.append(str.charAt(i));
+								}
+								System.out.println(buf);
+							}
+
+							// print out card rows
+							for (Card c : Card.values()) {
+								StringBuilder buf = new StringBuilder(buflen);
+								buf.append(c.toString());
+								buf.append(':');
+								while (buf.length() < Card.MAX_CARD_STRING_LENGTH + 1) buf.append(' ');
+
+								for (Player ply : players) {
+									buf.append(' ');
+
+									Knowledge entry = card.get(ply).getOrDefault(c, Knowledge.NO_HAS);
+									buf.append(switch (entry) {
+										case HAS -> 'X';
+										case KNOWN -> 'k';
+										case NO_HAS, MIGHT_HAVE -> ' ';
+									});
+								}
+
+								System.out.println(buf);
+							}
+						} else {
+							throw new NoSuchElementException("Unknown asset");
 						}
-					} else {
-						throw new NoSuchElementException("Unknown asset");
 					}
-				} else if (cmd.equals("help")) {
-					// HELP
-					System.out.println("-----COMMANDS-----");
-					System.out.println("ADD asker card1 card2 card3 answerer?");
-					System.out.println("ASK card1 card2 card3 answerer? card?");
-					System.out.println("GET simple?/full");
-				} else {
-					// unknown command
-					throw new NoSuchElementException("Unknown case");
+					case "help" -> {
+						// HELP
+						System.out.println("-----COMMANDS-----");
+						System.out.println("ADD asker card1 card2 card3 answerer?");
+						System.out.println("ASK card1 card2 card3 answerer? card?");
+						System.out.println("GET simple?/full");
+					}
+					default ->
+						// unknown command
+							throw new NoSuchElementException("Unknown case");
 				}
 
 				if (line.hasNext()) System.out.println("Warning: Extra input detected");
