@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dbad8ca7-9ecf-4eb9-bca4-4788976f6491" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/BasicModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/BasicModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/DumbModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/DumbModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/AbstractModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Model.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +42,11 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="org.example.model" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Console" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />

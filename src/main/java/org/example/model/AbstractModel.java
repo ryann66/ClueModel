@@ -6,53 +6,6 @@ import java.util.*;
  * Basic starter class for models to share scoreboard usage
  */
 abstract class AbstractModel implements Model {
-	/**
-	 * Abstract idea that something is known about a player's cards
-	 */
-	protected enum Knowledge {
-		// Player has the card
-		HAS(null),
-
-		// Player does not have the card
-		NO_HAS(null),
-
-		// Player has one of the cards in the set
-		MIGHT_HAVE(new HashSet<>()),
-
-		// Player doesn't have the card but knows where it is
-		KNOWN(null);
-
-		final Set<Group> groups;
-
-		Knowledge(HashSet<Group> hs) {
-			groups = hs;
-		}
-	}
-
-	protected static class Group {
-		private static int nid = 0;
-
-		final int id;
-		final Map<Card, Knowledge> contents = new HashMap<>(3);
-
-		protected Group() {
-			id = nid++;
-		}
-
-		@Override
-		public boolean equals(Object o) {
-			if (this == o) return true;
-			if (o == null || getClass() != o.getClass()) return false;
-			Group group = (Group) o;
-			return id == group.id;
-		}
-
-		@Override
-		public int hashCode() {
-			return Objects.hash(id);
-		}
-	}
-
 	protected Map<Player, Map<Card, Knowledge>> scorecard;
 
 	protected AbstractModel(PlayerList players, Player self, Card[] known, Card[] owned) {
