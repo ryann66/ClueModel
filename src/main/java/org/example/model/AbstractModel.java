@@ -12,10 +12,15 @@ abstract class AbstractModel implements Model {
 		if (players == null || self == null || known == null || owned == null)
 			throw new IllegalArgumentException("Unexpected null argument");
 
+		try {
+			self = players.get(self.name());
+		} catch (NoSuchElementException ignored) {
+			throw new IllegalArgumentException("Self is not a player!");
+		}
+
 		// fill scorecard with maps
 		scorecard = new HashMap<>(players.getPlayerCount());
-		Iterator<Player> iter = players.iterator();
-		while (iter.hasNext()) scorecard.put(iter.next(), new HashMap<>());
+		for (Player value : players) scorecard.put(value, new HashMap<>());
 
 		Map<Card, Knowledge> selfcards = new HashMap<>(Card.NUM_CARDS);
 
@@ -26,26 +31,6 @@ abstract class AbstractModel implements Model {
 
 		// replace self map in scorecard
 		scorecard.put(self, selfcards);
-
-		// add common cards
-		for (Map<Card, Knowledge> player : scorecard.values()) {
-			for (Card k : known) player.put(k, Knowledge.KNOWN);
-		}
-	}
-
-	/**
-	 * Builds an AbstractModel that only knows the common knowledge about the game
-	 * @param players the list of players in the game
-	 * @param known the array of cards that are known to everyone
-	 */
-	protected AbstractModel(PlayerList players, Card[] known) {
-		if (players == null || known == null)
-			throw new IllegalArgumentException("Unexpected null argument");
-
-		// fill scorecard with maps
-		scorecard = new HashMap<>(players.getPlayerCount());
-		Iterator<Player> iter = players.iterator();
-		while (iter.hasNext()) scorecard.put(iter.next(), new HashMap<>());
 
 		// add common cards
 		for (Map<Card, Knowledge> player : scorecard.values()) {

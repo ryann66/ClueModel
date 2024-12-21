@@ -10,43 +10,24 @@ import java.util.Queue;
  */
 public class BasicModel extends AbstractModel {
 	protected final PlayerList players;
-	protected final Player self;
 
 	protected final Queue<Assertion> unhandledAssertions = new LinkedList<>();
 
 	public BasicModel(PlayerList players, Player self, Card[] known, Card[] owned) {
 		super(players, self, known, owned);
 		this.players = players;
-		this.self = self;
-	}
-
-	protected BasicModel(PlayerList players, Card[] known) {
-		super(players, known);
-		this.players = players;
-		this.self = null;
 	}
 
 	@Override
 	public void addQuery(Query query) {
-		if (query.cards() == null || query.cards().length != 3)
-			throw new IllegalArgumentException("Bad query cards");
-		if (query.asker() == null) throw new IllegalArgumentException("Null asker");
-
-		if (query.asker() == self) {
-			if ((query.answered() == null) != (query.answer() == null))
-				// our questions must either be fully answered or unanswered
-				throw new IllegalArgumentException("Inconsistent query");
-
-			if (query.answered() != null) {
+		if (query.answered() != null) {
+			if (query.answer() != null) {
 				// we know that the player has the card
 				unhandledAssertions.add(new PlayerHasAssertion(query.answered(), query.answer()));
+			} else {
+				// we know that the player who answered must have one of the three cards
+				unhandledAssertions.add(new PlayerHasOneOfAssertion(query.answered(), query.cards()));
 			}
-		} else if (query.answer() != null && query.answered() != self) {
-			// if it wasn't our question; we know the answer, we must have answered it
-			throw new IllegalArgumentException("How do we know the answer?");
-		} else if (query.answered() != null) {
-			// we know that the player who answered must have one of the three cards
-			unhandledAssertions.add(new PlayerHasOneOfAssertion(query.answered(), query.cards()));
 		}
 
 		// we know that everyone between asker and answerer does not have the card
@@ -54,10 +35,8 @@ public class BasicModel extends AbstractModel {
 		Player answered = query.answered();
 		if (answered == null) answered = query.asker();
 		Iterator<Player> iter = players.iterator(query.asker(), answered);
-
 		// consume the asker out of the iteration
 		iter.next();
-
 		while (iter.hasNext()) {
 			Player p = iter.next();
 			for (Card c : query.cards()) {

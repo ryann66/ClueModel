@@ -10,6 +10,7 @@ package org.example.model;
 public record Query(Player asker, Player answered, Card[] cards, Card answer) {
 	public Query {
 		if (asker == null) throw new IllegalArgumentException("Asker must be non-null");
+		if (cards == null) throw  new IllegalArgumentException("Cards must not be null");
 		if (cards.length != 3) throw new IllegalArgumentException("Must have 3 cards");
 		int sum = 0;
 		// only check if answer is contained in questions if it's not null
@@ -26,6 +27,7 @@ public record Query(Player asker, Player answered, Card[] cards, Card answer) {
 			}
 		}
 		if (sum != 7) throw new IllegalArgumentException("Must have a weapon, person, and location card");
+		if (answer != null && answered == null) throw new IllegalArgumentException("Queries with an answer must have an answerer");
 		if (!anscon) throw new IllegalArgumentException("Answer card not in question");
 	}
 }
