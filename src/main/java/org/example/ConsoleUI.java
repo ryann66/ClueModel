@@ -72,7 +72,7 @@ public class ConsoleUI {
 			}
 		}
 
-		model = new AdvancedModel(players, self, carr, charr);
+		model = new BasicModel(players, self, carr, charr);
 	}
 
 	public void startUI() {
