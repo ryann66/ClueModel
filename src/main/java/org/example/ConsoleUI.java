@@ -17,7 +17,6 @@ public class ConsoleUI {
 	public ConsoleUI(InputStream in) {
 		input = in;
 		Scanner cin = new Scanner(input);
-		self = new Player("self");
 		System.out.println("Enter the number of players:");
 		int np = 0;
 		do {
@@ -26,25 +25,23 @@ public class ConsoleUI {
 			} catch (NumberFormatException ignored) { }
 		} while (np < 3 || np > 6);
 		Player[] pls = new Player[np];
+
+		// calculate the number of cards each player should hold
+		final int cardsPerPlayer = (Card.NUM_CARDS - 3) / np;
+		final int cardsInPool = (Card.NUM_CARDS - 3) % np;
+
+		self = new Player("self", cardsPerPlayer);
 		pls[0] = self;
 
 		System.out.println("Enter the names of players (excluding you), starting from your left");
 		for (int i = 1; i < pls.length; i++) {
-			pls[i] = new Player(cin.nextLine().trim());
+			pls[i] = new Player(cin.nextLine().trim(), cardsPerPlayer);
 		}
 		players = new PlayerList(pls);
 
-		System.out.println("Enter the number of common cards you know");
-		int nc = 0;
-		do {
-			try {
-				nc = Integer.parseInt(cin.nextLine());
-			} catch (NumberFormatException ignored) { }
-		} while (nc < 0 || nc > Card.NUM_CARDS);
-		Card[] carr = new Card[nc];
-
-		System.out.println("Enter the common cards you know:");
-		for (int i = 0; i < nc; i++) {
+		Card[] carr = new Card[cardsInPool];
+		if (cardsInPool > 0) System.out.println("Enter the " + cardsInPool + " common cards you know:");
+		for (int i = 0; i < cardsInPool; i++) {
 			try {
 				carr[i] = Card.toCard(cin.nextLine());
 			} catch (NoSuchElementException nsee) {
@@ -53,17 +50,9 @@ public class ConsoleUI {
 			}
 		}
 
-		System.out.println("Enter the number of cards in your hand");
-		nc = 0;
-		do {
-			try {
-				nc = Integer.parseInt(cin.nextLine());
-			} catch (NumberFormatException ignored) { }
-		} while (nc < 0 || nc > Card.NUM_CARDS);
-		Card[] charr = new Card[nc];
-
-		System.out.println("Enter the cards in your hand:");
-		for (int i = 0; i < nc; i++) {
+		Card[] charr = new Card[cardsPerPlayer];
+		System.out.println("Enter the " + cardsPerPlayer + " cards in your hand:");
+		for (int i = 0; i < cardsPerPlayer; i++) {
 			try {
 				charr[i] = Card.toCard(cin.nextLine());
 			} catch (NoSuchElementException nsee) {
