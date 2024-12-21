@@ -54,6 +54,10 @@ public class BasicModel extends AbstractModel {
 		Player answered = query.answered();
 		if (answered == null) answered = query.asker();
 		Iterator<Player> iter = players.iterator(query.asker(), answered);
+
+		// consume the asker out of the iteration
+		iter.next();
+
 		while (iter.hasNext()) {
 			Player p = iter.next();
 			for (Card c : query.cards()) {

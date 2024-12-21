@@ -30,7 +30,7 @@ public class ConsoleUI {
 
 		System.out.println("Enter the names of players (excluding you), starting from your left");
 		for (int i = 1; i < pls.length; i++) {
-			pls[i] = new Player(cin.nextLine());
+			pls[i] = new Player(cin.nextLine().trim());
 		}
 		players = new PlayerList(pls);
 
@@ -65,14 +65,14 @@ public class ConsoleUI {
 		System.out.println("Enter the cards in your hand:");
 		for (int i = 0; i < nc; i++) {
 			try {
-				carr[i] = Card.toCard(cin.nextLine());
+				charr[i] = Card.toCard(cin.nextLine());
 			} catch (NoSuchElementException nsee) {
 				i--;
 				System.out.println("Unparseable card, try again");
 			}
 		}
 
-		model = new BasicModel(players, self, carr, charr);
+		model = new AdvancedModel(players, self, carr, charr);
 	}
 
 	public void startUI() {
@@ -111,7 +111,7 @@ public class ConsoleUI {
 						Map<Card, Boolean> card = model.getSimpleScorecard();
 						System.out.println("Cards:");
 						for (Card v : Card.values()) {
-							StringBuilder sb = new StringBuilder();
+							StringBuilder sb = new StringBuilder(Card.MAX_CARD_STRING_LENGTH + 3);
 							sb.append(v.toString());
 							sb.append(':');
 							while (sb.length() < Card.MAX_CARD_STRING_LENGTH + 1) sb.append(' ');
@@ -120,7 +120,58 @@ public class ConsoleUI {
 							System.out.println(sb);
 						}
 					} else if (mode.equals("full")) {
-						// todo
+						Map<Player, Map<Card, Knowledge>> card = model.getFullScorecard();
+
+						// collect all the player names in order
+						int maxlen = 0;
+						StringBuilder[] plns = new StringBuilder[players.getPlayerCount()];
+						{
+							int i = 0;
+							for (Player p : players) {
+								plns[i] = new StringBuilder(p.name());
+								maxlen = Math.max(maxlen, plns[i].length());
+								i++;
+							}
+						}
+						// pad out player names
+						for (StringBuilder str : plns) {
+							while (str.length() < maxlen) str.insert(0, ' ');
+						}
+
+						// length of each line in the scorecard
+						final int buflen = Card.MAX_CARD_STRING_LENGTH + 1 + 2 * plns.length;
+
+						// print out player names
+						for (int i = 0; i < maxlen; i++) {
+							StringBuilder buf = new StringBuilder(buflen);
+							while (buf.length() < Card.MAX_CARD_STRING_LENGTH + 1) buf.append(' ');
+							for (StringBuilder str : plns) {
+								buf.append(' ');
+								buf.append(str.charAt(i));
+							}
+							System.out.println(buf);
+						}
+
+						// print out card rows
+						for (Card c : Card.values()) {
+							StringBuilder buf = new StringBuilder(buflen);
+							buf.append(c.toString());
+							buf.append(':');
+							while (buf.length() < Card.MAX_CARD_STRING_LENGTH + 1) buf.append(' ');
+
+							for (Player ply : players) {
+								buf.append(' ');
+
+								Knowledge entry = card.get(ply).getOrDefault(c, Knowledge.NO_HAS);
+								buf.append(switch (entry) {
+									case HAS -> 'X';
+									case KNOWN -> 'k';
+									case NO_HAS, MIGHT_HAVE -> ' ';
+								});
+							}
+
+							System.out.println(buf);
+						}
 					} else {
 						throw new NoSuchElementException("Unknown asset");
 					}

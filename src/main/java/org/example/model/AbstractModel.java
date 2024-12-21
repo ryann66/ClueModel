@@ -59,7 +59,7 @@ abstract class AbstractModel implements Model {
 
 		for (Map<Card, Knowledge> map : scorecard.values()) {
 			for (Map.Entry<Card, Knowledge> kv : map.entrySet()) {
-				if (kv.getValue() == Knowledge.HAS) retmap.put(kv.getKey(), true);
+				if (kv.getValue() == Knowledge.HAS || kv.getValue() == Knowledge.KNOWN) retmap.put(kv.getKey(), true);
 			}
 		}
 

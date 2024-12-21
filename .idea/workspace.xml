@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dbad8ca7-9ecf-4eb9-bca4-4788976f6491" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ConsoleUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/AbstractModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/BasicModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/BasicModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/PlayerList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/PlayerList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,5 +81,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="14" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

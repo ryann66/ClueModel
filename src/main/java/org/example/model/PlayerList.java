@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 /**
  * Class for iterating over ranges of players
  */
-public class PlayerList {
+public class PlayerList implements Iterable<Player> {
 	private Player[] players;
 
 	/**
