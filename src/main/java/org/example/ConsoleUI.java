@@ -3,6 +3,7 @@ package org.example;
 import org.example.model.*;
 
 import java.io.InputStream;
+import java.sql.SQLOutput;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -156,11 +157,12 @@ public class ConsoleUI {
 								for (Player ply : players) {
 									buf.append(' ');
 
-									Knowledge entry = card.get(ply).getOrDefault(c, Knowledge.NO_HAS);
+									Knowledge entry = card.get(ply).getOrDefault(c, Knowledge.MIGHT_HAVE);
 									buf.append(switch (entry) {
 										case HAS -> 'X';
 										case KNOWN -> 'k';
-										case NO_HAS, MIGHT_HAVE -> ' ';
+										case NO_HAS -> 'n';
+										case MIGHT_HAVE -> ' ';
 									});
 								}
 
@@ -177,14 +179,21 @@ public class ConsoleUI {
 						System.out.println("ASK card1 card2 card3 answerer? card?");
 						System.out.println("GET simple?/full");
 					}
+					case "exit" -> {
+						return;
+					}
 					default ->
 						// unknown command
 							throw new NoSuchElementException("Unknown case");
 				}
 
 				if (line.hasNext()) System.out.println("Warning: Extra input detected");
-			} catch (NoSuchElementException nsee) {
+			} catch (NoSuchElementException ignored) {
 				System.out.println("Unparseable command");
+			} catch (IllegalArgumentException iae) {
+				System.out.println("Illegal command: " + iae.getMessage());
+			} catch (IllegalStateException ise) {
+				System.out.println("Impossible state: " + ise.getMessage());
 			}
 			System.out.print("$ ");
 			System.out.flush();

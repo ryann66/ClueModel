@@ -12,6 +12,7 @@ public record Query(Player asker, Player answered, Card[] cards, Card answer) {
 		if (asker == null) throw new IllegalArgumentException("Asker must be non-null");
 		if (cards == null) throw  new IllegalArgumentException("Cards must not be null");
 		if (cards.length != 3) throw new IllegalArgumentException("Must have 3 cards");
+		if (asker.equals(answered)) throw new IllegalArgumentException("Cannot answer your own question");
 		int sum = 0;
 		// only check if answer is contained in questions if it's not null
 		boolean anscon = answer == null;

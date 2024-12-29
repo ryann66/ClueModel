@@ -7,7 +7,9 @@
     <list default="true" id="dbad8ca7-9ecf-4eb9-bca4-4788976f6491" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ConsoleUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/AbstractModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/BasicModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/BasicModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Query.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,11 +85,17 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.IllegalStateException" package="java.lang" />
-          <option name="timeStamp" value="14" />
-        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/model/BasicModel.java</url>
+          <line>362</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="ProcessAttachRunConfigurationType">
+        <watch expression="((java.util.HashMap.Node[])((HashMap)((Node[])((HashMap)((Values)((HashMap)((EntrySet)((HashMap)((BasicModel)((ConsoleUI)this).model).scorecard).entrySet).this$0).values).this$0).table)[4].value).table)[8]" custom="java.util.HashMap.Values,java.util.HashMap.Node[],org.example.ConsoleUI,org.example.model.BasicModel,java.util.HashMap,java.util.HashMap.EntrySet" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

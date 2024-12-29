@@ -28,6 +28,10 @@ abstract class AbstractModel implements Model {
 		for (Card c : Card.values()) selfcards.put(c, Knowledge.NO_HAS);
 		// add owned cards
 		for (Card c : owned) selfcards.put(c, Knowledge.HAS);
+		// block self owned cards for other players
+		for (Map<Card, Knowledge> card : scorecard.values()) {
+			for (Card c : owned) card.put(c, Knowledge.NO_HAS);
+		}
 
 		// replace self map in scorecard
 		scorecard.put(self, selfcards);
