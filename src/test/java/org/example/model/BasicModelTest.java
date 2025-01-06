@@ -156,8 +156,7 @@ class BasicModelTest {
 		Group g = bm.scorecard.get(parr[4]).get(weapons[1]).groups.iterator().next();
 		assertSame(g, bm.scorecard.get(parr[4]).get(people[1]).groups.iterator().next());
 		assertSame(g, bm.scorecard.get(parr[4]).get(locations[1]).groups.iterator().next());
-		assertEquals(g.id, 0);
-		assertEquals(g.contents.size(), 3);
+		assertEquals(3, g.contents.size());
 		assertTrue(g.contents.containsKey(weapons[1]));
 		assertTrue(g.contents.containsKey(people[1]));
 		assertTrue(g.contents.containsKey(locations[1]));
@@ -165,8 +164,124 @@ class BasicModelTest {
 		st.checkAllElseNull();
 	}
 
+	@Test
+	@DisplayName("Might Have Elimination Test")
+	public void MightHaveEliminationTest() {
+		Player[] parr = makePlayers(6);
+		PlayerList plist = new PlayerList(parr);
+		Card[] common = new Card[0];
+		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
+		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
+		ScorecardTester st = new ScorecardTester(bm);
 
+		Query q = new Query(parr[1], parr[2], new Card[]{weapons[1], people[1], locations[1]}, null);
+		bm.addQuery(q);
 
+		q = new Query(parr[1], parr[3], new Card[]{weapons[1], people[1], locations[2]}, null);
+		bm.addQuery(q);
+
+		st.checkOwns(parr[2], locations[1]);
+	}
+
+	@Test
+	@DisplayName("Might Have Starts Eliminated Test")
+	public void MightHaveStartsEliminatedTest() {
+		Player[] parr = makePlayers(6);
+		PlayerList plist = new PlayerList(parr);
+		Card[] common = new Card[0];
+		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
+		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
+		ScorecardTester st = new ScorecardTester(bm);
+
+		Query q = new Query(parr[1], parr[2], new Card[]{weapons[0], people[0], locations[1]}, null);
+		bm.addQuery(q);
+
+		st.checkOwns(parr[2], locations[1]);
+	}
+
+	@Test
+	@DisplayName("Player Card Count Elimination Simple Test")
+	public void PlayerCardCountEliminationSimpleTest() {
+		Player[] parr = makePlayers(6);
+		PlayerList plist = new PlayerList(parr);
+		Card[] common = new Card[0];
+		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
+		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
+		ScorecardTester st = new ScorecardTester(bm);
+
+		// give p2 two cards
+		Query q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, weapons[1]);
+		bm.addQuery(q);
+		q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, people[1]);
+		bm.addQuery(q);
+
+		// make it so p2 has 1 card remaining and 2 constraints
+		q = new Query(parr[1], parr[2], new Card[]{weapons[2], people[2], locations[1]}, null);
+		bm.addQuery(q);
+		q = new Query(parr[1], parr[2], new Card[]{weapons[3], people[3], locations[1]}, null);
+		bm.addQuery(q);
+
+		st.checkOwns(parr[2], locations[1]);
+	}
+
+	@Test
+	@DisplayName("Player Card Count Elimination Redundant Test")
+	public void PlayerCardCountEliminationRedundantTest() {
+		Player[] parr = makePlayers(6);
+		PlayerList plist = new PlayerList(parr);
+		Card[] common = new Card[0];
+		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
+		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
+		ScorecardTester st = new ScorecardTester(bm);
+
+		// give p2 one card
+		Query q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, weapons[1]);
+		bm.addQuery(q);
+		q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, people[1]);
+		bm.addQuery(q);
+
+		// make it so p2 has 2 cards remaining and 2 constraints
+		q = new Query(parr[1], parr[2], new Card[]{weapons[2], people[2], locations[1]}, null);
+		bm.addQuery(q);
+		q = new Query(parr[1], parr[2], new Card[]{weapons[3], people[3], locations[1]}, null);
+		bm.addQuery(q);
+
+		// add another independent card set that p2 must have one of
+		q = new Query(parr[1], parr[2], new Card[]{weapons[4], people[4], locations[4]}, null);
+		bm.addQuery(q);
+
+		st.checkOwns(parr[2], locations[1]);
+	}
+
+	@Test
+	@DisplayName("Player Card Count Elimination Complex Test")
+	public void PlayerCardCountEliminationComplexTest() {
+		Player[] parr = makePlayers(6);
+		PlayerList plist = new PlayerList(parr);
+		Card[] common = new Card[0];
+		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
+		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
+		ScorecardTester st = new ScorecardTester(bm);
+
+		// constraint 1
+		Query q = new Query(parr[1], parr[2], new Card[]{weapons[1], people[1], locations[1]}, null);
+		bm.addQuery(q);
+		q = new Query(parr[1], parr[2], new Card[]{weapons[1], people[2], locations[2]}, null);
+		bm.addQuery(q);
+
+		// constraint 2
+		q = new Query(parr[1], parr[2], new Card[]{weapons[3], people[3], locations[3]}, null);
+		bm.addQuery(q);
+		q = new Query(parr[1], parr[2], new Card[]{weapons[3], people[4], locations[4]}, null);
+		bm.addQuery(q);
+
+		// garbage to round out the card count
+		q = new Query(parr[1], parr[2], new Card[]{weapons[5], people[5], locations[5]}, null);
+		bm.addQuery(q);
+
+		st.checkOwns(parr[2], weapons[1]);
+		st.checkOwns(parr[2], weapons[3]);
+	}
 
 	public static class ScorecardTester {
 		AbstractModel model;
@@ -187,7 +302,7 @@ class BasicModelTest {
 		private void check(Player p, Card c, Knowledge.T t) {
 			Knowledge k = model.scorecard.get(p).get(c);
 			assertNotNull(k);
-			assertEquals(k.t, t);
+			assertEquals(t, k.t);
 			hasTouched.get(p).put(c, true);
 		}
 

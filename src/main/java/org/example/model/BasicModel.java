@@ -198,8 +198,11 @@ public class BasicModel extends AbstractModel {
 			}
 		}
 
+		// common array for recursive function calls
+		int[] holder = new int[numunknown];
+
 		// do a preliminary check on all the cards to see if we can satisfy the constraints
-		if (!anyCombinationRepresented(constraintsArr, cardsArr, cardsArr.length, new int[cardsArr.length], 0)) {
+		if (!anyCombinationRepresented(constraintsArr, cardsArr, numunknown, holder, 0)) {
 			throw new IllegalStateException("Impossible to satisfy constraints!");
 		}
 
@@ -208,13 +211,11 @@ public class BasicModel extends AbstractModel {
 		int[] partCardsArr = new int[cardsArr.length - 1];
 		System.arraycopy(cardsArr, 1, partCardsArr, 0, cardsArr.length - 1);
 
-		int[] holder = new int[partCardsArr.length];
-
 		// check each card in sequence to see if it is essential to satisfy the constraints
 		// we do this by removing the card from the sequence and testing if we can still satisfy constraints
 
 		// we start by checking the first card
-		if (!anyCombinationRepresented(constraintsArr, partCardsArr, partCardsArr.length, holder, 0)) {
+		if (!anyCombinationRepresented(constraintsArr, partCardsArr, numunknown, holder, 0)) {
 			// get the card represented by the int
 			for (Card c : possible) {
 				if (1 << c.ordinal() == skip) {
@@ -234,7 +235,7 @@ public class BasicModel extends AbstractModel {
 			skip = tmp;
 
 			// check
-			if (!anyCombinationRepresented(constraintsArr, partCardsArr, partCardsArr.length, holder, 0)) {
+			if (!anyCombinationRepresented(constraintsArr, partCardsArr, numunknown, holder, 0)) {
 				// get the card represented by the int
 				for (Card c : possible) {
 					if (1 << c.ordinal() == skip) {
