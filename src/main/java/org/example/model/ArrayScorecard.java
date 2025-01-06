@@ -37,6 +37,67 @@ class ArrayScorecard implements Scorecard {
 		return new ArrayPlayerScorecard(getPlayerIndex(p));
 	}
 
+	@Override
+	public boolean confidentGuess() {
+		Card weapon = null, person = null, location = null;
+		for (Card c : Card.values()) {
+			boolean known = false;
+			for (int i = 0; i < parr.length; i++) {
+				Knowledge k = karr[i][c.ordinal()];
+				if (k != null && (k.t == Knowledge.T.HAS || k.t == Knowledge.T.KNOWN)) {
+					known = true;
+					break;
+				}
+			}
+			if (!known) {
+				switch (c.type) {
+					case WEAPON -> {
+						if (weapon != null) return false;
+						weapon = c;
+					}
+					case PERSON -> {
+						if (person != null) return false;
+						person = c;
+					}
+					case LOCATION -> {
+						if (location != null) return false;
+						location = c;
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public Guess guess() {
+		Card weapon = null, person = null, location = null;
+		for (Card c : Card.values()) {
+			boolean known = false;
+			for (int i = 0; i < parr.length; i++) {
+				Knowledge k = karr[i][c.ordinal()];
+				if (k != null && (k.t == Knowledge.T.HAS || k.t == Knowledge.T.KNOWN)) {
+					known = true;
+					break;
+				}
+			}
+			if (!known) {
+				switch (c.type) {
+					case WEAPON -> {
+						if (weapon == null) weapon = c;
+					}
+					case PERSON -> {
+						if (person == null) person = c;
+					}
+					case LOCATION -> {
+						if (location == null) location = c;
+					}
+				}
+			}
+		}
+		return new Guess(weapon, person, location);
+	}
+
 	private int getPlayerIndex(Player p) {
 		if (parr[idx].equals(p)) return idx;
 		for (int i = idx + 1; i != idx; i++) {

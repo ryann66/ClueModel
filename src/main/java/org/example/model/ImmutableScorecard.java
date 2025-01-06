@@ -23,6 +23,18 @@ public interface ImmutableScorecard {
 	ImmutablePlayerScorecard get(Player p);
 
 	/**
+	 * Fast test for if the answer is known with perfect confidence
+	 * @return true if the answer is known, else false
+	 */
+	boolean confidentGuess();
+
+	/**
+	 * Creates a possible guess for the answer
+	 * @return some possible guess
+	 */
+	Guess guess();
+
+	/**
 	 * Immutable view of a single player's scorecard
 	 */
 	interface ImmutablePlayerScorecard extends Iterable<Map.Entry<Card, Knowledge>> {
