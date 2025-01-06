@@ -12,9 +12,9 @@ public interface Model {
 	 * 		that a card has been found/eliminated and false represents
 	 * 		that the card could still be in the envelope
 	 */
-	Map<Card, Boolean> getSimpleScorecard();
+	ImmutableScorecard.ImmutablePlayerScorecard getSimpleScorecard();
 
-	Map<Player, Map<Card, Knowledge>> getFullScorecard();
+	ImmutableScorecard getFullScorecard();
 
 	/**
 	 * Process the given query and add its knowledge to the model

@@ -10,6 +10,6 @@ interface Scorecard extends ImmutableScorecard {
 	interface PlayerScorecard extends ImmutablePlayerScorecard {
 		void mark(Card c, Knowledge k);
 
-		public Knowledge get(Player p, Card c);
+		public Knowledge get(Card c);
 	}
 }

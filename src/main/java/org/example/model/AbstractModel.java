@@ -1,13 +1,14 @@
 package org.example.model;
 
 import java.util.*;
+import org.example.model.Scorecard.PlayerScorecard;
 
 /**
  * Basic starter class for models to share scoreboard usage
  */
 abstract class AbstractModel implements Model {
-	// todo: replace scorecard with dedicated abstract class and refactor
-	protected Map<Player, Map<Card, Knowledge>> scorecard;
+	protected Scorecard scorecard;
+	protected final Player self;
 
 	protected AbstractModel(PlayerList players, Player self, Card[] known, Card[] owned) {
 		if (players == null || self == null || known == null || owned == null)
@@ -19,48 +20,40 @@ abstract class AbstractModel implements Model {
 			throw new IllegalArgumentException("Self is not a player!");
 		}
 
+		this.self = self;
+
 		// fill scorecard with maps
-		scorecard = new HashMap<>(players.getPlayerCount());
-		for (Player value : players) scorecard.put(value, new HashMap<>());
+		scorecard = new ArrayScorecard(players);
 
-		Map<Card, Knowledge> selfcards = new HashMap<>(Card.NUM_CARDS);
-
-		// block all cards
-		for (Card c : Card.values()) selfcards.put(c, Knowledge.NO_HAS());
-		// add owned cards
-		for (Card c : owned) selfcards.put(c, Knowledge.HAS());
-		// block self owned cards for other players
-		for (Map<Card, Knowledge> card : scorecard.values()) {
-			for (Card c : owned) card.put(c, Knowledge.NO_HAS());
-		}
-
-		// replace self map in scorecard
-		scorecard.put(self, selfcards);
-
-		// add common cards
-		for (Map<Card, Knowledge> player : scorecard.values()) {
-			for (Card k : known) player.put(k, Knowledge.KNOWN());
-		}
-	}
-
-	public final Map<Card, Boolean> getSimpleScorecard() {
-		Map<Card, Boolean> retmap = new HashMap<>(Card.NUM_CARDS);
-		for (Card c : Card.values()) retmap.put(c, false);
-
-		for (Map<Card, Knowledge> map : scorecard.values()) {
-			for (Map.Entry<Card, Knowledge> kv : map.entrySet()) {
-				if (kv.getValue().t == Knowledge.T.HAS || kv.getValue().t == Knowledge.T.KNOWN) retmap.put(kv.getKey(), true);
+		// block self owned cards for all players
+		for (Player p : players) {
+			if (p == self) continue;
+			PlayerScorecard ps = scorecard.get(p);
+			for (Card c : owned) {
+				ps.mark(c, Knowledge.NO_HAS());
 			}
 		}
 
-		return retmap;
+		PlayerScorecard selfcards = scorecard.get(self);
+		// block all cards for self
+		for (Card c : Card.values()) selfcards.mark(c, Knowledge.NO_HAS());
+		// add owned cards as had
+		for (Card c : owned) selfcards.mark(c, Knowledge.HAS());
+
+		// add common cards
+		for (Player p : players) {
+			PlayerScorecard ps = scorecard.get(p);
+			for (Card c : known) {
+				ps.mark(c, Knowledge.KNOWN());
+			}
+		}
 	}
 
-	public Map<Player, Map<Card, Knowledge>> getFullScorecard() {
-		Map<Player, Map<Card, Knowledge>> retmap = new HashMap<>(scorecard.size());
-		for (Map.Entry<Player, Map<Card, Knowledge>> entry : scorecard.entrySet()) {
-			retmap.put(entry.getKey(), Collections.unmodifiableMap(entry.getValue()));
-		}
-		return retmap;
+	public final ImmutableScorecard.ImmutablePlayerScorecard getSimpleScorecard() {
+		return scorecard.get(self);
+	}
+
+	public ImmutableScorecard getFullScorecard() {
+		return scorecard;
 	}
 }

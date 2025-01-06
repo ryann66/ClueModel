@@ -103,19 +103,19 @@ public class ConsoleUI {
 						// GET simple?/full
 						String mode = line.hasNext() ? line.next().toLowerCase() : "simple";
 						if (mode.equals("simple")) {
-							Map<Card, Boolean> card = model.getSimpleScorecard();
+							ImmutableScorecard.ImmutablePlayerScorecard card = model.getSimpleScorecard();
 							System.out.println("Cards:");
-							for (Card v : Card.values()) {
+							for (Card c : Card.values()) {
 								StringBuilder sb = new StringBuilder(Card.MAX_CARD_STRING_LENGTH + 3);
-								sb.append(v.toString());
+								sb.append(c.toString());
 								sb.append(':');
 								while (sb.length() < Card.MAX_CARD_STRING_LENGTH + 1) sb.append(' ');
 								sb.append(' ');
-								sb.append(card.get(v) ? 'X' : ' ');
+								sb.append((card.get(c).t == Knowledge.T.HAS || card.get(c).t == Knowledge.T.KNOWN) ? 'X' : ' ');
 								System.out.println(sb);
 							}
 						} else if (mode.equals("full")) {
-							Map<Player, Map<Card, Knowledge>> card = model.getFullScorecard();
+							ImmutableScorecard card = model.getFullScorecard();
 
 							// collect all the player names in order
 							int maxlen = 0;

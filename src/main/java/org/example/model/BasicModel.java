@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.util.*;
+import org.example.model.Scorecard.PlayerScorecard;
 
 /**
  * Basic modeler that fills out a scorecard based purely off known information
@@ -14,13 +15,10 @@ public class BasicModel extends AbstractModel {
 	protected final Queue<Assertion> unhandledAssertions = new LinkedList<>();
 	private final Set<Player> modifiedPlayers;
 
-	protected final Player self;
-
 	public BasicModel(PlayerList players, Player self, Card[] known, Card[] owned) {
 		super(players, self, known, owned);
 		this.players = players;
 		this.modifiedPlayers = new HashSet<>(players.getPlayerCount());
-		this.self = self;
 	}
 
 	@Override
@@ -119,8 +117,7 @@ public class BasicModel extends AbstractModel {
 		// we can thus shrink/merge the sets and, if the size goes to 1, we can say he has the card
 		// Finally, if we know all the cards in the players hand, then we can say that he doesn't have any others
 
-		// check each player
-		Map<Card, Knowledge> card = scorecard.get(p);
+		PlayerScorecard card = scorecard.get(p);
 
 		// Find the number of constraints, possible cards and known cards
 		Set<Group> constraints = new HashSet<>();
@@ -275,8 +272,8 @@ public class BasicModel extends AbstractModel {
 		}
 
 		public void handle() {
-			Map<Card, Knowledge> playercard = scorecard.get(player);
-			Knowledge prior = playercard.getOrDefault(card, Knowledge.MIGHT_HAVE());
+			PlayerScorecard playercard = scorecard.get(player);
+			Knowledge prior = playercard.get(card);
 
 			// already known
 			if (prior.t == Knowledge.T.HAS) return;
@@ -299,7 +296,7 @@ public class BasicModel extends AbstractModel {
 			}
 
 			// set as must have in scorecard
-			playercard.put(card, Knowledge.HAS());
+			playercard.mark(card, Knowledge.HAS());
 			modifiedPlayers.add(player);
 
 			// assert that no other player has this card
@@ -310,19 +307,19 @@ public class BasicModel extends AbstractModel {
 			// check to see if this player has max cards in hand
 			// if so, assert they can't have any more cards
 			int has = 0;
-			for (Knowledge k : playercard.values()) {
-				if (k.t == Knowledge.T.HAS) has++;
+			for (Map.Entry<Card, Knowledge> e : playercard) {
+				if (e.getValue().t == Knowledge.T.HAS) has++;
 			}
 			if (has == player.numCards()) {
 				for (Card c : Card.values()) {
-					if (playercard.getOrDefault(c, Knowledge.MIGHT_HAVE()).t == Knowledge.T.MIGHT_HAVE) {
+					if (playercard.get(c).t == Knowledge.T.MIGHT_HAVE) {
 						unhandledAssertions.add(new PlayerDoesNotHaveAssertion(player, c));
 					}
 				}
 			}
 
 			// assert that we (self) know this card
-			scorecard.get(self).put(card, Knowledge.KNOWN());
+			scorecard.mark(self, card, Knowledge.KNOWN());
 		}
 	}
 
@@ -336,8 +333,7 @@ public class BasicModel extends AbstractModel {
 		}
 
 		public void handle() {
-			Map<Card, Knowledge> playercard = scorecard.get(player);
-			Knowledge prior = playercard.getOrDefault(card, MIGHT_HAVE_DEFAULT);
+			Knowledge prior = scorecard.get(player, card);
 
 			// already known
 			if (prior.t == Knowledge.T.NO_HAS || prior.t == Knowledge.T.KNOWN) return;
@@ -365,7 +361,7 @@ public class BasicModel extends AbstractModel {
 			}
 
 			// set this card as not had
-			playercard.put(card, Knowledge.NO_HAS());
+			scorecard.mark(player, card, Knowledge.NO_HAS());
 			modifiedPlayers.add(player);
 		}
 	}
@@ -383,7 +379,7 @@ public class BasicModel extends AbstractModel {
 		}
 
 		public void handle() {
-			Map<Card, Knowledge> playercard = scorecard.get(player);
+			PlayerScorecard playercard = scorecard.get(player);
 
 			Knowledge[] prior = new Knowledge[3];
 			int mighthavecount = 0;
@@ -415,7 +411,7 @@ public class BasicModel extends AbstractModel {
 			for (int i = 0; i < prior.length; i++) {
 				if (prior[i] == null) {
 					prior[i] = Knowledge.MIGHT_HAVE();
-					playercard.put(cards[i], prior[i]);
+					playercard.mark(cards[i], prior[i]);
 				}
 
 				if (prior[i].t == Knowledge.T.MIGHT_HAVE) {
