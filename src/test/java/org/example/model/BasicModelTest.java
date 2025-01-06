@@ -326,11 +326,6 @@ class BasicModelTest {
 			hasTouched.get(p).put(c, true);
 		}
 
-		public void checkNull(Player p, Card c) {
-			assertNull(model.scorecard.get(p).get(c));
-			hasTouched.get(p).put(c, true);
-		}
-
 		public void checkHas(Player p, Card c) {
 			check(p, c, Knowledge.T.HAS);
 		}

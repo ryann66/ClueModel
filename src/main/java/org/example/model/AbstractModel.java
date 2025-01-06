@@ -6,6 +6,7 @@ import java.util.*;
  * Basic starter class for models to share scoreboard usage
  */
 abstract class AbstractModel implements Model {
+	// todo: replace scorecard with dedicated abstract class and refactor
 	protected Map<Player, Map<Card, Knowledge>> scorecard;
 
 	protected AbstractModel(PlayerList players, Player self, Card[] known, Card[] owned) {
