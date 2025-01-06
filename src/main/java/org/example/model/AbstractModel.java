@@ -25,12 +25,12 @@ abstract class AbstractModel implements Model {
 		Map<Card, Knowledge> selfcards = new HashMap<>(Card.NUM_CARDS);
 
 		// block all cards
-		for (Card c : Card.values()) selfcards.put(c, Knowledge.NO_HAS);
+		for (Card c : Card.values()) selfcards.put(c, Knowledge.NO_HAS());
 		// add owned cards
-		for (Card c : owned) selfcards.put(c, Knowledge.HAS);
+		for (Card c : owned) selfcards.put(c, Knowledge.HAS());
 		// block self owned cards for other players
 		for (Map<Card, Knowledge> card : scorecard.values()) {
-			for (Card c : owned) card.put(c, Knowledge.NO_HAS);
+			for (Card c : owned) card.put(c, Knowledge.NO_HAS());
 		}
 
 		// replace self map in scorecard
@@ -38,7 +38,7 @@ abstract class AbstractModel implements Model {
 
 		// add common cards
 		for (Map<Card, Knowledge> player : scorecard.values()) {
-			for (Card k : known) player.put(k, Knowledge.KNOWN);
+			for (Card k : known) player.put(k, Knowledge.KNOWN());
 		}
 	}
 
@@ -48,7 +48,7 @@ abstract class AbstractModel implements Model {
 
 		for (Map<Card, Knowledge> map : scorecard.values()) {
 			for (Map.Entry<Card, Knowledge> kv : map.entrySet()) {
-				if (kv.getValue() == Knowledge.HAS || kv.getValue() == Knowledge.KNOWN) retmap.put(kv.getKey(), true);
+				if (kv.getValue().t == Knowledge.T.HAS || kv.getValue().t == Knowledge.T.KNOWN) retmap.put(kv.getKey(), true);
 			}
 		}
 

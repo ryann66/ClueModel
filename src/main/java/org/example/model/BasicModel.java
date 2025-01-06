@@ -6,6 +6,9 @@ import java.util.*;
  * Basic modeler that fills out a scorecard based purely off known information
  */
 public class BasicModel extends AbstractModel {
+	// Constant that can be used as a default as long as we promise not to add anything to groups
+	private static final Knowledge MIGHT_HAVE_DEFAULT = Knowledge.MIGHT_HAVE();
+
 	protected final PlayerList players;
 
 	protected final Queue<Assertion> unhandledAssertions = new LinkedList<>();
@@ -123,7 +126,7 @@ public class BasicModel extends AbstractModel {
 		for (Card c : Card.values()) {
 			Knowledge knowl = card.get(c);
 			if (knowl != null) {
-				switch (knowl) {
+				switch (knowl.t) {
 					case HAS -> {
 						numunknown--;
 						if (numunknown == 0) {
@@ -269,28 +272,30 @@ public class BasicModel extends AbstractModel {
 
 		public void handle() {
 			Map<Card, Knowledge> playercard = scorecard.get(player);
-			Knowledge prior = playercard.getOrDefault(card, Knowledge.MIGHT_HAVE);
+			Knowledge prior = playercard.getOrDefault(card, Knowledge.MIGHT_HAVE());
 
 			// already known
-			if (prior == Knowledge.HAS) return;
+			if (prior.t == Knowledge.T.HAS) return;
 
 			// problem has occurred
-			if (prior == Knowledge.NO_HAS || prior == Knowledge.KNOWN)
+			if (prior.t == Knowledge.T.NO_HAS || prior.t == Knowledge.T.KNOWN)
 				throw new IllegalStateException("PlayerHasAssertion: Card " + card.toString() +
 						" already marked as not had by player " + player.toString());
 
 			// delete groups that contain this card
 			// they no longer have meaning because we know this exists
+			assert prior.groups != null && prior.t == Knowledge.T.MIGHT_HAVE;
 			Group[] groups = new Group[prior.groups.size()];
 			prior.groups.toArray(groups);
 			for (Group g : groups) {
 				for (Knowledge k : g.contents.values()) {
+					assert k.groups != null && k.t == Knowledge.T.MIGHT_HAVE;
 					k.groups.remove(g);
 				}
 			}
 
 			// set as must have in scorecard
-			playercard.put(card, Knowledge.HAS);
+			playercard.put(card, Knowledge.HAS());
 			modifiedPlayers.add(player);
 
 			// assert that no other player has this card
@@ -315,17 +320,18 @@ public class BasicModel extends AbstractModel {
 
 		public void handle() {
 			Map<Card, Knowledge> playercard = scorecard.get(player);
-			Knowledge prior = playercard.getOrDefault(card, Knowledge.MIGHT_HAVE);
+			Knowledge prior = playercard.getOrDefault(card, MIGHT_HAVE_DEFAULT);
 
 			// already known
-			if (prior == Knowledge.NO_HAS || prior == Knowledge.KNOWN) return;
+			if (prior.t == Knowledge.T.NO_HAS || prior.t == Knowledge.T.KNOWN) return;
 
 			// problem has occurred
-			if (prior == Knowledge.HAS)
+			if (prior.t == Knowledge.T.HAS)
 				throw new IllegalStateException("PlayerDoesNotHaveAssertion: Card " + card.toString() +
 						" already marked as had by player " + player.toString());
 
 			// delete this card from groups
+			assert prior.groups != null && prior.t == Knowledge.T.MIGHT_HAVE;
 			for (Group g : prior.groups) {
 				g.contents.remove(card);
 
@@ -342,7 +348,7 @@ public class BasicModel extends AbstractModel {
 			}
 
 			// set this card as not had
-			playercard.put(card, Knowledge.NO_HAS);
+			playercard.put(card, Knowledge.NO_HAS());
 			modifiedPlayers.add(player);
 		}
 	}
@@ -366,15 +372,15 @@ public class BasicModel extends AbstractModel {
 			int mighthavecount = 0;
 			for (int i = 0; i < prior.length; i++) {
 				prior[i] = playercard.get(cards[i]);
-				if (prior[i] == Knowledge.HAS) return;
-				if (prior[i] == null || prior[i] == Knowledge.MIGHT_HAVE) mighthavecount++;
+				if (prior[i] == null || prior[i].t == Knowledge.T.MIGHT_HAVE) mighthavecount++;
+				else if (prior[i].t == Knowledge.T.HAS) return;
 			}
 
 			if (mighthavecount == 1) {
 				// Find the 1 card they might have and assert that they must have it
 				// because we know that they don't have the other two cards
 				for (int i = 0; i < prior.length; i++) {
-					if (prior[i] == null || prior[i] == Knowledge.MIGHT_HAVE) {
+					if (prior[i] == null || prior[i].t == Knowledge.T.MIGHT_HAVE) {
 						unhandledAssertions.add(new PlayerHasAssertion(player, cards[i]));
 						return;
 					}
@@ -391,13 +397,11 @@ public class BasicModel extends AbstractModel {
 			Group g = new Group();
 			for (int i = 0; i < prior.length; i++) {
 				if (prior[i] == null) {
-					prior[i] = Knowledge.MIGHT_HAVE;
+					prior[i] = Knowledge.MIGHT_HAVE();
 					playercard.put(cards[i], prior[i]);
 				}
 
-				// todo: refactor knowledge to record instead of enum to allow instantiation and separate
-				// 	sets of groups for each card
-				if (prior[i] == Knowledge.MIGHT_HAVE) {
+				if (prior[i].t == Knowledge.T.MIGHT_HAVE) {
 					prior[i].groups.add(g);
 					g.contents.put(cards[i], prior[i]);
 				}

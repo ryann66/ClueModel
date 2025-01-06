@@ -157,8 +157,8 @@ public class ConsoleUI {
 								for (Player ply : players) {
 									buf.append(' ');
 
-									Knowledge entry = card.get(ply).getOrDefault(c, Knowledge.MIGHT_HAVE);
-									buf.append(switch (entry) {
+									Knowledge entry = card.get(ply).get(c);
+									buf.append(entry == null ? ' ' : switch (entry.t) {
 										case HAS -> 'X';
 										case KNOWN -> 'k';
 										case NO_HAS -> 'n';

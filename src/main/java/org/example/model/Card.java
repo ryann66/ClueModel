@@ -1,5 +1,7 @@
 package org.example.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -18,6 +20,8 @@ public enum Card {
 
 	public static final int MAX_CARD_STRING_LENGTH;
 
+	public static final List<Card> WEAPONS, PEOPLE, LOCATIONS;
+
 	// initialize constants
 	static {
 		NUM_CARDS = Card.values().length;
@@ -25,6 +29,18 @@ public enum Card {
 		int maxlen = 0;
 		for (Card v : Card.values()) maxlen = Math.max(v.toString().length(), maxlen);
 		MAX_CARD_STRING_LENGTH = maxlen;
+
+		WEAPONS = new ArrayList<>(6);
+		PEOPLE = new ArrayList<>(6);
+		LOCATIONS = new ArrayList<>(9);
+
+		for (Card v : Card.values()) {
+			(switch (v.type) {
+				case WEAPON -> WEAPONS;
+				case PERSON -> PEOPLE;
+				case LOCATION -> LOCATIONS;
+			}).add(v);
+		}
 	}
 
 	public final Type type;
