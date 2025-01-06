@@ -237,8 +237,6 @@ class BasicModelTest {
 		// give p2 one card
 		Query q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, weapons[1]);
 		bm.addQuery(q);
-		q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, people[1]);
-		bm.addQuery(q);
 
 		// make it so p2 has 2 cards remaining and 2 constraints
 		q = new Query(parr[1], parr[2], new Card[]{weapons[2], people[2], locations[1]}, null);
@@ -281,6 +279,28 @@ class BasicModelTest {
 
 		st.checkOwns(parr[2], weapons[1]);
 		st.checkOwns(parr[2], weapons[3]);
+	}
+
+	@Test
+	@DisplayName("Player Card Capacity Test")
+	public void PlayerCardCapacityTest() {
+		Player[] parr = makePlayers(6);
+		PlayerList plist = new PlayerList(parr);
+		Card[] common = new Card[0];
+		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
+		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
+		ScorecardTester st = new ScorecardTester(bm);
+
+		Query q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, weapons[1]);
+		bm.addQuery(q);
+		q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, people[1]);
+		bm.addQuery(q);
+		q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, locations[1]);
+		bm.addQuery(q);
+
+		for (int i = 2; i < weapons.length; i++) st.checkNoHas(parr[2], weapons[i]);
+		for (int i = 2; i < people.length; i++) st.checkNoHas(parr[2], people[i]);
+		for (int i = 2; i < locations.length; i++) st.checkNoHas(parr[2], locations[i]);
 	}
 
 	public static class ScorecardTester {

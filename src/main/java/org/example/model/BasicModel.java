@@ -309,7 +309,17 @@ public class BasicModel extends AbstractModel {
 
 			// check to see if this player has max cards in hand
 			// if so, assert they can't have any more cards
-			// todo
+			int has = 0;
+			for (Knowledge k : playercard.values()) {
+				if (k.t == Knowledge.T.HAS) has++;
+			}
+			if (has == player.numCards()) {
+				for (Card c : Card.values()) {
+					if (playercard.getOrDefault(c, Knowledge.MIGHT_HAVE()).t == Knowledge.T.MIGHT_HAVE) {
+						unhandledAssertions.add(new PlayerDoesNotHaveAssertion(player, c));
+					}
+				}
+			}
 
 			// assert that we (self) know this card
 			scorecard.get(self).put(card, Knowledge.KNOWN());
