@@ -13,6 +13,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class BasicModelTest {
 	private static final String[] playerNames = new String[]{"Self", "Alice", "Bob", "Charles", "Dan", "Eric"};
 
+	private static final Card[] weapons, locations, people;
+
+	static {
+		weapons = new Card[Card.WEAPONS.size()];
+		for (int i = 0; i < Card.WEAPONS.size(); i++) weapons[i] = Card.WEAPONS.get(i);
+		locations = new Card[Card.LOCATIONS.size()];
+		for (int i = 0; i < Card.LOCATIONS.size(); i++) locations[i] = Card.LOCATIONS.get(i);
+		people = new Card[Card.PEOPLE.size()];
+		for (int i = 0; i < Card.PEOPLE.size(); i++) people[i] = Card.PEOPLE.get(i);
+	}
+
 	private static Player[] makePlayers(int np) {
 		int nc = Card.NUM_CARDS / np;
 		Player[] parr = new Player[np];
@@ -89,19 +100,69 @@ class BasicModelTest {
 		Player[] parr = makePlayers(6);
 		PlayerList plist = new PlayerList(parr);
 		Card[] common = new Card[0];
-		Card[] mine = new Card[]{Card.WEAPONS.get(0), Card.PEOPLE.get(0), Card.LOCATIONS.get(0)};
+		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
 		ScorecardTester st = new ScorecardTester(bm);
 
-		
+		st.checkOwns(parr[0], weapons[0]);
+		st.checkOwns(parr[0], people[0]);
+		st.checkOwns(parr[0], locations[0]);
 
+		for (int i = 1; i < weapons.length; i++) st.checkNoHas(parr[0], weapons[i]);
+		for (int i = 1; i < people.length; i++) st.checkNoHas(parr[0], people[i]);
+		for (int i = 1; i < locations.length; i++) st.checkNoHas(parr[0], locations[i]);
 
+		Query q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, weapons[1]);
+		bm.addQuery(q);
+
+		st.checkNoHas(parr[1], weapons[1]);
+		st.checkNoHas(parr[1], people[1]);
+		st.checkNoHas(parr[1], locations[1]);
+
+		st.checkOwns(parr[2], weapons[1]);
+		st.checkKnown(parr[0], weapons[1]);
+
+		st.checkAllElseNull();
 	}
 
 	@Test
 	@DisplayName("Add Test")
 	public void AddTest() {
+		Player[] parr = makePlayers(6);
+		PlayerList plist = new PlayerList(parr);
+		Card[] common = new Card[0];
+		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
+		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
+		ScorecardTester st = new ScorecardTester(bm);
 
+		st.checkOwns(parr[0], weapons[0]);
+		st.checkOwns(parr[0], people[0]);
+		st.checkOwns(parr[0], locations[0]);
+
+		for (int i = 1; i < weapons.length; i++) st.checkNoHas(parr[0], weapons[i]);
+		for (int i = 1; i < people.length; i++) st.checkNoHas(parr[0], people[i]);
+		for (int i = 1; i < locations.length; i++) st.checkNoHas(parr[0], locations[i]);
+
+		Query q = new Query(parr[2], parr[4], new Card[]{weapons[1], people[1], locations[1]}, null);
+		bm.addQuery(q);
+
+		st.checkNoHas(parr[3], weapons[1]);
+		st.checkNoHas(parr[3], people[1]);
+		st.checkNoHas(parr[3], locations[1]);
+
+		st.checkMightHave(parr[4], weapons[1]);
+		st.checkMightHave(parr[4], people[1]);
+		st.checkMightHave(parr[4], locations[1]);
+		Group g = bm.scorecard.get(parr[4]).get(weapons[1]).groups.iterator().next();
+		assertSame(g, bm.scorecard.get(parr[4]).get(people[1]).groups.iterator().next());
+		assertSame(g, bm.scorecard.get(parr[4]).get(locations[1]).groups.iterator().next());
+		assertEquals(g.id, 0);
+		assertEquals(g.contents.size(), 3);
+		assertTrue(g.contents.containsKey(weapons[1]));
+		assertTrue(g.contents.containsKey(people[1]));
+		assertTrue(g.contents.containsKey(locations[1]));
+
+		st.checkAllElseNull();
 	}
 
 
@@ -174,7 +235,8 @@ class BasicModelTest {
 					Card c = e2.getKey();
 					boolean touched = e2.getValue();
 					if (!touched) {
-						assertNull(model.scorecard.get(p).get(c), p.toString() + ", " + c.toString());
+						assertNull(model.scorecard.get(p).get(c), p.toString() + ", " + c.toString() +
+								" -> " + model.scorecard.get(p).getOrDefault(c, Knowledge.NO_HAS()).t);
 					}
 				}
 			}

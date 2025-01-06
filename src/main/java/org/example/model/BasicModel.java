@@ -14,10 +14,13 @@ public class BasicModel extends AbstractModel {
 	protected final Queue<Assertion> unhandledAssertions = new LinkedList<>();
 	private final Set<Player> modifiedPlayers;
 
+	protected final Player self;
+
 	public BasicModel(PlayerList players, Player self, Card[] known, Card[] owned) {
 		super(players, self, known, owned);
 		this.players = players;
 		this.modifiedPlayers = new HashSet<>(players.getPlayerCount());
+		this.self = self;
 	}
 
 	@Override
@@ -68,7 +71,7 @@ public class BasicModel extends AbstractModel {
 	 * @param rep the array of bits to check for
 	 * @return true if every element in constr shares a bit with an element of rep
 	 */
-	private static boolean everyElementedRepresented(int[] constr, int[] rep) {
+	private static boolean everyElementRepresented(int[] constr, int[] rep) {
 		int chk = 0;
 		for (int j : rep) chk |= j;
 		for (int k : constr) {
@@ -95,7 +98,7 @@ public class BasicModel extends AbstractModel {
 		// if represents, return true
 		// if exhausted combinations, return false
 
-		if (n == 0) return everyElementedRepresented(constraints, prev);
+		if (n == 0) return everyElementRepresented(constraints, prev);
 		if (skip + n > represent.length) return false;
 
 		// try adding the first element
@@ -306,6 +309,9 @@ public class BasicModel extends AbstractModel {
 			// check to see if this player has max cards in hand
 			// if so, assert they can't have any more cards
 			// todo
+
+			// assert that we (self) know this card
+			scorecard.get(self).put(card, Knowledge.KNOWN());
 		}
 	}
 
