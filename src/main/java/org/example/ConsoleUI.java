@@ -3,8 +3,6 @@ package org.example;
 import org.example.model.*;
 
 import java.io.InputStream;
-import java.sql.SQLOutput;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -83,7 +81,11 @@ public class ConsoleUI {
 						Player answerer = null;
 						if (line.hasNext()) answerer = players.get(line.next());
 						model.addQuery(new Query(asker, answerer, cards, null));
-						break;
+						ImmutableScorecard s = model.getFullScorecard();
+						if (s.confidentGuess()) {
+							Guess g = s.guess();
+							System.out.println("It was " + g.person() + " in the " + g.location() + " with the " + g.weapon());
+						}
 					}
 					case "ask" -> {
 						// ASK card1 card2 card3 answerer? card?
@@ -97,7 +99,11 @@ public class ConsoleUI {
 							answer = Card.toCard((line.next()));
 						}
 						model.addQuery(new Query(self, answerer, cards, answer));
-						break;
+						ImmutableScorecard s = model.getFullScorecard();
+						if (s.confidentGuess()) {
+							Guess g = s.guess();
+							System.out.println("It was " + g.person() + " in the " + g.location() + " with the " + g.weapon());
+						}
 					}
 					case "get" -> {
 						// GET simple?/full
@@ -172,12 +178,21 @@ public class ConsoleUI {
 							throw new NoSuchElementException("Unknown asset");
 						}
 					}
+					case "guess" -> {
+						ImmutableScorecard s = model.getFullScorecard();
+						Guess g = s.guess();
+						StringBuilder sb = new StringBuilder();
+						if (s.confidentGuess()) sb.append("It was ");
+						sb.append(g.person()).append(" in the ").append(g.location()).append(" with the ").append(g.weapon());
+						System.out.println(sb);
+					}
 					case "help" -> {
 						// HELP
 						System.out.println("-----COMMANDS-----");
 						System.out.println("ADD asker card1 card2 card3 answerer?");
 						System.out.println("ASK card1 card2 card3 answerer? card?");
 						System.out.println("GET simple?/full");
+						System.out.println("GUESS");
 					}
 					case "exit" -> {
 						return;
