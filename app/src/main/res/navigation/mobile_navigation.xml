@@ -3,23 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_scoreboard">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_scoreboard"
         android:name="com.cluemodeler.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/title_scoreboard"
+        tools:layout="@layout/fragment_scoreboard" />
 
     <fragment
         android:id="@+id/navigation_import"
         android:name="com.cluemodeler.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="@string/title_import"
+        tools:layout="@layout/fragment_import" />
 
     <fragment
         android:id="@+id/navigation_questions"
         android:name="com.cluemodeler.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:label="@string/title_question"
+        tools:layout="@layout/fragment_questions" />
+
+    <fragment
+        android:id="@+id/navigation_guess"
+        android:name="com.cluemodeler.ui.notifications.NotificationsFragment"
+        android:label="@string/title_guess"
+        tools:layout="@layout/fragment_guess" />
 </navigation>

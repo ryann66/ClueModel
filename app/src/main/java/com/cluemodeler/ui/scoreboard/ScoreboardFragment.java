@@ -1,4 +1,4 @@
-package com.cluemodeler.ui.notifications;
+package com.cluemodeler.ui.scoreboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.cluemodeler.databinding.FragmentNotificationsBinding;
+import com.example.cluemodeler.databinding.FragmentScoreboardBinding;
 
-public class NotificationsFragment extends Fragment {
+public class ScoreboardFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentScoreboardBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        ScoreboardViewModel scoreboardViewModel =
+                new ViewModelProvider(this).get(ScoreboardViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
