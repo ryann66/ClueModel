@@ -19,6 +19,10 @@ class ArrayScorecard implements Scorecard {
 	ArrayScorecard(PlayerList players) {
 		parr = new Player[players.getPlayerCount()];
 		karr = new Knowledge[parr.length][Card.NUM_CARDS];
+		int i = 0;
+		for (Player p : players) {
+			parr[i++] = p;
+		}
 	}
 
 	@Override
@@ -29,7 +33,9 @@ class ArrayScorecard implements Scorecard {
 
 	@Override
 	public Knowledge get(Player p, Card c) {
-		return karr[getPlayerIndex(p)][c.ordinal()];
+		Knowledge ret = karr[getPlayerIndex(p)][c.ordinal()];
+		if (ret == null) return Knowledge.MIGHT_HAVE_DEFAULT;
+		return ret;
 	}
 
 	@Override
@@ -123,12 +129,14 @@ class ArrayScorecard implements Scorecard {
 
 		@Override
 		public Knowledge get(Card c) {
-			return null;
+			Knowledge ret = karr[pidx][c.ordinal()];
+			if (ret == null) return Knowledge.MIGHT_HAVE_DEFAULT;
+			return ret;
 		}
 
 		@Override
 		public void mark(Card c, Knowledge k) {
-
+			karr[pidx][c.ordinal()] = k;
 		}
 
 		@Override
@@ -152,8 +160,11 @@ class ArrayScorecard implements Scorecard {
 
 		@Override
 		public Map.Entry<Card, Knowledge> next() {
-			Card c = Card.values()[cidx++];
-			return new AbstractMap.SimpleEntry<>(c, karr[pidx][cidx]);
+			if (cidx == Card.NUM_CARDS) throw new NoSuchElementException();
+			Card c = Card.values()[cidx];
+			Knowledge k = karr[pidx][cidx++];
+			if (k == null) k = Knowledge.MIGHT_HAVE();
+			return new AbstractMap.SimpleEntry<>(c, k);
 		}
 	}
 }

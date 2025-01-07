@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BasicModelTest {
 	private static final String[] playerNames = new String[]{"Self", "Alice", "Bob", "Charles", "Dan", "Eric"};
 
-	private static final Card[] weapons, locations, people;
+	static final Card[] weapons, locations, people;
 
 	static {
 		weapons = new Card[Card.WEAPONS.size()];
@@ -24,7 +24,7 @@ class BasicModelTest {
 		for (int i = 0; i < Card.PEOPLE.size(); i++) people[i] = Card.PEOPLE.get(i);
 	}
 
-	private static Player[] makePlayers(int np) {
+	static Player[] makePlayers(int np) {
 		int nc = Card.NUM_CARDS / np;
 		Player[] parr = new Player[np];
 		for (int i = 0; i < np; i++) {
@@ -43,7 +43,7 @@ class BasicModelTest {
 
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
 
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		Set<Card> notmine = new HashSet<>(Card.NUM_CARDS);
 		notmine.addAll(Card.WEAPONS);
@@ -74,7 +74,7 @@ class BasicModelTest {
 
 		bm = new BasicModel(plist, parr[0], common, mine);
 
-		st = new ScorecardTester(bm);
+		st = new ScorecardTester(bm, plist);
 
 		notmine = new HashSet<>(Card.NUM_CARDS);
 		notmine.addAll(Card.WEAPONS);
@@ -102,7 +102,7 @@ class BasicModelTest {
 		Card[] common = new Card[0];
 		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		st.checkOwns(parr[0], weapons[0]);
 		st.checkOwns(parr[0], people[0]);
@@ -133,7 +133,7 @@ class BasicModelTest {
 		Card[] common = new Card[0];
 		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		st.checkOwns(parr[0], weapons[0]);
 		st.checkOwns(parr[0], people[0]);
@@ -172,7 +172,7 @@ class BasicModelTest {
 		Card[] common = new Card[0];
 		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		Query q = new Query(parr[1], parr[2], new Card[]{weapons[1], people[1], locations[1]}, null);
 		bm.addQuery(q);
@@ -191,7 +191,7 @@ class BasicModelTest {
 		Card[] common = new Card[0];
 		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		Query q = new Query(parr[1], parr[2], new Card[]{weapons[0], people[0], locations[1]}, null);
 		bm.addQuery(q);
@@ -207,7 +207,7 @@ class BasicModelTest {
 		Card[] common = new Card[0];
 		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		// give p2 two cards
 		Query q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, weapons[1]);
@@ -232,7 +232,7 @@ class BasicModelTest {
 		Card[] common = new Card[0];
 		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		// give p2 one card
 		Query q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, weapons[1]);
@@ -259,7 +259,7 @@ class BasicModelTest {
 		Card[] common = new Card[0];
 		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		// constraint 1
 		Query q = new Query(parr[1], parr[2], new Card[]{weapons[1], people[1], locations[1]}, null);
@@ -289,7 +289,7 @@ class BasicModelTest {
 		Card[] common = new Card[0];
 		Card[] mine = new Card[]{weapons[0], people[0], locations[0]};
 		BasicModel bm = new BasicModel(plist, parr[0], common, mine);
-		ScorecardTester st = new ScorecardTester(bm);
+		ScorecardTester st = new ScorecardTester(bm, plist);
 
 		Query q = new Query(parr[0], parr[2], new Card[]{weapons[1], people[1], locations[1]}, weapons[1]);
 		bm.addQuery(q);
@@ -305,12 +305,15 @@ class BasicModelTest {
 
 	public static class ScorecardTester {
 		AbstractModel model;
+
+		PlayerList players;
 		Map<Player, Map<Card, Boolean>> hasTouched;
 
-		public ScorecardTester(AbstractModel m) {
+		public ScorecardTester(AbstractModel m, PlayerList players) {
 			model = m;
-			hasTouched = new HashMap<>(m.scorecard.size());
-			for (Player p : m.scorecard.keySet()) {
+			this.players = players;
+			hasTouched = new HashMap<>(players.getPlayerCount());
+			for (Player p : players) {
 				HashMap<Card, Boolean> map = new HashMap<>(Card.NUM_CARDS);
 				hasTouched.put(p, map);
 				for (Card c : Card.values()) {
@@ -349,7 +352,7 @@ class BasicModelTest {
 		}
 
 		public void checkOwns(Player p, Card c) {
-			for (Player p2 : model.scorecard.keySet()) {
+			for (Player p2 : players) {
 				if (p2.equals(p)) checkHas(p, c);
 				else checkMustNotHave(p2, c);
 			}
@@ -365,8 +368,7 @@ class BasicModelTest {
 					Card c = e2.getKey();
 					boolean touched = e2.getValue();
 					if (!touched) {
-						assertNull(model.scorecard.get(p).get(c), p.toString() + ", " + c.toString() +
-								" -> " + model.scorecard.get(p).getOrDefault(c, Knowledge.NO_HAS()).t);
+						assertSame(Knowledge.MIGHT_HAVE_DEFAULT, model.scorecard.get(p, c));
 					}
 				}
 			}

@@ -7,9 +7,6 @@ import org.example.model.Scorecard.PlayerScorecard;
  * Basic modeler that fills out a scorecard based purely off known information
  */
 public class BasicModel extends AbstractModel {
-	// Constant that can be used as a default as long as we promise not to add anything to groups
-	private static final Knowledge MIGHT_HAVE_DEFAULT = Knowledge.MIGHT_HAVE();
-
 	protected final PlayerList players;
 
 	protected final Queue<Assertion> unhandledAssertions = new LinkedList<>();
@@ -409,7 +406,7 @@ public class BasicModel extends AbstractModel {
 			// Add all might haves into a group
 			Group g = new Group();
 			for (int i = 0; i < prior.length; i++) {
-				if (prior[i] == null) {
+				if (prior[i] == Knowledge.MIGHT_HAVE_DEFAULT) {
 					prior[i] = Knowledge.MIGHT_HAVE();
 					playercard.mark(cards[i], prior[i]);
 				}
