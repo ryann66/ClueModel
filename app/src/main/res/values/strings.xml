@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Clue Modeler</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_scoreboard">Scoreboard</string>
+    <string name="title_import">Add Questions</string>
+    <string name="title_question">Ask Questions</string>
+    <string name="title_guess">Guess</string>
 </resources>
