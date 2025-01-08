@@ -13,14 +13,18 @@
         android:theme="@style/Theme.ClueModeler"
         tools:targetApi="34">
         <activity
-            android:name="com.cluemodeler.MainActivity"
+            android:name="com.cluemodeler.LauncherActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.cluemodeler.ModelActivity"
+            android:exported="false"
+            android:label="@string/app_name">
         </activity>
     </application>
 

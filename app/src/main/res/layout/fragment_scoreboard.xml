@@ -6,11 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.cluemodeler.ui.scoreboard.ScoreboardFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello, World"
-        tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="297dp" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scoreboard_tablelayout"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
