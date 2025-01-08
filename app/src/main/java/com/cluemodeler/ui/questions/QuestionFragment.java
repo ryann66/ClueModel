@@ -11,14 +11,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.cluemodeler.databinding.FragmentQuestionsBinding;
 
+import com.cluemodeler.model.Model;
+
 public class QuestionFragment extends Fragment {
 
     private FragmentQuestionsBinding binding;
+    private Model model;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         QuestionViewModel questionViewModel =
                 new ViewModelProvider(this).get(QuestionViewModel.class);
+        model = questionViewModel.getModel();
 
         binding = FragmentQuestionsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

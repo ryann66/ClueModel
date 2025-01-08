@@ -11,14 +11,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.cluemodeler.databinding.FragmentImportBinding;
 
+import com.cluemodeler.model.Model;
+
 public class ImportFragment extends Fragment {
 
     private FragmentImportBinding binding;
+    private Model model;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ImportViewModel importViewModel =
                 new ViewModelProvider(this).get(ImportViewModel.class);
+        model = importViewModel.getModel();
 
         binding = FragmentImportBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

@@ -11,14 +11,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.cluemodeler.databinding.FragmentGuessBinding;
 
+import com.cluemodeler.model.Strategy;
+
 public class GuessFragment extends Fragment {
 
     private FragmentGuessBinding binding;
+    private Strategy strategy;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         GuessViewModel guessViewModel =
                 new ViewModelProvider(this).get(GuessViewModel.class);
+        strategy = guessViewModel.getStrategy();
 
         binding = FragmentGuessBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
