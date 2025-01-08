@@ -1,8 +1,9 @@
 package com.cluemodeler;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 
-import com.example.cluemodeler.R;
+import com.cluemodeler.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.cluemodeler.databinding.ActivityMainBinding;
+import com.cluemodeler.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_scoreboard"
-        android:name="com.cluemodeler.ui.home.HomeFragment"
+        android:name="com.cluemodeler.ui.scoreboard.ScoreboardFragment"
         android:label="@string/title_scoreboard"
         tools:layout="@layout/fragment_scoreboard" />
 
     <fragment
         android:id="@+id/navigation_import"
-        android:name="com.cluemodeler.ui.dashboard.DashboardFragment"
+        android:name="com.cluemodeler.ui.imports.ImportFragment"
         android:label="@string/title_import"
         tools:layout="@layout/fragment_import" />
 
     <fragment
         android:id="@+id/navigation_questions"
-        android:name="com.cluemodeler.ui.notifications.NotificationsFragment"
+        android:name="com.cluemodeler.ui.questions.QuestionFragment"
         android:label="@string/title_question"
         tools:layout="@layout/fragment_questions" />
 
     <fragment
         android:id="@+id/navigation_guess"
-        android:name="com.cluemodeler.ui.notifications.NotificationsFragment"
+        android:name="com.cluemodeler.ui.guess.GuessFragment"
         android:label="@string/title_guess"
         tools:layout="@layout/fragment_guess" />
 </navigation>

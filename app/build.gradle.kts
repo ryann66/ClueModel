@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cluemodeler"
+    namespace = "com.cluemodeler"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cluemodeler"
+        applicationId = "com.cluemodeler"
         minSdk = 34
         targetSdk = 34
         versionCode = 1
@@ -32,6 +32,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    buildToolsVersion = "34.0.0"
 }
 
 dependencies {
