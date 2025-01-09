@@ -54,8 +54,6 @@
     <list default="true" id="b2ed014e-5805-405b-9417-8523402d146c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/ArrayScorecard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/ArrayScorecard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Scorecard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Scorecard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/cluemodeler/model/ArrayScorecardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/cluemodeler/model/ArrayScorecardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,12 +74,26 @@
         <task path="$PROJECT_DIR$/app">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ClueModel" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ClueModel" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ClueModel" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -94,8 +106,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -151,9 +163,8 @@
       <recent name="C:\Users\Ryan Nelson\CodeProjects\ClueModel\app\src\main\java\com\example\cluemodeler" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.Tests">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="Clue_Modeler.app.main" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -186,6 +197,49 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ClueModel [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests" type="JUnit" factoryName="JUnit">
+      <module name="ClueModel" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="PACKAGE_NAME" value="com.cluemodeler.model" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Android App.app" />
+      <item itemvalue="Gradle.ClueModel [build]" />
+      <item itemvalue="JUnit.Tests" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ClueModel [build]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

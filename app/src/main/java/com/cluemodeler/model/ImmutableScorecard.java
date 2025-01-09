@@ -1,5 +1,6 @@
 package com.cluemodeler.model;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,6 +22,24 @@ public interface ImmutableScorecard {
 	 * @return an immutable view at the scorecard for a single player
 	 */
 	ImmutablePlayerScorecard get(Player p);
+
+	/**
+	 * Compiles a list of all weapons that are unaccounted for
+	 * @return a list of all possible murder weapons
+	 */
+	List<Card> missingWeapons();
+
+	/**
+	 * Compiles a list of all people that are unaccounted for
+	 * @return a list of all possible murderers
+	 */
+	List<Card> missingPeople();
+
+	/**
+	 * Compiles a list of all locations that are unaccounted for
+	 * @return a list of all possible murder locations
+	 */
+	List<Card> missingLocations();
 
 	/**
 	 * Fast test for if the answer is known with perfect confidence

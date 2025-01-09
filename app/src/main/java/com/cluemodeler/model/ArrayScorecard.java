@@ -37,7 +37,7 @@ class ArrayScorecard implements Scorecard {
 		bkpkarr = new int[parr.length][Card.NUM_CARDS];
 		bkpmighthave = new LinkedList<>();
 		for (int[] arr : bkpkarr) {
-			for (int i = 0; i < arr.length; i++) arr[i] = -1;
+			Arrays.fill(arr, -1);
 		}
 	}
 
@@ -183,6 +183,51 @@ class ArrayScorecard implements Scorecard {
 				}
 			}
 		}
+	}
+
+	public List<Card> missingWeapons() {
+		List<Card> ret = new ArrayList<>(Card.WEAPONS.size());
+		for (Card c : Card.WEAPONS) {
+			int cidx = c.ordinal();
+			for (Knowledge[] knowledges : karr) {
+				if (knowledges[cidx] != null &&
+						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
+					ret.add(c);
+					break;
+				}
+			}
+		}
+		return ret;
+	}
+
+	public List<Card> missingPeople() {
+		List<Card> ret = new ArrayList<>(Card.PEOPLE.size());
+		for (Card c : Card.PEOPLE) {
+			int cidx = c.ordinal();
+			for (Knowledge[] knowledges : karr) {
+				if (knowledges[cidx] != null &&
+						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
+					ret.add(c);
+					break;
+				}
+			}
+		}
+		return ret;
+	}
+
+	public List<Card> missingLocations() {
+		List<Card> ret = new ArrayList<>(Card.LOCATIONS.size());
+		for (Card c : Card.LOCATIONS) {
+			int cidx = c.ordinal();
+			for (Knowledge[] knowledges : karr) {
+				if (knowledges[cidx] != null &&
+						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
+					ret.add(c);
+					break;
+				}
+			}
+		}
+		return ret;
 	}
 
 	private int getPlayerIndex(Player p) {
