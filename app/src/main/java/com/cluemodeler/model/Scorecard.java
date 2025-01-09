@@ -18,6 +18,16 @@ interface Scorecard extends ImmutableScorecard {
 	PlayerScorecard get(Player p);
 
 	/**
+	 * Commits all changes to the scorecard since the last commit/restore
+	 */
+	void commit();
+
+	/**
+	 * Rejects all the changes to the scorecard since the last commit/restore
+	 */
+	void restore();
+
+	/**
 	 * A mutable view of a player's scorecard
 	 */
 	interface PlayerScorecard extends ImmutablePlayerScorecard {
