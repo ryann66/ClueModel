@@ -21,7 +21,7 @@ public class LauncherActivity extends AppCompatActivity {
     private List<String> playerNames = new ArrayList<>(6);
     private List<Card> knownCards = new ArrayList<>(3);
     private List<Card> ownedCards = new ArrayList<>(6);
-    private Strategy.T strategy = Strategy.T.BALANCED;
+    private Strategy.T strategy = Strategy.T.AGGRESSIVE;
 
     public LauncherActivity() {
         // todo: remove preloader

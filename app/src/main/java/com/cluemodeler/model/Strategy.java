@@ -1,15 +1,14 @@
 package com.cluemodeler.model;
 
 public interface Strategy {
-	static Strategy buildStrategy(Strategy.T strategy, ImmutableScorecard card) {
+	static Strategy buildStrategy(Strategy.T strategy, ImmutableScorecard card, PlayerList plist, Player self) {
 		return switch (strategy) {
-			case AGGRESSIVE -> new AggressiveStrategy(card);
-			case BALANCED -> new BalancedStrategy(card);
+			case AGGRESSIVE -> new AggressiveStrategy(card, plist, self);
 		};
 	}
 
 	enum T {
-		AGGRESSIVE, BALANCED
+		AGGRESSIVE
 	}
 
 	/**
