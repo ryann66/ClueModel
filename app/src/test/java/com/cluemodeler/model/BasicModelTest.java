@@ -358,6 +358,16 @@ class BasicModelTest {
 			}
 		}
 
+		public void checkUnknown(Card c) {
+			for (Player p : players) {
+				hasTouched.get(p).put(c, true);
+				Knowledge k = model.scorecard.get(p, c);
+				if (k == null) continue;
+				assertNotEquals(Knowledge.T.KNOWN, k.t);
+				assertNotEquals(Knowledge.T.HAS, k.t);
+			}
+		}
+
 		/**
 		 * Assert that everything except the elements that have been explicitly checked is null
 		 */

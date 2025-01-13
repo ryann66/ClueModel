@@ -44,7 +44,7 @@ public class AggressiveStrategy extends AbstractStrategy {
 		}
 
 		// sort out all cards that have a depth of (num players - 1)
-		// and have a known of 0
+		// and have a known of 0 (not common cards)
 		// select any 3 of these cards
 		Card[] cards = new Card[Card.Type.values().length];
 		for (Card c : Card.values()) {

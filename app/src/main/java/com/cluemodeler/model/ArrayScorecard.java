@@ -61,6 +61,7 @@ class ArrayScorecard implements Scorecard {
 
 	@Override
 	public boolean confidentGuess() {
+		// todo: rewrite to indicate we know if nobody holds the card
 		Card weapon = null, person = null, location = null;
 		for (Card c : Card.values()) {
 			boolean known = false;
