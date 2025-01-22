@@ -1,9 +1,6 @@
 package com.cluemodeler.model;
 
-import java.util.AbstractMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * Array based implementation of Scorecard
@@ -16,12 +13,31 @@ class ArrayScorecard implements Scorecard {
 	// Knowledge[PlayerID][Card Ordinal]
 	Knowledge[][] karr;
 
+	// array of knowledge converted to int using the following scheme
+	// -1 => null
+	// -2 => NO_HAS
+	// -3 => HAS
+	// -4 => KNOWN
+	// 0+n => MIGHT_HAVE
+	// 	where n is the number of groups to pull from bkpmighthave
+	//	thus a value of 1 indicates that this field is MIGHT_HAVE with 1 group that can be generated
+	//	by removing the first array from bpkmighthave
+	int[][] bkpkarr;
+	Queue<Card[]> bkpmighthave;
+
 	ArrayScorecard(PlayerList players) {
 		parr = new Player[players.getPlayerCount()];
 		karr = new Knowledge[parr.length][Card.NUM_CARDS];
-		int i = 0;
-		for (Player p : players) {
-			parr[i++] = p;
+		{
+			int i = 0;
+			for (Player p : players) {
+				parr[i++] = p;
+			}
+		}
+		bkpkarr = new int[parr.length][Card.NUM_CARDS];
+		bkpmighthave = new LinkedList<>();
+		for (int[] arr : bkpkarr) {
+			Arrays.fill(arr, -1);
 		}
 	}
 
@@ -45,6 +61,7 @@ class ArrayScorecard implements Scorecard {
 
 	@Override
 	public boolean confidentGuess() {
+		// todo: rewrite to indicate we know if nobody holds the card
 		Card weapon = null, person = null, location = null;
 		for (Card c : Card.values()) {
 			boolean known = false;
@@ -102,6 +119,116 @@ class ArrayScorecard implements Scorecard {
 			}
 		}
 		return new Guess(weapon, person, location);
+	}
+
+	@Override
+	public void commit() {
+		// overwrite backup
+		bkpmighthave.clear();
+		for (int i = 0; i < karr.length; i++) {
+			for (int j = 0; j < karr[i].length; j++) {
+				if (karr[i][j] == null) bkpkarr[i][j] = 0;
+				else {
+					bkpkarr[i][j] = switch (karr[i][j].t) {
+						case MIGHT_HAVE -> {
+							// add to bkpmighthave
+							for (Group g : karr[i][j].groups) {
+								bkpmighthave.add(g.contents.keySet().toArray(new Card[0]));
+							}
+							yield karr[i][j].groups.size();
+						}
+						case NO_HAS -> -2;
+						case HAS -> -3;
+						case KNOWN -> -4;
+					};
+				}
+			}
+		}
+	}
+
+	@Override
+	public void restore() {
+		// overwrite karr with correct type data
+		for (int i = 0; i < karr.length; i++) {
+			for (int j = 0; j < karr[i].length; j++) {
+				karr[i][j] = switch (bkpkarr[i][j]) {
+					case -1 -> null;
+					case -2 -> Knowledge.NO_HAS();
+					case -3 -> Knowledge.HAS();
+					case -4 -> Knowledge.KNOWN();
+					case 0 -> Knowledge.MIGHT_HAVE_DEFAULT;
+					default -> {
+						Knowledge knowledge = Knowledge.MIGHT_HAVE();
+						for (int k = 0; k < bkpkarr[i][j]; k++) {
+							Group group = new Group();
+							Card[] cards = bkpmighthave.remove();
+							for (Card c : cards) {
+								group.contents.put(c, null);
+							}
+							knowledge.groups.add(group);
+						}
+						yield knowledge;
+					}
+				};
+			}
+		}
+
+		// stitch group knowledge back together
+		for (Knowledge[] pckarr : karr) {
+			for (Knowledge knowledge : pckarr) {
+				if (knowledge.t != Knowledge.T.MIGHT_HAVE) continue;
+				for (Group g : knowledge.groups) {
+					for (Map.Entry<Card, Knowledge> entry : g.contents.entrySet()) {
+						entry.setValue(pckarr[entry.getKey().ordinal()]);
+					}
+				}
+			}
+		}
+	}
+
+	public List<Card> missingWeapons() {
+		List<Card> ret = new ArrayList<>(Card.WEAPONS.size());
+		for (Card c : Card.WEAPONS) {
+			int cidx = c.ordinal();
+			for (Knowledge[] knowledges : karr) {
+				if (knowledges[cidx] != null &&
+						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
+					ret.add(c);
+					break;
+				}
+			}
+		}
+		return ret;
+	}
+
+	public List<Card> missingPeople() {
+		List<Card> ret = new ArrayList<>(Card.PEOPLE.size());
+		for (Card c : Card.PEOPLE) {
+			int cidx = c.ordinal();
+			for (Knowledge[] knowledges : karr) {
+				if (knowledges[cidx] != null &&
+						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
+					ret.add(c);
+					break;
+				}
+			}
+		}
+		return ret;
+	}
+
+	public List<Card> missingLocations() {
+		List<Card> ret = new ArrayList<>(Card.LOCATIONS.size());
+		for (Card c : Card.LOCATIONS) {
+			int cidx = c.ordinal();
+			for (Knowledge[] knowledges : karr) {
+				if (knowledges[cidx] != null &&
+						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
+					ret.add(c);
+					break;
+				}
+			}
+		}
+		return ret;
 	}
 
 	private int getPlayerIndex(Player p) {

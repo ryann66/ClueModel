@@ -72,7 +72,7 @@ public class ModelActivity extends AppCompatActivity {
         // build model
         Model model = new BasicModel(plist, parr[0], known, owned);
         ImmutableScorecard card = model.getFullScorecard();
-        Strategy strategy = Strategy.buildStrategy(Strategy.T.values()[strategyIndex], card);
+        Strategy strategy = Strategy.buildStrategy(Strategy.T.values()[strategyIndex], card, plist, parr[0]);
 
         binding = ActivityModelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
