@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="scoreboard_tile_height">46dp</dimen>
+    <dimen name="scoreboard_tile_width">46dp</dimen>
+    <dimen name="scoreboard_six_tile_width">276dp</dimen>
+</resources>
