@@ -1,8 +1,33 @@
 <resources>
     <string name="app_name">Clue Modeler</string>
 
+    <string name="vertical_text_default">Vertical Text</string>
+    <string name="player_name_default">Player</string>
+
     <string name="title_scoreboard">Scoreboard</string>
     <string name="title_import">Add Questions</string>
     <string name="title_question">Ask Questions</string>
     <string name="title_guess">Guess</string>
+
+    <string name="rope">Rope</string>
+    <string name="candlestick">Candlestick</string>
+    <string name="pipe">Lead Pipe</string>
+    <string name="pistol">Pistol</string>
+    <string name="dagger">Dagger</string>
+    <string name="wrench">Wrench</string>
+    <string name="green">Mr. Green</string>
+    <string name="mustard">Col. Mustard</string>
+    <string name="peacock">Mrs. Peacock</string>
+    <string name="white">Mrs. White</string>
+    <string name="plum">Prof. Plum</string>
+    <string name="scarlet">Miss Scarlet</string>
+    <string name="courtyard">Courtyard</string>
+    <string name="garage">Garage</string>
+    <string name="game">Game Room</string>
+    <string name="bedroom">Bedroom</string>
+    <string name="bathroom">Bathroom</string>
+    <string name="office">Office</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="dining">Dining Room</string>
+    <string name="living">Living Room</string>
 </resources>

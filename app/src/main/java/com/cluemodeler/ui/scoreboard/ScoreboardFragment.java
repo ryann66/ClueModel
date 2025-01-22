@@ -26,6 +26,8 @@ public class ScoreboardFragment extends Fragment {
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
+
         return root;
     }
 

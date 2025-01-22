@@ -2,12 +2,2012 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context="com.cluemodeler.ui.scoreboard.ScoreboardFragment">
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <View
+        android:id="@+id/vbar6"
+        android:layout_width="2dp"
         android:layout_height="match_parent"
-        android:id="@+id/scoreboard_tablelayout"/>
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/scoreboard_tile_width"/>
+
+    <View
+        android:id="@+id/vbar5"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/vbar6"
+        android:layout_marginEnd="@dimen/scoreboard_tile_width"/>
+
+    <View
+        android:id="@+id/vbar4"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/vbar5"
+        android:layout_marginEnd="@dimen/scoreboard_tile_width"/>
+
+    <View
+        android:id="@+id/vbar3"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/vbar4"
+        android:layout_marginEnd="@dimen/scoreboard_tile_width"/>
+
+    <View
+        android:id="@+id/vbar2"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/vbar3"
+        android:layout_marginEnd="@dimen/scoreboard_tile_width"/>
+
+    <View
+        android:id="@+id/vbar"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/vbar2"
+        android:layout_marginEnd="@dimen/scoreboard_tile_width"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@id/scrollview"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/scoreboard_six_tile_width" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/rope"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/rope" />
+
+            <ImageButton
+                android:id="@+id/rope"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/rope2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/rope2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/rope3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/rope"
+                app:layout_constraintTop_toTopOf="@id/rope" />
+
+            <ImageButton
+                android:id="@+id/rope3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/rope4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/rope2"
+                app:layout_constraintTop_toTopOf="@id/rope" />
+
+            <ImageButton
+                android:id="@+id/rope4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/rope5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/rope3"
+                app:layout_constraintTop_toTopOf="@id/rope" />
+
+            <ImageButton
+                android:id="@+id/rope5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/rope6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/rope4"
+                app:layout_constraintTop_toTopOf="@id/rope" />
+
+            <ImageButton
+                android:id="@+id/rope6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_width"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/rope5"
+                app:layout_constraintTop_toTopOf="@id/rope"
+                app:layout_constraintBaseline_toTopOf="@id/ropebar"/>
+
+            <View
+                android:id="@+id/ropebar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="@dimen/scoreboard_tile_height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/candlestick"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/candle" />
+
+            <ImageButton
+                android:id="@+id/candle"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/candle2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/ropebar" />
+
+            <ImageButton
+                android:id="@+id/candle2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/candle3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/candle"
+                app:layout_constraintTop_toTopOf="@id/candle" />
+
+            <ImageButton
+                android:id="@+id/candle3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/candle4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/candle2"
+                app:layout_constraintTop_toTopOf="@id/candle" />
+
+            <ImageButton
+                android:id="@+id/candle4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/candle5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/candle3"
+                app:layout_constraintTop_toTopOf="@id/candle" />
+
+            <ImageButton
+                android:id="@+id/candle5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/candle6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/candle4"
+                app:layout_constraintTop_toTopOf="@id/candle" />
+
+            <ImageButton
+                android:id="@+id/candle6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/candle5"
+                app:layout_constraintTop_toTopOf="@id/candle" />
+
+            <View
+                android:id="@+id/candlebar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/candle" />
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/pipe"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/pipe" />
+
+            <ImageButton
+                android:id="@+id/pipe"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/candlebar" />
+
+            <ImageButton
+                android:id="@+id/pipe2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pipe"
+                app:layout_constraintTop_toTopOf="@id/pipe" />
+
+            <ImageButton
+                android:id="@+id/pipe3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pipe2"
+                app:layout_constraintTop_toTopOf="@id/pipe" />
+
+            <ImageButton
+                android:id="@+id/pipe4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pipe3"
+                app:layout_constraintTop_toTopOf="@id/pipe" />
+
+            <ImageButton
+                android:id="@+id/pipe5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pipe4"
+                app:layout_constraintTop_toTopOf="@id/pipe" />
+
+            <ImageButton
+                android:id="@+id/pipe6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pipe5"
+                app:layout_constraintTop_toTopOf="@id/pipe" />
+
+            <View
+                android:id="@+id/pipebar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pipe" />
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/dagger"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/dagger" />
+
+            <ImageButton
+                android:id="@+id/dagger"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dagger2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/pipebar" />
+
+            <ImageButton
+                android:id="@+id/dagger2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dagger3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dagger"
+                app:layout_constraintTop_toTopOf="@id/dagger" />
+
+            <ImageButton
+                android:id="@+id/dagger3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dagger4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dagger2"
+                app:layout_constraintTop_toTopOf="@id/dagger" />
+
+            <ImageButton
+                android:id="@+id/dagger4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dagger5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dagger3"
+                app:layout_constraintTop_toTopOf="@id/dagger" />
+
+            <ImageButton
+                android:id="@+id/dagger5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dagger6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dagger4"
+                app:layout_constraintTop_toTopOf="@id/dagger" />
+
+            <ImageButton
+                android:id="@+id/dagger6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dagger5"
+                app:layout_constraintTop_toTopOf="@id/dagger" />
+
+            <View
+                android:id="@+id/daggerbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dagger" />
+
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/wrench"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/wrench" />
+
+            <ImageButton
+                android:id="@+id/wrench"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/wrench2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/daggerbar" />
+
+            <ImageButton
+                android:id="@+id/wrench2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/wrench3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wrench"
+                app:layout_constraintTop_toTopOf="@id/wrench" />
+
+            <ImageButton
+                android:id="@+id/wrench3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/wrench4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wrench2"
+                app:layout_constraintTop_toTopOf="@id/wrench" />
+
+            <ImageButton
+                android:id="@+id/wrench4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/wrench5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wrench3"
+                app:layout_constraintTop_toTopOf="@id/wrench" />
+
+            <ImageButton
+                android:id="@+id/wrench5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/wrench6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wrench4"
+                app:layout_constraintTop_toTopOf="@id/wrench" />
+
+            <ImageButton
+                android:id="@+id/wrench6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wrench5"
+                app:layout_constraintTop_toTopOf="@id/wrench" />
+
+            <View
+                android:id="@+id/wrenchbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wrench" />
+
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/green"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/green" />
+
+            <ImageButton
+                android:id="@+id/green"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/green2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/wrenchbar" />
+
+            <ImageButton
+                android:id="@+id/green2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/green3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/green"
+                app:layout_constraintTop_toTopOf="@id/green" />
+
+            <ImageButton
+                android:id="@+id/green3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/green4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/green2"
+                app:layout_constraintTop_toTopOf="@id/green" />
+
+            <ImageButton
+                android:id="@+id/green4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/green5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/green3"
+                app:layout_constraintTop_toTopOf="@id/green" />
+
+            <ImageButton
+                android:id="@+id/green5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/green6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/green4"
+                app:layout_constraintTop_toTopOf="@id/green" />
+
+            <ImageButton
+                android:id="@+id/green6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/green5"
+                app:layout_constraintTop_toTopOf="@id/green" />
+
+            <View
+                android:id="@+id/greenbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/green" />
+
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/mustard"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/mustard" />
+
+            <ImageButton
+                android:id="@+id/mustard"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/mustard2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/greenbar" />
+
+            <ImageButton
+                android:id="@+id/mustard2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/mustard3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mustard"
+                app:layout_constraintTop_toTopOf="@id/mustard" />
+
+            <ImageButton
+                android:id="@+id/mustard3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/mustard4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mustard2"
+                app:layout_constraintTop_toTopOf="@id/mustard" />
+
+            <ImageButton
+                android:id="@+id/mustard4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/mustard5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mustard3"
+                app:layout_constraintTop_toTopOf="@id/mustard" />
+
+            <ImageButton
+                android:id="@+id/mustard5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/mustard6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mustard4"
+                app:layout_constraintTop_toTopOf="@id/mustard" />
+
+            <ImageButton
+                android:id="@+id/mustard6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mustard5"
+                app:layout_constraintTop_toTopOf="@id/mustard" />
+
+            <View
+                android:id="@+id/mustardbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mustard" />
+
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/peacock"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/peacock" />
+
+            <ImageButton
+                android:id="@+id/peacock"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/peacock2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/mustardbar" />
+
+            <ImageButton
+                android:id="@+id/peacock2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/peacock3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/peacock"
+                app:layout_constraintTop_toTopOf="@id/peacock" />
+
+            <ImageButton
+                android:id="@+id/peacock3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/peacock4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/peacock2"
+                app:layout_constraintTop_toTopOf="@id/peacock" />
+
+            <ImageButton
+                android:id="@+id/peacock4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/peacock5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/peacock3"
+                app:layout_constraintTop_toTopOf="@id/peacock" />
+
+            <ImageButton
+                android:id="@+id/peacock5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/peacock6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/peacock4"
+                app:layout_constraintTop_toTopOf="@id/peacock" />
+
+            <ImageButton
+                android:id="@+id/peacock6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/peacock5"
+                app:layout_constraintTop_toTopOf="@id/peacock" />
+
+            <View
+                android:id="@+id/peacockbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/peacock" />
+
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/white"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/white" />
+
+            <ImageButton
+                android:id="@+id/white"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/white2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/peacockbar" />
+
+            <ImageButton
+                android:id="@+id/white2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/white3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/white"
+                app:layout_constraintTop_toTopOf="@id/white" />
+
+            <ImageButton
+                android:id="@+id/white3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/white4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/white2"
+                app:layout_constraintTop_toTopOf="@id/white" />
+
+            <ImageButton
+                android:id="@+id/white4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/white5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/white3"
+                app:layout_constraintTop_toTopOf="@id/white" />
+
+            <ImageButton
+                android:id="@+id/white5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/white6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/white4"
+                app:layout_constraintTop_toTopOf="@id/white" />
+
+            <ImageButton
+                android:id="@+id/white6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/white5"
+                app:layout_constraintTop_toTopOf="@id/white" />
+
+            <View
+                android:id="@+id/whitebar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/white" />
+
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/plum"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/plum" />
+
+            <ImageButton
+                android:id="@+id/plum"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/plum2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/whitebar" />
+
+            <ImageButton
+                android:id="@+id/plum2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/plum3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plum"
+                app:layout_constraintTop_toTopOf="@id/plum" />
+
+            <ImageButton
+                android:id="@+id/plum3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/plum4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plum2"
+                app:layout_constraintTop_toTopOf="@id/plum" />
+
+            <ImageButton
+                android:id="@+id/plum4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/plum5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plum3"
+                app:layout_constraintTop_toTopOf="@id/plum" />
+
+            <ImageButton
+                android:id="@+id/plum5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/plum6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plum4"
+                app:layout_constraintTop_toTopOf="@id/plum" />
+
+            <ImageButton
+                android:id="@+id/plum6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plum5"
+                app:layout_constraintTop_toTopOf="@id/plum" />
+
+            <View
+                android:id="@+id/plumbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/plum" />
+
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/scarlet"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/scarlet" />
+
+            <ImageButton
+                android:id="@+id/scarlet"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/scarlet2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/plumbar" />
+
+            <ImageButton
+                android:id="@+id/scarlet2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/scarlet3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/scarlet"
+                app:layout_constraintTop_toTopOf="@id/scarlet" />
+
+            <ImageButton
+                android:id="@+id/scarlet3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/scarlet4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/scarlet2"
+                app:layout_constraintTop_toTopOf="@id/scarlet" />
+
+            <ImageButton
+                android:id="@+id/scarlet4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/scarlet5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/scarlet3"
+                app:layout_constraintTop_toTopOf="@id/scarlet" />
+
+            <ImageButton
+                android:id="@+id/scarlet5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/scarlet6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/scarlet4"
+                app:layout_constraintTop_toTopOf="@id/scarlet" />
+
+            <ImageButton
+                android:id="@+id/scarlet6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/scarlet5"
+                app:layout_constraintTop_toTopOf="@id/scarlet" />
+
+            <View
+                android:id="@+id/scarletbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scarlet" />
+
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/courtyard"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/courtyard" />
+
+            <ImageButton
+                android:id="@+id/courtyard"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/courtyard2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/scarletbar" />
+
+            <ImageButton
+                android:id="@+id/courtyard2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/courtyard3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/courtyard"
+                app:layout_constraintTop_toTopOf="@id/courtyard" />
+
+            <ImageButton
+                android:id="@+id/courtyard3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/courtyard4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/courtyard2"
+                app:layout_constraintTop_toTopOf="@id/courtyard" />
+
+            <ImageButton
+                android:id="@+id/courtyard4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/courtyard5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/courtyard3"
+                app:layout_constraintTop_toTopOf="@id/courtyard" />
+
+            <ImageButton
+                android:id="@+id/courtyard5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/courtyard6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/courtyard4"
+                app:layout_constraintTop_toTopOf="@id/courtyard" />
+
+            <ImageButton
+                android:id="@+id/courtyard6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/courtyard5"
+                app:layout_constraintTop_toTopOf="@id/courtyard" />
+
+            <View
+                android:id="@+id/courtyardbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/courtyard" />
+
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/garage"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/garage" />
+
+            <ImageButton
+                android:id="@+id/garage"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/garage2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/courtyardbar" />
+
+            <ImageButton
+                android:id="@+id/garage2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/garage3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/garage"
+                app:layout_constraintTop_toTopOf="@id/garage" />
+
+            <ImageButton
+                android:id="@+id/garage3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/garage4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/garage2"
+                app:layout_constraintTop_toTopOf="@id/garage" />
+
+            <ImageButton
+                android:id="@+id/garage4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/garage5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/garage3"
+                app:layout_constraintTop_toTopOf="@id/garage" />
+
+            <ImageButton
+                android:id="@+id/garage5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/garage6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/garage4"
+                app:layout_constraintTop_toTopOf="@id/garage" />
+
+            <ImageButton
+                android:id="@+id/garage6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/garage5"
+                app:layout_constraintTop_toTopOf="@id/garage" />
+
+            <View
+                android:id="@+id/garagebar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/garage" />
+
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/game"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/game" />
+
+            <ImageButton
+                android:id="@+id/game"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/game2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/garagebar" />
+
+            <ImageButton
+                android:id="@+id/game2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/game3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/game"
+                app:layout_constraintTop_toTopOf="@id/game" />
+
+            <ImageButton
+                android:id="@+id/game3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/game4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/game2"
+                app:layout_constraintTop_toTopOf="@id/game" />
+
+            <ImageButton
+                android:id="@+id/game4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/game5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/game3"
+                app:layout_constraintTop_toTopOf="@id/game" />
+
+            <ImageButton
+                android:id="@+id/game5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/game6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/game4"
+                app:layout_constraintTop_toTopOf="@id/game" />
+
+            <ImageButton
+                android:id="@+id/game6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/game5"
+                app:layout_constraintTop_toTopOf="@id/game" />
+
+            <View
+                android:id="@+id/gamebar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/game" />
+
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/bedroom"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/bedroom" />
+
+            <ImageButton
+                android:id="@+id/bedroom"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bedroom2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/gamebar" />
+
+            <ImageButton
+                android:id="@+id/bedroom2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bedroom3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bedroom"
+                app:layout_constraintTop_toTopOf="@id/bedroom" />
+
+            <ImageButton
+                android:id="@+id/bedroom3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bedroom4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bedroom2"
+                app:layout_constraintTop_toTopOf="@id/bedroom" />
+
+            <ImageButton
+                android:id="@+id/bedroom4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bedroom5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bedroom3"
+                app:layout_constraintTop_toTopOf="@id/bedroom" />
+
+            <ImageButton
+                android:id="@+id/bedroom5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bedroom6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bedroom4"
+                app:layout_constraintTop_toTopOf="@id/bedroom" />
+
+            <ImageButton
+                android:id="@+id/bedroom6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bedroom5"
+                app:layout_constraintTop_toTopOf="@id/bedroom" />
+
+            <View
+                android:id="@+id/bedroombar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bedroom" />
+
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/bathroom"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/bathroom" />
+
+            <ImageButton
+                android:id="@+id/bathroom"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bathroom2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/bedroombar" />
+
+            <ImageButton
+                android:id="@+id/bathroom2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bathroom3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bathroom"
+                app:layout_constraintTop_toTopOf="@id/bathroom" />
+
+            <ImageButton
+                android:id="@+id/bathroom3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bathroom4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bathroom2"
+                app:layout_constraintTop_toTopOf="@id/bathroom" />
+
+            <ImageButton
+                android:id="@+id/bathroom4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bathroom5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bathroom3"
+                app:layout_constraintTop_toTopOf="@id/bathroom" />
+
+            <ImageButton
+                android:id="@+id/bathroom5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/bathroom6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bathroom4"
+                app:layout_constraintTop_toTopOf="@id/bathroom" />
+
+            <ImageButton
+                android:id="@+id/bathroom6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bathroom5"
+                app:layout_constraintTop_toTopOf="@id/bathroom" />
+
+            <View
+                android:id="@+id/bathroombar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bathroom" />
+
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/office"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/office" />
+
+            <ImageButton
+                android:id="@+id/office"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/office2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/bathroombar" />
+
+            <ImageButton
+                android:id="@+id/office2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/office3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/office"
+                app:layout_constraintTop_toTopOf="@id/office" />
+
+            <ImageButton
+                android:id="@+id/office3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/office4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/office2"
+                app:layout_constraintTop_toTopOf="@id/office" />
+
+            <ImageButton
+                android:id="@+id/office4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/office5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/office3"
+                app:layout_constraintTop_toTopOf="@id/office" />
+
+            <ImageButton
+                android:id="@+id/office5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/office6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/office4"
+                app:layout_constraintTop_toTopOf="@id/office" />
+
+            <ImageButton
+                android:id="@+id/office6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/office5"
+                app:layout_constraintTop_toTopOf="@id/office" />
+
+            <View
+                android:id="@+id/officebar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/office" />
+
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/kitchen"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/kitchen" />
+
+            <ImageButton
+                android:id="@+id/kitchen"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/kitchen2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/officebar" />
+
+            <ImageButton
+                android:id="@+id/kitchen2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/kitchen3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/kitchen"
+                app:layout_constraintTop_toTopOf="@id/kitchen" />
+
+            <ImageButton
+                android:id="@+id/kitchen3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/kitchen4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/kitchen2"
+                app:layout_constraintTop_toTopOf="@id/kitchen" />
+
+            <ImageButton
+                android:id="@+id/kitchen4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/kitchen5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/kitchen3"
+                app:layout_constraintTop_toTopOf="@id/kitchen" />
+
+            <ImageButton
+                android:id="@+id/kitchen5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/kitchen6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/kitchen4"
+                app:layout_constraintTop_toTopOf="@id/kitchen" />
+
+            <ImageButton
+                android:id="@+id/kitchen6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/kitchen5"
+                app:layout_constraintTop_toTopOf="@id/kitchen" />
+
+            <View
+                android:id="@+id/kitchenbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/kitchen" />
+
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/dining"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/dining" />
+
+            <ImageButton
+                android:id="@+id/dining"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dining2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/kitchenbar" />
+
+            <ImageButton
+                android:id="@+id/dining2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dining3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dining"
+                app:layout_constraintTop_toTopOf="@id/dining" />
+
+            <ImageButton
+                android:id="@+id/dining3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dining4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dining2"
+                app:layout_constraintTop_toTopOf="@id/dining" />
+
+            <ImageButton
+                android:id="@+id/dining4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dining5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dining3"
+                app:layout_constraintTop_toTopOf="@id/dining" />
+
+            <ImageButton
+                android:id="@+id/dining5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/dining6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dining4"
+                app:layout_constraintTop_toTopOf="@id/dining" />
+
+            <ImageButton
+                android:id="@+id/dining6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dining5"
+                app:layout_constraintTop_toTopOf="@id/dining" />
+
+            <View
+                android:id="@+id/diningbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dining" />
+
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/living"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/living" />
+
+            <ImageButton
+                android:id="@+id/living"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/living2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/diningbar" />
+
+            <ImageButton
+                android:id="@+id/living2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/living3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/living"
+                app:layout_constraintTop_toTopOf="@id/living" />
+
+            <ImageButton
+                android:id="@+id/living3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/living4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/living2"
+                app:layout_constraintTop_toTopOf="@id/living" />
+
+            <ImageButton
+                android:id="@+id/living4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/living5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/living3"
+                app:layout_constraintTop_toTopOf="@id/living" />
+
+            <ImageButton
+                android:id="@+id/living5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/living6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/living4"
+                app:layout_constraintTop_toTopOf="@id/living" />
+
+            <ImageButton
+                android:id="@+id/living6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/living5"
+                app:layout_constraintTop_toTopOf="@id/living" />
+
+            <View
+                android:id="@+id/livingbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/living" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.cluemodeler.ui.scoreboard.VerticalTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="0"
+        android:height="@dimen/activity_default_text_height"
+        android:text="@string/player_name_default"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        app:layout_constraintStart_toEndOf="@id/vbar"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.cluemodeler.ui.scoreboard.VerticalTextView
+        android:id="@+id/name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="0"
+        android:height="@dimen/activity_default_text_height"
+        android:text="@string/player_name_default"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        app:layout_constraintStart_toEndOf="@id/vbar2"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.cluemodeler.ui.scoreboard.VerticalTextView
+        android:id="@+id/name3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="0"
+        android:height="@dimen/activity_default_text_height"
+        android:text="@string/player_name_default"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        app:layout_constraintStart_toEndOf="@id/vbar3"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.cluemodeler.ui.scoreboard.VerticalTextView
+        android:id="@+id/name4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="0"
+        android:height="@dimen/activity_default_text_height"
+        android:text="@string/player_name_default"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        app:layout_constraintStart_toEndOf="@id/vbar4"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.cluemodeler.ui.scoreboard.VerticalTextView
+        android:id="@+id/name5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="0"
+        android:height="@dimen/activity_default_text_height"
+        android:text="@string/player_name_default"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        app:layout_constraintStart_toEndOf="@id/vbar5"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.cluemodeler.ui.scoreboard.VerticalTextView
+        android:id="@+id/name6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="0"
+        android:height="@dimen/activity_default_text_height"
+        android:text="@string/player_name_default"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        app:layout_constraintStart_toEndOf="@id/vbar6"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="name,name2,name3,name4,name5,name6"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
