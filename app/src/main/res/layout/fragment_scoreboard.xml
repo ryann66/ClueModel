@@ -365,6 +365,97 @@
 
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:height="@dimen/activity_default_text_height"
+                android:text="@string/pistol"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/pistol" />
+
+            <ImageButton
+                android:id="@+id/pistol"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/pipebar" />
+
+            <ImageButton
+                android:id="@+id/pistol2"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pistol"
+                app:layout_constraintTop_toTopOf="@id/pistol" />
+
+            <ImageButton
+                android:id="@+id/pistol3"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pistol2"
+                app:layout_constraintTop_toTopOf="@id/pistol" />
+
+            <ImageButton
+                android:id="@+id/pistol4"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pistol3"
+                app:layout_constraintTop_toTopOf="@id/pistol" />
+
+            <ImageButton
+                android:id="@+id/pistol5"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toStartOf="@+id/pipe6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pistol4"
+                app:layout_constraintTop_toTopOf="@id/pistol" />
+
+            <ImageButton
+                android:id="@+id/pistol6"
+                android:layout_width="@dimen/scoreboard_tile_width"
+                android:layout_height="@dimen/scoreboard_tile_height"
+                android:width="@dimen/scoreboard_tile_width"
+                android:height="@dimen/scoreboard_tile_height"
+                android:src="@drawable/ic_scoreboard_unknown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pistol5"
+                app:layout_constraintTop_toTopOf="@id/pistol" />
+
+            <View
+                android:id="@+id/pistolbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pistol" />
+
+
+            <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -385,7 +476,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/dagger2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/pipebar" />
+                app:layout_constraintTop_toBottomOf="@id/pistolbar" />
 
             <ImageButton
                 android:id="@+id/dagger2"

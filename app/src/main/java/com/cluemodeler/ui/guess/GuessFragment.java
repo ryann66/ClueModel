@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.cluemodeler.ModelActivity;
 import com.cluemodeler.databinding.FragmentGuessBinding;
 
 import com.cluemodeler.model.Strategy;
@@ -22,7 +23,7 @@ public class GuessFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         GuessViewModel guessViewModel =
                 new ViewModelProvider(this).get(GuessViewModel.class);
-        strategy = guessViewModel.getStrategy();
+        strategy = ((ModelActivity) getActivity()).getStrategy();
 
         binding = FragmentGuessBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

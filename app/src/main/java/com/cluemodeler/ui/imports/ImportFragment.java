@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.cluemodeler.ModelActivity;
 import com.cluemodeler.databinding.FragmentImportBinding;
 
 import com.cluemodeler.model.Model;
@@ -22,7 +23,7 @@ public class ImportFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         ImportViewModel importViewModel =
                 new ViewModelProvider(this).get(ImportViewModel.class);
-        model = importViewModel.getModel();
+        model = ((ModelActivity) getActivity()).getModel();
 
         binding = FragmentImportBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

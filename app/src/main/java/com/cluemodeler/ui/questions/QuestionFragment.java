@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.cluemodeler.ModelActivity;
 import com.cluemodeler.databinding.FragmentQuestionsBinding;
 
 import com.cluemodeler.model.Model;
@@ -22,7 +23,7 @@ public class QuestionFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         QuestionViewModel questionViewModel =
                 new ViewModelProvider(this).get(QuestionViewModel.class);
-        model = questionViewModel.getModel();
+        model = ((ModelActivity) getActivity()).getModel();
 
         binding = FragmentQuestionsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

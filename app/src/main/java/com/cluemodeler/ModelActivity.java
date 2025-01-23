@@ -34,6 +34,27 @@ public class ModelActivity extends AppCompatActivity {
 
     private ActivityModelBinding binding;
 
+    public Model getModel() {
+        return model;
+    }
+
+    public PlayerList getPlist() {
+        return plist;
+    }
+
+    public Strategy getStrategy() {
+        return strategy;
+    }
+
+    public ImmutableScorecard getScorecard() {
+        return scorecard;
+    }
+
+    private Model model;
+    private PlayerList plist;
+    private Strategy strategy;
+    private ImmutableScorecard scorecard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +95,11 @@ public class ModelActivity extends AppCompatActivity {
         ImmutableScorecard card = model.getFullScorecard();
         Strategy strategy = Strategy.buildStrategy(Strategy.T.values()[strategyIndex], card, plist, parr[0]);
 
+        this.scorecard = card;
+        this.model = model;
+        this.strategy = strategy;
+        this.plist = plist;
+
         binding = ActivityModelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -85,17 +111,6 @@ public class ModelActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-        // share data with downstream fragments
-        ViewModelProvider src = new ViewModelProvider(this);
-        ScoreboardViewModel svm = src.get(ScoreboardViewModel.class);
-        svm.setScorecard(card);
-        ImportViewModel ivm = src.get(ImportViewModel.class);
-        ivm.setModel(model);
-        QuestionViewModel qvm = src.get(QuestionViewModel.class);
-        qvm.setModel(model);
-        GuessViewModel gvm = src.get(GuessViewModel.class);
-        gvm.setStrategy(strategy);
     }
 
 }
