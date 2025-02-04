@@ -10,14 +10,8 @@ import com.cluemodeler.model.Model;
 import com.cluemodeler.model.Player;
 import com.cluemodeler.model.PlayerList;
 import com.cluemodeler.model.Strategy;
-import com.cluemodeler.ui.guess.GuessViewModel;
-import com.cluemodeler.ui.imports.ImportViewModel;
-import com.cluemodeler.ui.questions.QuestionViewModel;
-import com.cluemodeler.ui.scoreboard.ScoreboardViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -50,10 +44,20 @@ public class ModelActivity extends AppCompatActivity {
         return scorecard;
     }
 
+    public Player getSelf() {
+        return self;
+    }
+
+    public Player getLasttoplay() {
+        return lasttoplay;
+    }
+
     private Model model;
     private PlayerList plist;
     private Strategy strategy;
     private ImmutableScorecard scorecard;
+    private Player self;
+    private Player lasttoplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
