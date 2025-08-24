@@ -47,6 +47,8 @@ abstract class AbstractModel implements Model {
 				ps.mark(c, Knowledge.KNOWN());
 			}
 		}
+
+        scorecard.commit();
 	}
 
 	public final ImmutableScorecard.ImmutablePlayerScorecard getSimpleScorecard() {
