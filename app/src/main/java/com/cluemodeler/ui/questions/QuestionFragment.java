@@ -1,5 +1,6 @@
 package com.cluemodeler.ui.questions;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -130,7 +131,11 @@ public class QuestionFragment extends Fragment {
             try {
                 model.addQuery(q);
             } catch (IllegalStateException ise) {
-                // todo: alert player
+                AlertDialog.Builder dial = new AlertDialog.Builder(getContext());
+                dial.setCancelable(true);
+                dial.setTitle(getString(R.string.model_error));
+                dial.setMessage(ise.getMessage());
+                dial.show();
             }
         }
     }

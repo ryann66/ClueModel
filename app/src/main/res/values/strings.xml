@@ -14,6 +14,8 @@
     <string name="question_question">Question</string>
     <string name="button_import">Update Model</string>
 
+    <string name="model_error">Model Error</string>
+
     <string name="weapon">Weapon</string>
     <string name="person">Person</string>
     <string name="location">Location</string>
