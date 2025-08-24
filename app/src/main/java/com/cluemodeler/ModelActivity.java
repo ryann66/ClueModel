@@ -9,7 +9,6 @@ import com.cluemodeler.model.Model;
 
 import com.cluemodeler.model.Player;
 import com.cluemodeler.model.PlayerList;
-import com.cluemodeler.model.Strategy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -36,10 +35,6 @@ public class ModelActivity extends AppCompatActivity {
         return plist;
     }
 
-    public Strategy getStrategy() {
-        return strategy;
-    }
-
     public ImmutableScorecard getScorecard() {
         return scorecard;
     }
@@ -58,7 +53,6 @@ public class ModelActivity extends AppCompatActivity {
 
     private Model model;
     private PlayerList plist;
-    private Strategy strategy;
     private ImmutableScorecard scorecard;
     private Player self;
     private Player lasttoplay;
@@ -104,11 +98,9 @@ public class ModelActivity extends AppCompatActivity {
         // build model
         Model model = new BasicModel(plist, parr[0], known, owned);
         ImmutableScorecard card = model.getFullScorecard();
-        Strategy strategy = Strategy.buildStrategy(Strategy.T.values()[strategyIndex], card, plist, parr[0]);
 
         this.scorecard = card;
         this.model = model;
-        this.strategy = strategy;
         this.plist = plist;
 
         binding = ActivityModelBinding.inflate(getLayoutInflater());
@@ -117,7 +109,7 @@ public class ModelActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_scoreboard, R.id.navigation_import, R.id.navigation_questions, R.id.navigation_guess)
+                R.id.navigation_scoreboard, R.id.navigation_import, R.id.navigation_questions)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

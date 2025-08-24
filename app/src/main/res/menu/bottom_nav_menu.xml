@@ -16,9 +16,4 @@
         android:icon="@drawable/ic_questions_black_24dp"
         android:title="@string/title_question" />
 
-    <item
-        android:id="@+id/navigation_guess"
-        android:icon="@drawable/ic_guess_black_24dp"
-        android:title="@string/title_guess" />
-
 </menu>

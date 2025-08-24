@@ -7,7 +7,6 @@
     <string name="title_scoreboard">Scoreboard</string>
     <string name="title_import">Add Questions</string>
     <string name="title_question">Ask Questions</string>
-    <string name="title_guess">Guess</string>
 
     <string name="question_asker">Asker</string>
     <string name="question_answerer">Answerer</string>

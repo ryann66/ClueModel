@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.cluemodeler.model.Card;
-import com.cluemodeler.model.Strategy;
 
 public class LauncherActivity extends AppCompatActivity {
 
@@ -21,7 +20,6 @@ public class LauncherActivity extends AppCompatActivity {
     private List<String> playerNames = new ArrayList<>(6);
     private List<Card> knownCards = new ArrayList<>(3);
     private List<Card> ownedCards = new ArrayList<>(6);
-    private Strategy.T strategy = Strategy.T.AGGRESSIVE;
 
     public LauncherActivity() {
         // todo: remove preloader
@@ -54,7 +52,6 @@ public class LauncherActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle(4);
 
                 bundle.putStringArray(ModelActivity.ARG_TOKEN_PLAYER_NAMES_ARR, playerNames.toArray(new String[0]));
-                bundle.putInt(ModelActivity.ARG_TOKEN_STRATEGY_INDEX, strategy.ordinal());
                 int[] known = new int[knownCards.size()];
                 for (int i = 0; i < known.length; i++) {
                     known[i] = knownCards.get(i).ordinal();
