@@ -284,7 +284,7 @@ public class ScoreboardFragment extends Fragment {
         return switch (k.t) {
             case HAS -> R.drawable.ic_scoreboard_has;
             case NO_HAS -> R.drawable.ic_scoreboard_no_has;
-            case MIGHT_HAVE -> R.drawable.ic_scoreboard_unknown;
+            case MIGHT_HAVE -> k == Knowledge.MIGHT_HAVE_DEFAULT ? R.drawable.ic_scoreboard_unknown : R.drawable.ic_scoreboard_might_have;
             case KNOWN -> R.drawable.ic_scoreboard_known;
         };
     }

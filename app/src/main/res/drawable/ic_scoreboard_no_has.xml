@@ -4,11 +4,10 @@
         android:viewportWidth="24.0"
         android:viewportHeight="24.0">
     <path
-            android:fillColor="#FF000000"
+            android:fillColor="@color/red"
             android:pathData="
                 M2,4 L4,2 L22,20 L20,22z
                 M2,20 L4,22 L12,14 L10,12z
                 M20,2 L22,4 L14,12 L12,10z
             "/>
-    <!-- TODO: make red -->
 </vector>

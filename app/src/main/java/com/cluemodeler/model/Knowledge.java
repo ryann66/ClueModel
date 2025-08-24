@@ -8,7 +8,7 @@ import java.util.Set;
  */
 public class Knowledge {
 	// Constant that can be used as a default as long as we promise not to add anything to groups
-	static final Knowledge MIGHT_HAVE_DEFAULT = Knowledge.MIGHT_HAVE();
+	public static final Knowledge MIGHT_HAVE_DEFAULT = Knowledge.MIGHT_HAVE();
 
 	private static final Knowledge HAS_DEFAULT = new Knowledge(T.HAS),
 	NO_HAS_DEFAULT = new Knowledge(T.NO_HAS), KNOWN_DEFAULT = new Knowledge(T.KNOWN);

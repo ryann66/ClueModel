@@ -4,10 +4,9 @@
         android:viewportWidth="10.0"
         android:viewportHeight="24.0">
     <path
-            android:fillColor="#FF000000"
+            android:fillColor="@color/alert_red"
             android:pathData="
                 M3.8,2 L6.2,2 L6,17 L4,17z
                 M 5,18.8 a 1.2,1.2 0 1,1 0,2.4 a 1.2,1.2 0 1,1 0,-2.4
             "/>
-    <!-- TODO: make red -->
 </vector>
