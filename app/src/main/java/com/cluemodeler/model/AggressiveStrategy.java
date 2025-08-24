@@ -43,6 +43,8 @@ public class AggressiveStrategy extends AbstractStrategy {
 			}
 		}
 
+        // TODO: check for (and fix) null pointer exception if all cards known?
+
 		// sort out all cards that have a depth of (num players - 1)
 		// and have a known of 0 (not common cards)
 		// select any 3 of these cards
