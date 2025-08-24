@@ -15,10 +15,7 @@ import com.cluemodeler.ModelActivity;
 import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentQuestionsBinding;
 
-import com.cluemodeler.model.Card;
-import com.cluemodeler.model.Model;
-import com.cluemodeler.model.Player;
-import com.cluemodeler.model.PlayerList;
+import com.cluemodeler.model.*;
 import com.cluemodeler.ui.imports.ImportViewModel;
 
 import java.util.Iterator;
@@ -29,15 +26,17 @@ import static com.cluemodeler.ui.imports.ImportFragment.toStringArr;
 public class QuestionFragment extends Fragment {
 
     private FragmentQuestionsBinding binding;
+    private Player self;
     private Model model;
+    private PlayerList plist;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ImportViewModel importViewModel =
                 new ViewModelProvider(this).get(ImportViewModel.class);
         model = ((ModelActivity) Objects.requireNonNull(getActivity())).getModel();
-        PlayerList plist = (PlayerList) ((ModelActivity) getActivity()).getPlist();
-        Player self = (Player) ((ModelActivity) getActivity()).getSelf();
+        plist = (PlayerList) ((ModelActivity) getActivity()).getPlist();
+        self = (Player) ((ModelActivity) getActivity()).getSelf();
 
         // set up internal player list
         String[] parr = new String[plist.getPlayerCount()];
@@ -73,6 +72,8 @@ public class QuestionFragment extends Fragment {
         binding.spinnerLocation.setOnItemSelectedListener(aocl);
         setAnswer();
 
+        binding.button.setOnClickListener(new ButtonOnClickListener());
+
         return root;
     }
 
@@ -102,6 +103,35 @@ public class QuestionFragment extends Fragment {
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
 
+        }
+    }
+
+    private class ButtonOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+
+            Player answered = null;
+            Card answer = null;
+            if (binding.spinnerAnswered.getSelectedItemPosition() != 0) {
+                answered = plist.get(binding.spinnerAnswered.getSelectedItem().toString());
+                answer = Card.toCard(binding.spinnerAnswer.getSelectedItem().toString());
+            }
+
+            Card[] cards = new Card[]{
+                Card.toCard(binding.spinnerWeapon.getSelectedItem().toString()),
+                Card.toCard(binding.spinnerPerson.getSelectedItem().toString()),
+                Card.toCard(binding.spinnerLocation.getSelectedItem().toString())
+            };
+
+
+            Query q = new Query(self, answered, cards, answer);
+
+            try {
+                model.addQuery(q);
+            } catch (IllegalStateException ise) {
+                // todo: alert player
+            }
         }
     }
 }
