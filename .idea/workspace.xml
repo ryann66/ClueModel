@@ -42,6 +42,11 @@
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_unknown.xml">
+        <config>
+          <theme>@style/Theme.ClueModeler</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_launcher.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
@@ -90,10 +95,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b2ed014e-5805-405b-9417-8523402d146c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_has.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_has.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_known.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_known.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_might_have.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_might_have.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_no_has.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_no_has.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/ui/imports/ImportFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/ui/imports/ImportFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/ui/questions/QuestionFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/ui/questions/QuestionFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_questions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_questions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

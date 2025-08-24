@@ -6,19 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cluemodeler.ModelActivity;
-import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentImportBinding;
 
 import com.cluemodeler.model.*;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -104,7 +101,7 @@ public class ImportFragment extends Fragment {
         binding.spinnerAnswered.setSelection(0);
     }
 
-    private static <T> String[] toStringArr(T[] obj) {
+    public static <T> String[] toStringArr(T[] obj) {
         String[] ret = new String[obj.length];
         for (int i = 0; i < obj.length; i++) {
             ret[i] = obj[i].toString();

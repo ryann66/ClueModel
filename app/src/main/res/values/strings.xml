@@ -18,6 +18,7 @@
     <string name="weapon">Weapon</string>
     <string name="person">Person</string>
     <string name="location">Location</string>
+    <string name="no_player">None</string>
 
     <string name="rope">Rope</string>
     <string name="candlestick">Candlestick</string>
