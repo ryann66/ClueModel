@@ -22,8 +22,7 @@ public class ModelActivity extends AppCompatActivity {
 
     public final static String ARG_TOKEN_PLAYER_NAMES_ARR = "players",
             ARG_TOKEN_CARD_INDICES_OWNED = "owned",
-            ARG_TOKEN_CARD_INDICES_KNOWN = "known",
-            ARG_TOKEN_STRATEGY_INDEX = "strategy";
+            ARG_TOKEN_CARD_INDICES_KNOWN = "known";
 
     private ActivityModelBinding binding;
 
@@ -66,7 +65,6 @@ public class ModelActivity extends AppCompatActivity {
         String[] playerNames = args.getStringArray(ARG_TOKEN_PLAYER_NAMES_ARR);
         int[] ownedCards = args.getIntArray(ARG_TOKEN_CARD_INDICES_OWNED);
         int[] knownCards = args.getIntArray(ARG_TOKEN_CARD_INDICES_KNOWN);
-        int strategyIndex = args.getInt(ARG_TOKEN_STRATEGY_INDEX);
 
         // validate args
         if (playerNames == null || ownedCards == null || knownCards == null)

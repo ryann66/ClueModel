@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cluemodeler.ModelActivity;
+import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentImportBinding;
 
 import com.cluemodeler.model.*;
@@ -95,7 +96,7 @@ public class ImportFragment extends Fragment {
             }
             parr[i] = p;
         }
-        parr[0] = "None";// todo: link to resource
+        parr[0] = getString(R.string.no_player);
         ArrayAdapter<String> adp = new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, parr);
         binding.spinnerAnswered.setAdapter(adp);
         binding.spinnerAnswered.setSelection(0);

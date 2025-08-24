@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cluemodeler.ModelActivity;
+import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentQuestionsBinding;
 
 import com.cluemodeler.model.Card;
@@ -40,7 +41,7 @@ public class QuestionFragment extends Fragment {
 
         // set up internal player list
         String[] parr = new String[plist.getPlayerCount()];
-        parr[0] = "None";// todo: link to resource
+        parr[0] = getString(R.string.no_player);
         Iterator<Player> iter = plist.iterator();
         for (int i = 1; i < parr.length; i++) {
             Player p = iter.next();
