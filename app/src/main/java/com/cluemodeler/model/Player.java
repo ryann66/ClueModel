@@ -18,4 +18,8 @@ public record Player(String name, int numCards) {
 	public int hashCode() {
 		return name.hashCode();
 	}
+
+	public String toString() {
+		return name;
+	}
 }

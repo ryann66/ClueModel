@@ -9,6 +9,16 @@
     <string name="title_question">Ask Questions</string>
     <string name="title_guess">Guess</string>
 
+    <string name="question_asker">Asker</string>
+    <string name="question_answerer">Answerer</string>
+    <string name="question_answer">Answer</string>
+    <string name="question_question">Question</string>
+    <string name="button_import">Update Model</string>
+
+    <string name="weapon">Weapon</string>
+    <string name="person">Person</string>
+    <string name="location">Location</string>
+
     <string name="rope">Rope</string>
     <string name="candlestick">Candlestick</string>
     <string name="pipe">Lead Pipe</string>
