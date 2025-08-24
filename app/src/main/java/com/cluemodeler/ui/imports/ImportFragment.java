@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
@@ -39,10 +40,22 @@ public class ImportFragment extends Fragment {
         plist = (PlayerList) ((ModelActivity) getActivity()).getPlist();
         Player last = (Player) ((ModelActivity) getActivity()).getLasttoplay();
         self = (Player) ((ModelActivity) getActivity()).getSelf();
-        String[] parr = new String[plist.getPlayerCount()];
+
+        // find next to play
+        Player next = plist.nextPlayer(last);
+
+        // set up internal player list
+        String[] parr = new String[plist.getPlayerCount() - 1];
         Iterator<Player> iter = plist.iterator();
+        int idx = 0;
         for (int i = 0; i < parr.length; i++) {
-            parr[i] = iter.next().name();
+            Player p = iter.next();
+            if (p.equals(self)) {
+                i--;
+            } else {
+                parr[i] = p.name();
+                if (p.equals(next)) idx = i;
+            }
         }
 
         binding = FragmentImportBinding.inflate(inflater, container, false);
@@ -58,6 +71,9 @@ public class ImportFragment extends Fragment {
         binding.spinnerLocation.setAdapter(adp);
 
         setAnswerer();
+
+        binding.spinnerAsk.setOnItemSelectedListener(new AskChangeListener());
+        binding.spinnerAsk.setSelection(idx);
 
         return root;
     }
@@ -83,10 +99,8 @@ public class ImportFragment extends Fragment {
         }
         parr[0] = "None";// todo: link to resource
         ArrayAdapter<String> adp = new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, parr);
-        binding.spinnerAsk.setAdapter(adp);
-
-        // set visibility of answer field
-        // todo
+        binding.spinnerAnswered.setAdapter(adp);
+        binding.spinnerAnswered.setSelection(0);
     }
 
     private static <T> String[] toStringArr(T[] obj) {
@@ -95,5 +109,17 @@ public class ImportFragment extends Fragment {
             ret[i] = obj[i].toString();
         }
         return ret;
+    }
+
+    private class AskChangeListener implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            setAnswerer();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
     }
 }

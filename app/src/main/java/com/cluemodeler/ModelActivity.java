@@ -52,6 +52,10 @@ public class ModelActivity extends AppCompatActivity {
         return lasttoplay;
     }
 
+    public void setLasttoplay(Player p) {
+        lasttoplay = p;
+    }
+
     private Model model;
     private PlayerList plist;
     private Strategy strategy;
@@ -80,10 +84,13 @@ public class ModelActivity extends AppCompatActivity {
             throw new IllegalArgumentException("Invalid number of cards");
         }
 
-        // convert args from int[] to enum[]
+        // create player list
         Player[] parr = new Player[playerNames.length];
         for (int i = 0; i < parr.length; i++) parr[i] = new Player(playerNames[i], ownedCards.length);
         PlayerList plist = new PlayerList(parr);
+        lasttoplay = self = parr[0];
+
+        // convert args from int[] to enum[]
         Card[] cards = Card.values();
         Card[] known = new Card[knownCards.length];
         for (int i = 0; i < known.length; i++) {

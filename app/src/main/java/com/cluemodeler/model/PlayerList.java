@@ -37,7 +37,19 @@ public class PlayerList implements Iterable<Player> {
 		throw new NoSuchElementException("Player not found");
 	}
 
-	/**
+    /**
+     * Finds the player who plays after the given player
+     */
+    public Player nextPlayer(Player player) {
+        for (int i = 0; i < players.length; i++) {
+            if (players[i].equals(player)) {
+                return players[(i + 1) % players.length];
+            }
+        }
+        throw new NoSuchElementException("Player not found");
+    }
+
+    /**
 	 * @return the number of players in the game
 	 */
 	public int getPlayerCount() {
