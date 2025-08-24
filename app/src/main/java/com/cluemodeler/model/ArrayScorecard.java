@@ -39,6 +39,8 @@ class ArrayScorecard implements Scorecard {
 		for (int[] arr : bkpkarr) {
 			Arrays.fill(arr, -1);
 		}
+
+        commit();
 	}
 
 	@Override

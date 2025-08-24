@@ -16,10 +16,7 @@ import com.cluemodeler.ModelActivity;
 import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentImportBinding;
 
-import com.cluemodeler.model.Card;
-import com.cluemodeler.model.Model;
-import com.cluemodeler.model.Player;
-import com.cluemodeler.model.PlayerList;
+import com.cluemodeler.model.*;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -32,11 +29,13 @@ public class ImportFragment extends Fragment {
     private Player self;
     private PlayerList plist;
 
+    private Model model;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ImportViewModel importViewModel =
                 new ViewModelProvider(this).get(ImportViewModel.class);
-        Model model = ((ModelActivity) getActivity()).getModel();
+        model = ((ModelActivity) Objects.requireNonNull(getActivity())).getModel();
         plist = (PlayerList) ((ModelActivity) getActivity()).getPlist();
         Player last = (Player) ((ModelActivity) getActivity()).getLasttoplay();
         self = (Player) ((ModelActivity) getActivity()).getSelf();
@@ -74,6 +73,8 @@ public class ImportFragment extends Fragment {
 
         binding.spinnerAsk.setOnItemSelectedListener(new AskChangeListener());
         binding.spinnerAsk.setSelection(idx);
+
+        binding.button.setOnClickListener(new ButtonUpdateListener());
 
         return root;
     }
@@ -120,6 +121,31 @@ public class ImportFragment extends Fragment {
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
 
+        }
+    }
+
+    private class ButtonUpdateListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            // update last to play
+            ((ModelActivity) Objects.requireNonNull(getActivity())).setLasttoplay(plist.get(binding.spinnerAsk.getSelectedItem().toString()));
+
+            Card wep = Card.toCard(binding.spinnerWeapon.getSelectedItem().toString());
+            Card per = Card.toCard(binding.spinnerPerson.getSelectedItem().toString());
+            Card loc = Card.toCard(binding.spinnerLocation.getSelectedItem().toString());
+
+            Player ask = plist.get(binding.spinnerAsk.getSelectedItem().toString());
+            Player ans = null;
+            if (binding.spinnerAnswered.getSelectedItemPosition() != 0) ans = plist.get(binding.spinnerAnswered.getSelectedItem().toString());
+
+            Query q = new Query(ask, ans, new Card[]{wep, per, loc}, null);
+
+            try {
+                model.addQuery(q);
+            } catch (IllegalStateException ise) {
+                // TODO: report error to user
+            }
         }
     }
 }

@@ -42,8 +42,14 @@ public class BasicModel extends AbstractModel {
 			}
 		}
 
-		// handle all our assertions (and subsequently triggered assertions
-		handleAssertions();
+        try {
+            // handle all our assertions (and subsequently triggered assertions
+            handleAssertions();
+            scorecard.commit();
+        } catch (IllegalStateException ise) {
+            scorecard.restore();
+            throw ise;
+        }
 	}
 
 	/**
