@@ -11,11 +11,14 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import androidx.navigation.fragment.NavHostFragment;
 import com.cluemodeler.ModelActivity;
 import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentImportBinding;
 
 import com.cluemodeler.model.*;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Iterator;
 
@@ -137,6 +140,9 @@ public class ImportFragment extends Fragment {
 
             try {
                 model.addQuery(q);
+
+                BottomNavigationView bar = requireActivity().findViewById(R.id.nav_view);
+                bar.setSelectedItemId(R.id.navigation_scoreboard);
             } catch (IllegalStateException ise) {
                 AlertDialog.Builder dial = new AlertDialog.Builder(getContext());
                 dial.setCancelable(true);

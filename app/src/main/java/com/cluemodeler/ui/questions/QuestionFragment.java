@@ -16,6 +16,7 @@ import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentQuestionsBinding;
 
 import com.cluemodeler.model.*;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Iterator;
 
@@ -125,6 +126,9 @@ public class QuestionFragment extends Fragment {
 
             try {
                 model.addQuery(q);
+
+                BottomNavigationView bar = requireActivity().findViewById(R.id.nav_view);
+                bar.setSelectedItemId(R.id.navigation_scoreboard);
             } catch (IllegalStateException ise) {
                 AlertDialog.Builder dial = new AlertDialog.Builder(getContext());
                 dial.setCancelable(true);
