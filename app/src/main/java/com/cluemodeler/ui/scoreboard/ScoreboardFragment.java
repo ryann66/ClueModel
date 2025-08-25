@@ -29,7 +29,7 @@ public class ScoreboardFragment extends Fragment {
     private ImmutableScorecard card;
     private PlayerList players;
 
-    private TileOnClickListener tocl = new TileOnClickListener();
+    private final TileOnClickListener tocl = new TileOnClickListener();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -24,8 +24,6 @@ public class ModelActivity extends AppCompatActivity {
             ARG_TOKEN_CARD_INDICES_OWNED = "owned",
             ARG_TOKEN_CARD_INDICES_KNOWN = "known";
 
-    private ActivityModelBinding binding;
-
     public Model getModel() {
         return model;
     }
@@ -95,13 +93,12 @@ public class ModelActivity extends AppCompatActivity {
 
         // build model
         Model model = new BasicModel(plist, parr[0], known, owned);
-        ImmutableScorecard card = model.getFullScorecard();
 
-        this.scorecard = card;
+        this.scorecard = model.getFullScorecard();
         this.model = model;
         this.plist = plist;
 
-        binding = ActivityModelBinding.inflate(getLayoutInflater());
+        ActivityModelBinding binding = ActivityModelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Passing each menu ID as a set of Ids because each

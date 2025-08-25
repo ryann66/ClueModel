@@ -10,17 +10,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.cluemodeler.ModelActivity;
 import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentQuestionsBinding;
 
 import com.cluemodeler.model.*;
-import com.cluemodeler.ui.imports.ImportViewModel;
 
 import java.util.Iterator;
-import java.util.Objects;
 
 import static com.cluemodeler.ui.imports.ImportFragment.toStringArr;
 
@@ -33,11 +30,9 @@ public class QuestionFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ImportViewModel importViewModel =
-                new ViewModelProvider(this).get(ImportViewModel.class);
-        model = ((ModelActivity) Objects.requireNonNull(getActivity())).getModel();
-        plist = (PlayerList) ((ModelActivity) getActivity()).getPlist();
-        self = (Player) ((ModelActivity) getActivity()).getSelf();
+        model = ((ModelActivity) requireActivity()).getModel();
+        plist = ((ModelActivity) requireActivity()).getPlist();
+        self = ((ModelActivity) requireActivity()).getSelf();
 
         // set up internal player list
         String[] parr = new String[plist.getPlayerCount()];

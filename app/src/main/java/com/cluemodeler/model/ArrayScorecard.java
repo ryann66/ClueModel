@@ -1,5 +1,7 @@
 package com.cluemodeler.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 /**
@@ -59,68 +61,6 @@ class ArrayScorecard implements Scorecard {
 	@Override
 	public PlayerScorecard get(Player p) {
 		return new ArrayPlayerScorecard(getPlayerIndex(p));
-	}
-
-	@Override
-	public boolean confidentGuess() {
-		// todo: rewrite to indicate we know if nobody holds the card
-		Card weapon = null, person = null, location = null;
-		for (Card c : Card.values()) {
-			boolean known = false;
-			for (int i = 0; i < parr.length; i++) {
-				Knowledge k = karr[i][c.ordinal()];
-				if (k != null && (k.t == Knowledge.T.HAS || k.t == Knowledge.T.KNOWN)) {
-					known = true;
-					break;
-				}
-			}
-			if (!known) {
-				switch (c.type) {
-					case WEAPON -> {
-						if (weapon != null) return false;
-						weapon = c;
-					}
-					case PERSON -> {
-						if (person != null) return false;
-						person = c;
-					}
-					case LOCATION -> {
-						if (location != null) return false;
-						location = c;
-					}
-				}
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public Guess guess() {
-		Card weapon = null, person = null, location = null;
-		for (Card c : Card.values()) {
-			boolean known = false;
-			for (int i = 0; i < parr.length; i++) {
-				Knowledge k = karr[i][c.ordinal()];
-				if (k != null && (k.t == Knowledge.T.HAS || k.t == Knowledge.T.KNOWN)) {
-					known = true;
-					break;
-				}
-			}
-			if (!known) {
-				switch (c.type) {
-					case WEAPON -> {
-						if (weapon == null) weapon = c;
-					}
-					case PERSON -> {
-						if (person == null) person = c;
-					}
-					case LOCATION -> {
-						if (location == null) location = c;
-					}
-				}
-			}
-		}
-		return new Guess(weapon, person, location);
 	}
 
 	@Override
@@ -188,51 +128,6 @@ class ArrayScorecard implements Scorecard {
 		}
 	}
 
-	public List<Card> missingWeapons() {
-		List<Card> ret = new ArrayList<>(Card.WEAPONS.size());
-		for (Card c : Card.WEAPONS) {
-			int cidx = c.ordinal();
-			for (Knowledge[] knowledges : karr) {
-				if (knowledges[cidx] != null &&
-						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
-					ret.add(c);
-					break;
-				}
-			}
-		}
-		return ret;
-	}
-
-	public List<Card> missingPeople() {
-		List<Card> ret = new ArrayList<>(Card.PEOPLE.size());
-		for (Card c : Card.PEOPLE) {
-			int cidx = c.ordinal();
-			for (Knowledge[] knowledges : karr) {
-				if (knowledges[cidx] != null &&
-						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
-					ret.add(c);
-					break;
-				}
-			}
-		}
-		return ret;
-	}
-
-	public List<Card> missingLocations() {
-		List<Card> ret = new ArrayList<>(Card.LOCATIONS.size());
-		for (Card c : Card.LOCATIONS) {
-			int cidx = c.ordinal();
-			for (Knowledge[] knowledges : karr) {
-				if (knowledges[cidx] != null &&
-						(knowledges[cidx].t == Knowledge.T.KNOWN || knowledges[cidx].t == Knowledge.T.HAS)) {
-					ret.add(c);
-					break;
-				}
-			}
-		}
-		return ret;
-	}
-
 	private int getPlayerIndex(Player p) {
 		if (parr[idx].equals(p)) return idx;
 		for (int i = idx + 1; i != idx; i++) {
@@ -269,7 +164,7 @@ class ArrayScorecard implements Scorecard {
 		}
 
 		@Override
-		public Iterator<Map.Entry<Card, Knowledge>> iterator() {
+		public @NotNull Iterator<Map.Entry<Card, Knowledge>> iterator() {
 			return new CardIterator(pidx);
 		}
 	}

@@ -1,5 +1,7 @@
 package com.cluemodeler.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -7,7 +9,7 @@ import java.util.NoSuchElementException;
  * Class for iterating over ranges of players
  */
 public class PlayerList implements Iterable<Player> {
-	private Player[] players;
+	private final Player[] players;
 
 	/**
 	 * Constructs a player list from the given array of players.
@@ -60,7 +62,7 @@ public class PlayerList implements Iterable<Player> {
 	 * Gets an iterator that iterates once through each player
 	 * @return an iterator of players
 	 */
-	public Iterator<Player> iterator() {
+	public @NotNull Iterator<Player> iterator() {
 		return new ArrayIterator();
 	}
 

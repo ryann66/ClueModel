@@ -1,5 +1,7 @@
 package com.cluemodeler.model;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Record for players
  * @param name the name of the player
@@ -19,7 +21,7 @@ public record Player(String name, int numCards) {
 		return name.hashCode();
 	}
 
-	public String toString() {
+	public @NotNull String toString() {
 		return name;
 	}
 }

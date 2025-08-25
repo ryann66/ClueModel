@@ -418,7 +418,8 @@ public class BasicModel extends AbstractModel {
 				}
 
 				if (prior[i].t == Knowledge.T.MIGHT_HAVE) {
-					prior[i].groups.add(g);
+                    assert prior[i].groups != null;
+                    prior[i].groups.add(g);
 					g.contents.put(cards[i], prior[i]);
 				}
 			}

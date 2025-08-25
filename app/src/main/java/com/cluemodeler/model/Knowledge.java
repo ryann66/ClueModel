@@ -25,7 +25,7 @@ public class Knowledge {
 		MIGHT_HAVE,
 
 		// Player doesn't have the card but knows where it is
-		KNOWN;
+		KNOWN
 	}
 
 	// package-private to protect against external mutation

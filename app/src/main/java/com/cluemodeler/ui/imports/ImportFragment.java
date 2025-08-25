@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.cluemodeler.ModelActivity;
 import com.cluemodeler.R;
@@ -19,25 +18,21 @@ import com.cluemodeler.databinding.FragmentImportBinding;
 import com.cluemodeler.model.*;
 
 import java.util.Iterator;
-import java.util.Objects;
 
 public class ImportFragment extends Fragment {
 
     private FragmentImportBinding binding;
 
-    private Player self;
     private PlayerList plist;
 
     private Model model;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ImportViewModel importViewModel =
-                new ViewModelProvider(this).get(ImportViewModel.class);
-        model = ((ModelActivity) Objects.requireNonNull(getActivity())).getModel();
-        plist = (PlayerList) ((ModelActivity) getActivity()).getPlist();
-        Player last = (Player) ((ModelActivity) getActivity()).getLasttoplay();
-        self = (Player) ((ModelActivity) getActivity()).getSelf();
+        model = ((ModelActivity) requireActivity()).getModel();
+        plist = ((ModelActivity) requireActivity()).getPlist();
+        Player last = ((ModelActivity) requireActivity()).getLasttoplay();
+        Player self = ((ModelActivity) requireActivity()).getSelf();
 
         // find next to play
         Player next = plist.nextPlayer(last);
@@ -128,7 +123,7 @@ public class ImportFragment extends Fragment {
         @Override
         public void onClick(View view) {
             // update last to play
-            ((ModelActivity) Objects.requireNonNull(getActivity())).setLasttoplay(plist.get(binding.spinnerAsk.getSelectedItem().toString()));
+            ((ModelActivity) requireActivity()).setLasttoplay(plist.get(binding.spinnerAsk.getSelectedItem().toString()));
 
             Card wep = Card.toCard(binding.spinnerWeapon.getSelectedItem().toString());
             Card per = Card.toCard(binding.spinnerPerson.getSelectedItem().toString());
