@@ -1,6 +1,7 @@
 package com.cluemodeler.model;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -38,6 +39,20 @@ public class Knowledge {
 		if (t == T.MIGHT_HAVE) this.groups = new HashSet<>();
 		else this.groups = null;
 	}
+
+    public Set<Card[]> getGroups() {
+        if (groups == null) return null;
+        Set<Card[]> grps = new HashSet<>(groups.size());
+        for (Group g : groups) {
+            Card[] arr = new Card[g.contents.size()];
+            Iterator<Card> iter = g.contents.keySet().iterator();
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = iter.next();
+            }
+            grps.add(arr);
+        }
+        return grps;
+    }
 
 	public static Knowledge HAS() {
 		return HAS_DEFAULT;

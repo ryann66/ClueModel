@@ -1,10 +1,12 @@
 package com.cluemodeler.ui.scoreboard;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -18,15 +20,19 @@ import com.cluemodeler.model.Player;
 import com.cluemodeler.model.Card;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class ScoreboardFragment extends Fragment {
 
     private FragmentScoreboardBinding binding;
+    private ImmutableScorecard card;
+    private PlayerList players;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ImmutableScorecard card = ((ModelActivity) requireActivity()).getScorecard();
-        PlayerList players = ((ModelActivity) requireActivity()).getPlist();
+        card = ((ModelActivity) requireActivity()).getScorecard();
+        players = ((ModelActivity) requireActivity()).getPlist();
 
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -115,162 +121,162 @@ public class ScoreboardFragment extends Fragment {
         ImmutableScorecard.ImmutablePlayerScorecard pcard = card.get(p);
 
         binding.name.setText(p.name());
-        binding.rope.setImageResource(imageResource(pcard.get(Card.ROPE)));
-        binding.candle.setImageResource(imageResource(pcard.get(Card.CANDLESTICK)));
-        binding.pipe.setImageResource(imageResource(pcard.get(Card.LEAD_PIPE)));
-        binding.pistol.setImageResource(imageResource(pcard.get(Card.PISTOL)));
-        binding.dagger.setImageResource(imageResource(pcard.get(Card.DAGGER)));
-        binding.wrench.setImageResource(imageResource(pcard.get(Card.WRENCH)));
-        binding.green.setImageResource(imageResource(pcard.get(Card.GREEN)));
-        binding.mustard.setImageResource(imageResource(pcard.get(Card.MUSTARD)));
-        binding.peacock.setImageResource(imageResource(pcard.get(Card.PEACOCK)));
-        binding.white.setImageResource(imageResource(pcard.get(Card.WHITE)));
-        binding.plum.setImageResource(imageResource(pcard.get(Card.PLUM)));
-        binding.scarlet.setImageResource(imageResource(pcard.get(Card.SCARLET)));
-        binding.courtyard.setImageResource(imageResource(pcard.get(Card.COURTYARD)));
-        binding.garage.setImageResource(imageResource(pcard.get(Card.GARAGE)));
-        binding.game.setImageResource(imageResource(pcard.get(Card.GAME_ROOM)));
-        binding.bedroom.setImageResource(imageResource(pcard.get(Card.BEDROOM)));
-        binding.bathroom.setImageResource(imageResource(pcard.get(Card.BATHROOM)));
-        binding.office.setImageResource(imageResource(pcard.get(Card.OFFICE)));
-        binding.kitchen.setImageResource(imageResource(pcard.get(Card.KITCHEN)));
-        binding.dining.setImageResource(imageResource(pcard.get(Card.DINING_ROOM)));
-        binding.living.setImageResource(imageResource(pcard.get(Card.LIVING_ROOM)));
+        setupButton(pcard.get(Card.ROPE), binding.rope);
+        setupButton(pcard.get(Card.CANDLESTICK), binding.candle);
+        setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe);
+        setupButton(pcard.get(Card.PISTOL), binding.pistol);
+        setupButton(pcard.get(Card.DAGGER), binding.dagger);
+        setupButton(pcard.get(Card.WRENCH), binding.wrench);
+        setupButton(pcard.get(Card.GREEN), binding.green);
+        setupButton(pcard.get(Card.MUSTARD), binding.mustard);
+        setupButton(pcard.get(Card.PEACOCK), binding.peacock);
+        setupButton(pcard.get(Card.WHITE), binding.white);
+        setupButton(pcard.get(Card.PLUM), binding.plum);
+        setupButton(pcard.get(Card.SCARLET), binding.scarlet);
+        setupButton(pcard.get(Card.COURTYARD), binding.courtyard);
+        setupButton(pcard.get(Card.GARAGE), binding.garage);
+        setupButton(pcard.get(Card.GAME_ROOM), binding.game);
+        setupButton(pcard.get(Card.BEDROOM), binding.bedroom);
+        setupButton(pcard.get(Card.BATHROOM), binding.bathroom);
+        setupButton(pcard.get(Card.OFFICE), binding.office);
+        setupButton(pcard.get(Card.KITCHEN), binding.kitchen);
+        setupButton(pcard.get(Card.DINING_ROOM), binding.dining);
+        setupButton(pcard.get(Card.LIVING_ROOM), binding.living);
         
         if (piter.hasNext()) {
             p = piter.next();
             pcard = card.get(p);
 
             binding.name2.setText(p.name());
-            binding.rope2.setImageResource(imageResource(pcard.get(Card.ROPE)));
-            binding.candle2.setImageResource(imageResource(pcard.get(Card.CANDLESTICK)));
-            binding.pipe2.setImageResource(imageResource(pcard.get(Card.LEAD_PIPE)));
-            binding.pistol2.setImageResource(imageResource(pcard.get(Card.PISTOL)));
-            binding.dagger2.setImageResource(imageResource(pcard.get(Card.DAGGER)));
-            binding.wrench2.setImageResource(imageResource(pcard.get(Card.WRENCH)));
-            binding.green2.setImageResource(imageResource(pcard.get(Card.GREEN)));
-            binding.mustard2.setImageResource(imageResource(pcard.get(Card.MUSTARD)));
-            binding.peacock2.setImageResource(imageResource(pcard.get(Card.PEACOCK)));
-            binding.white2.setImageResource(imageResource(pcard.get(Card.WHITE)));
-            binding.plum2.setImageResource(imageResource(pcard.get(Card.PLUM)));
-            binding.scarlet2.setImageResource(imageResource(pcard.get(Card.SCARLET)));
-            binding.courtyard2.setImageResource(imageResource(pcard.get(Card.COURTYARD)));
-            binding.garage2.setImageResource(imageResource(pcard.get(Card.GARAGE)));
-            binding.game2.setImageResource(imageResource(pcard.get(Card.GAME_ROOM)));
-            binding.bedroom2.setImageResource(imageResource(pcard.get(Card.BEDROOM)));
-            binding.bathroom2.setImageResource(imageResource(pcard.get(Card.BATHROOM)));
-            binding.office2.setImageResource(imageResource(pcard.get(Card.OFFICE)));
-            binding.kitchen2.setImageResource(imageResource(pcard.get(Card.KITCHEN)));
-            binding.dining2.setImageResource(imageResource(pcard.get(Card.DINING_ROOM)));
-            binding.living2.setImageResource(imageResource(pcard.get(Card.LIVING_ROOM)));
+            setupButton(pcard.get(Card.ROPE), binding.rope2);
+            setupButton(pcard.get(Card.CANDLESTICK), binding.candle2);
+            setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe2);
+            setupButton(pcard.get(Card.PISTOL), binding.pistol2);
+            setupButton(pcard.get(Card.DAGGER), binding.dagger2);
+            setupButton(pcard.get(Card.WRENCH), binding.wrench2);
+            setupButton(pcard.get(Card.GREEN), binding.green2);
+            setupButton(pcard.get(Card.MUSTARD), binding.mustard2);
+            setupButton(pcard.get(Card.PEACOCK), binding.peacock2);
+            setupButton(pcard.get(Card.WHITE), binding.white2);
+            setupButton(pcard.get(Card.PLUM), binding.plum2);
+            setupButton(pcard.get(Card.SCARLET), binding.scarlet2);
+            setupButton(pcard.get(Card.COURTYARD), binding.courtyard2);
+            setupButton(pcard.get(Card.GARAGE), binding.garage2);
+            setupButton(pcard.get(Card.GAME_ROOM), binding.game2);
+            setupButton(pcard.get(Card.BEDROOM), binding.bedroom2);
+            setupButton(pcard.get(Card.BATHROOM), binding.bathroom2);
+            setupButton(pcard.get(Card.OFFICE), binding.office2);
+            setupButton(pcard.get(Card.KITCHEN), binding.kitchen2);
+            setupButton(pcard.get(Card.DINING_ROOM), binding.dining2);
+            setupButton(pcard.get(Card.LIVING_ROOM), binding.living2);
             
             if (piter.hasNext()) {
                 p = piter.next();
                 pcard = card.get(p);
 
                 binding.name3.setText(p.name());
-                binding.rope3.setImageResource(imageResource(pcard.get(Card.ROPE)));
-                binding.candle3.setImageResource(imageResource(pcard.get(Card.CANDLESTICK)));
-                binding.pipe3.setImageResource(imageResource(pcard.get(Card.LEAD_PIPE)));
-                binding.pistol3.setImageResource(imageResource(pcard.get(Card.PISTOL)));
-                binding.dagger3.setImageResource(imageResource(pcard.get(Card.DAGGER)));
-                binding.wrench3.setImageResource(imageResource(pcard.get(Card.WRENCH)));
-                binding.green3.setImageResource(imageResource(pcard.get(Card.GREEN)));
-                binding.mustard3.setImageResource(imageResource(pcard.get(Card.MUSTARD)));
-                binding.peacock3.setImageResource(imageResource(pcard.get(Card.PEACOCK)));
-                binding.white3.setImageResource(imageResource(pcard.get(Card.WHITE)));
-                binding.plum3.setImageResource(imageResource(pcard.get(Card.PLUM)));
-                binding.scarlet3.setImageResource(imageResource(pcard.get(Card.SCARLET)));
-                binding.courtyard3.setImageResource(imageResource(pcard.get(Card.COURTYARD)));
-                binding.garage3.setImageResource(imageResource(pcard.get(Card.GARAGE)));
-                binding.game3.setImageResource(imageResource(pcard.get(Card.GAME_ROOM)));
-                binding.bedroom3.setImageResource(imageResource(pcard.get(Card.BEDROOM)));
-                binding.bathroom3.setImageResource(imageResource(pcard.get(Card.BATHROOM)));
-                binding.office3.setImageResource(imageResource(pcard.get(Card.OFFICE)));
-                binding.kitchen3.setImageResource(imageResource(pcard.get(Card.KITCHEN)));
-                binding.dining3.setImageResource(imageResource(pcard.get(Card.DINING_ROOM)));
-                binding.living3.setImageResource(imageResource(pcard.get(Card.LIVING_ROOM)));
+                setupButton(pcard.get(Card.ROPE), binding.rope3);
+                setupButton(pcard.get(Card.CANDLESTICK), binding.candle3);
+                setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe3);
+                setupButton(pcard.get(Card.PISTOL), binding.pistol3);
+                setupButton(pcard.get(Card.DAGGER), binding.dagger3);
+                setupButton(pcard.get(Card.WRENCH), binding.wrench3);
+                setupButton(pcard.get(Card.GREEN), binding.green3);
+                setupButton(pcard.get(Card.MUSTARD), binding.mustard3);
+                setupButton(pcard.get(Card.PEACOCK), binding.peacock3);
+                setupButton(pcard.get(Card.WHITE), binding.white3);
+                setupButton(pcard.get(Card.PLUM), binding.plum3);
+                setupButton(pcard.get(Card.SCARLET), binding.scarlet3);
+                setupButton(pcard.get(Card.COURTYARD), binding.courtyard3);
+                setupButton(pcard.get(Card.GARAGE), binding.garage3);
+                setupButton(pcard.get(Card.GAME_ROOM), binding.game3);
+                setupButton(pcard.get(Card.BEDROOM), binding.bedroom3);
+                setupButton(pcard.get(Card.BATHROOM), binding.bathroom3);
+                setupButton(pcard.get(Card.OFFICE), binding.office3);
+                setupButton(pcard.get(Card.KITCHEN), binding.kitchen3);
+                setupButton(pcard.get(Card.DINING_ROOM), binding.dining3);
+                setupButton(pcard.get(Card.LIVING_ROOM), binding.living3);
 
                 if (piter.hasNext()) {
                     p = piter.next();
                     pcard = card.get(p);
 
                     binding.name4.setText(p.name());
-                    binding.rope4.setImageResource(imageResource(pcard.get(Card.ROPE)));
-                    binding.candle4.setImageResource(imageResource(pcard.get(Card.CANDLESTICK)));
-                    binding.pipe4.setImageResource(imageResource(pcard.get(Card.LEAD_PIPE)));
-                    binding.pistol4.setImageResource(imageResource(pcard.get(Card.PISTOL)));
-                    binding.dagger4.setImageResource(imageResource(pcard.get(Card.DAGGER)));
-                    binding.wrench4.setImageResource(imageResource(pcard.get(Card.WRENCH)));
-                    binding.green4.setImageResource(imageResource(pcard.get(Card.GREEN)));
-                    binding.mustard4.setImageResource(imageResource(pcard.get(Card.MUSTARD)));
-                    binding.peacock4.setImageResource(imageResource(pcard.get(Card.PEACOCK)));
-                    binding.white4.setImageResource(imageResource(pcard.get(Card.WHITE)));
-                    binding.plum4.setImageResource(imageResource(pcard.get(Card.PLUM)));
-                    binding.scarlet4.setImageResource(imageResource(pcard.get(Card.SCARLET)));
-                    binding.courtyard4.setImageResource(imageResource(pcard.get(Card.COURTYARD)));
-                    binding.garage4.setImageResource(imageResource(pcard.get(Card.GARAGE)));
-                    binding.game4.setImageResource(imageResource(pcard.get(Card.GAME_ROOM)));
-                    binding.bedroom4.setImageResource(imageResource(pcard.get(Card.BEDROOM)));
-                    binding.bathroom4.setImageResource(imageResource(pcard.get(Card.BATHROOM)));
-                    binding.office4.setImageResource(imageResource(pcard.get(Card.OFFICE)));
-                    binding.kitchen4.setImageResource(imageResource(pcard.get(Card.KITCHEN)));
-                    binding.dining4.setImageResource(imageResource(pcard.get(Card.DINING_ROOM)));
-                    binding.living4.setImageResource(imageResource(pcard.get(Card.LIVING_ROOM)));
+                    setupButton(pcard.get(Card.ROPE), binding.rope4);
+                    setupButton(pcard.get(Card.CANDLESTICK), binding.candle4);
+                    setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe4);
+                    setupButton(pcard.get(Card.PISTOL), binding.pistol4);
+                    setupButton(pcard.get(Card.DAGGER), binding.dagger4);
+                    setupButton(pcard.get(Card.WRENCH), binding.wrench4);
+                    setupButton(pcard.get(Card.GREEN), binding.green4);
+                    setupButton(pcard.get(Card.MUSTARD), binding.mustard4);
+                    setupButton(pcard.get(Card.PEACOCK), binding.peacock4);
+                    setupButton(pcard.get(Card.WHITE), binding.white4);
+                    setupButton(pcard.get(Card.PLUM), binding.plum4);
+                    setupButton(pcard.get(Card.SCARLET), binding.scarlet4);
+                    setupButton(pcard.get(Card.COURTYARD), binding.courtyard4);
+                    setupButton(pcard.get(Card.GARAGE), binding.garage4);
+                    setupButton(pcard.get(Card.GAME_ROOM), binding.game4);
+                    setupButton(pcard.get(Card.BEDROOM), binding.bedroom4);
+                    setupButton(pcard.get(Card.BATHROOM), binding.bathroom4);
+                    setupButton(pcard.get(Card.OFFICE), binding.office4);
+                    setupButton(pcard.get(Card.KITCHEN), binding.kitchen4);
+                    setupButton(pcard.get(Card.DINING_ROOM), binding.dining4);
+                    setupButton(pcard.get(Card.LIVING_ROOM), binding.living4);
 
                     if (piter.hasNext()) {
                         p = piter.next();
                         pcard = card.get(p);
 
                         binding.name5.setText(p.name());
-                        binding.rope5.setImageResource(imageResource(pcard.get(Card.ROPE)));
-                        binding.candle5.setImageResource(imageResource(pcard.get(Card.CANDLESTICK)));
-                        binding.pipe5.setImageResource(imageResource(pcard.get(Card.LEAD_PIPE)));
-                        binding.pistol5.setImageResource(imageResource(pcard.get(Card.PISTOL)));
-                        binding.dagger5.setImageResource(imageResource(pcard.get(Card.DAGGER)));
-                        binding.wrench5.setImageResource(imageResource(pcard.get(Card.WRENCH)));
-                        binding.green5.setImageResource(imageResource(pcard.get(Card.GREEN)));
-                        binding.mustard5.setImageResource(imageResource(pcard.get(Card.MUSTARD)));
-                        binding.peacock5.setImageResource(imageResource(pcard.get(Card.PEACOCK)));
-                        binding.white5.setImageResource(imageResource(pcard.get(Card.WHITE)));
-                        binding.plum5.setImageResource(imageResource(pcard.get(Card.PLUM)));
-                        binding.scarlet5.setImageResource(imageResource(pcard.get(Card.SCARLET)));
-                        binding.courtyard5.setImageResource(imageResource(pcard.get(Card.COURTYARD)));
-                        binding.garage5.setImageResource(imageResource(pcard.get(Card.GARAGE)));
-                        binding.game5.setImageResource(imageResource(pcard.get(Card.GAME_ROOM)));
-                        binding.bedroom5.setImageResource(imageResource(pcard.get(Card.BEDROOM)));
-                        binding.bathroom5.setImageResource(imageResource(pcard.get(Card.BATHROOM)));
-                        binding.office5.setImageResource(imageResource(pcard.get(Card.OFFICE)));
-                        binding.kitchen5.setImageResource(imageResource(pcard.get(Card.KITCHEN)));
-                        binding.dining5.setImageResource(imageResource(pcard.get(Card.DINING_ROOM)));
-                        binding.living5.setImageResource(imageResource(pcard.get(Card.LIVING_ROOM)));
+                        setupButton(pcard.get(Card.ROPE), binding.rope5);
+                        setupButton(pcard.get(Card.CANDLESTICK), binding.candle5);
+                        setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe5);
+                        setupButton(pcard.get(Card.PISTOL), binding.pistol5);
+                        setupButton(pcard.get(Card.DAGGER), binding.dagger5);
+                        setupButton(pcard.get(Card.WRENCH), binding.wrench5);
+                        setupButton(pcard.get(Card.GREEN), binding.green5);
+                        setupButton(pcard.get(Card.MUSTARD), binding.mustard5);
+                        setupButton(pcard.get(Card.PEACOCK), binding.peacock5);
+                        setupButton(pcard.get(Card.WHITE), binding.white5);
+                        setupButton(pcard.get(Card.PLUM), binding.plum5);
+                        setupButton(pcard.get(Card.SCARLET), binding.scarlet5);
+                        setupButton(pcard.get(Card.COURTYARD), binding.courtyard5);
+                        setupButton(pcard.get(Card.GARAGE), binding.garage5);
+                        setupButton(pcard.get(Card.GAME_ROOM), binding.game5);
+                        setupButton(pcard.get(Card.BEDROOM), binding.bedroom5);
+                        setupButton(pcard.get(Card.BATHROOM), binding.bathroom5);
+                        setupButton(pcard.get(Card.OFFICE), binding.office5);
+                        setupButton(pcard.get(Card.KITCHEN), binding.kitchen5);
+                        setupButton(pcard.get(Card.DINING_ROOM), binding.dining5);
+                        setupButton(pcard.get(Card.LIVING_ROOM), binding.living5);
 
                         if (piter.hasNext()) {
                             p = piter.next();
                             pcard = card.get(p);
 
                             binding.name6.setText(p.name());
-                            binding.rope6.setImageResource(imageResource(pcard.get(Card.ROPE)));
-                            binding.candle6.setImageResource(imageResource(pcard.get(Card.CANDLESTICK)));
-                            binding.pipe6.setImageResource(imageResource(pcard.get(Card.LEAD_PIPE)));
-                            binding.pistol6.setImageResource(imageResource(pcard.get(Card.PISTOL)));
-                            binding.dagger6.setImageResource(imageResource(pcard.get(Card.DAGGER)));
-                            binding.wrench6.setImageResource(imageResource(pcard.get(Card.WRENCH)));
-                            binding.green6.setImageResource(imageResource(pcard.get(Card.GREEN)));
-                            binding.mustard6.setImageResource(imageResource(pcard.get(Card.MUSTARD)));
-                            binding.peacock6.setImageResource(imageResource(pcard.get(Card.PEACOCK)));
-                            binding.white6.setImageResource(imageResource(pcard.get(Card.WHITE)));
-                            binding.plum6.setImageResource(imageResource(pcard.get(Card.PLUM)));
-                            binding.scarlet6.setImageResource(imageResource(pcard.get(Card.SCARLET)));
-                            binding.courtyard6.setImageResource(imageResource(pcard.get(Card.COURTYARD)));
-                            binding.garage6.setImageResource(imageResource(pcard.get(Card.GARAGE)));
-                            binding.game6.setImageResource(imageResource(pcard.get(Card.GAME_ROOM)));
-                            binding.bedroom6.setImageResource(imageResource(pcard.get(Card.BEDROOM)));
-                            binding.bathroom6.setImageResource(imageResource(pcard.get(Card.BATHROOM)));
-                            binding.office6.setImageResource(imageResource(pcard.get(Card.OFFICE)));
-                            binding.kitchen6.setImageResource(imageResource(pcard.get(Card.KITCHEN)));
-                            binding.dining6.setImageResource(imageResource(pcard.get(Card.DINING_ROOM)));
-                            binding.living6.setImageResource(imageResource(pcard.get(Card.LIVING_ROOM)));
+                            setupButton(pcard.get(Card.ROPE), binding.rope6);
+                            setupButton(pcard.get(Card.CANDLESTICK), binding.candle6);
+                            setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe6);
+                            setupButton(pcard.get(Card.PISTOL), binding.pistol6);
+                            setupButton(pcard.get(Card.DAGGER), binding.dagger6);
+                            setupButton(pcard.get(Card.WRENCH), binding.wrench6);
+                            setupButton(pcard.get(Card.GREEN), binding.green6);
+                            setupButton(pcard.get(Card.MUSTARD), binding.mustard6);
+                            setupButton(pcard.get(Card.PEACOCK), binding.peacock6);
+                            setupButton(pcard.get(Card.WHITE), binding.white6);
+                            setupButton(pcard.get(Card.PLUM), binding.plum6);
+                            setupButton(pcard.get(Card.SCARLET), binding.scarlet6);
+                            setupButton(pcard.get(Card.COURTYARD), binding.courtyard6);
+                            setupButton(pcard.get(Card.GARAGE), binding.garage6);
+                            setupButton(pcard.get(Card.GAME_ROOM), binding.game6);
+                            setupButton(pcard.get(Card.BEDROOM), binding.bedroom6);
+                            setupButton(pcard.get(Card.BATHROOM), binding.bathroom6);
+                            setupButton(pcard.get(Card.OFFICE), binding.office6);
+                            setupButton(pcard.get(Card.KITCHEN), binding.kitchen6);
+                            setupButton(pcard.get(Card.DINING_ROOM), binding.dining6);
+                            setupButton(pcard.get(Card.LIVING_ROOM), binding.living6);
                         }
                     }
                 }
@@ -280,18 +286,108 @@ public class ScoreboardFragment extends Fragment {
         return root;
     }
 
-    private int imageResource(Knowledge k) {
-        return switch (k.t) {
+    private void setupButton(Knowledge k, ImageButton img) {
+        int id = switch (k.t) {
             case HAS -> R.drawable.ic_scoreboard_has;
             case NO_HAS -> R.drawable.ic_scoreboard_no_has;
             case MIGHT_HAVE -> k == Knowledge.MIGHT_HAVE_DEFAULT ? R.drawable.ic_scoreboard_unknown : R.drawable.ic_scoreboard_might_have;
             case KNOWN -> R.drawable.ic_scoreboard_known;
         };
+        
+        img.setImageResource(id);
+        if (id == R.drawable.ic_scoreboard_might_have) img.setOnClickListener(new TileOnClickListener());
+        else img.setClickable(false);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private class TileOnClickListener implements AdapterView.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            int id = view.getId();
+            String str = getResources().getResourceEntryName(id);
+
+            char num = str.charAt(str.length() - 1);
+            int idx = switch (num) {
+                case '2' -> {
+                    str = str.substring(0, str.length() - 1);
+                    yield 1;
+                }
+                case '3' -> {
+                    str = str.substring(0, str.length() - 1);
+                    yield 2;
+                }
+                case '4' -> {
+                    str = str.substring(0, str.length() - 1);
+                    yield 3;
+                }
+                case '5' -> {
+                    str = str.substring(0, str.length() - 1);
+                    yield 4;
+                }
+                case '6' -> {
+                    str = str.substring(0, str.length() - 1);
+                    yield 5;
+                }
+                default -> 0;
+            };
+
+            Card c = Card.toCard(str);
+
+            // get player
+            Iterator<Player> piter = players.iterator();
+            Player p;
+            try {
+                for (int i = 0; i < idx; i++) piter.next();
+                p = piter.next();
+            } catch (NoSuchElementException nsee) {
+                // corrupted scorecard, fail?
+                return;
+            }
+
+            Knowledge k = card.get(p,c);
+
+            // throw out uninteresting cases
+            if (k.t != Knowledge.T.MIGHT_HAVE) return;
+            if (k == Knowledge.MIGHT_HAVE_DEFAULT) return;
+
+            Set<Card[]> groups = k.getGroups();
+            if (groups == null) return;
+
+            LinearLayout ll = new LinearLayout(requireContext());
+            ll.setOrientation(LinearLayout.VERTICAL);
+            ll.setPadding(30, 0, 30, 30);
+
+            {
+                TextView tv = new TextView(requireContext());
+                tv.setText(p.name() + getString(R.string.dialog_prompt));
+                tv.setPadding(20, 20, 20, 20);
+                ll.addView(tv);
+            }
+
+            for (Card[] grp : groups) {
+                Button tv = new Button(requireContext());
+                StringBuilder txt = new StringBuilder(grp[0].toString());
+                for (int i = 1; i < grp.length; i++) txt.append(getString(R.string.list_delim)).append(grp[i].toString());
+                tv.setText(txt.toString());
+                tv.setClickable(false);
+                tv.setPadding(20,20,20,20);
+                ll.addView(tv);
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+
+            builder.setView(ll);
+            builder.setCancelable(true);
+            builder.setTitle(getString(R.string.dialog_title));
+            builder.setIcon(R.drawable.ic_scoreboard_might_have);
+            AlertDialog dial = builder.create();
+            dial.show();
+        }
     }
 }
