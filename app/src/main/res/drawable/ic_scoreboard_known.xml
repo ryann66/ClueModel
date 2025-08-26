@@ -4,10 +4,11 @@
         android:viewportWidth="24.0"
         android:viewportHeight="24.0">
     <path
-            android:fillColor="@color/green"
+            android:strokeColor="@color/green"
+
+            android:fillColor="#00000000"
+            android:strokeWidth="4.0"
             android:pathData="
-                M6,4 L18,4 L18,6 L6,6z
-                M11,6 L13,6 L13,20 L11,20
+                M12,12m-8,0a4,4 0,1 1,16 0a4,4 0,1 1,-16 0
             "/>
-    <!-- TODO: replace with a proper symbol (green eye?) -->
 </vector>
