@@ -18,6 +18,7 @@
     <string name="list_delim">", "</string>
     <string name="dialog_prompt">" must have one card from each group"</string>
     <string name="dialog_title">Player Card Groups</string>
+    <string name="toast_text">"Press back again to confirm"</string>
 
     <string name="weapon">Weapon</string>
     <string name="person">Person</string>

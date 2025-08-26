@@ -1,22 +1,16 @@
 package com.cluemodeler;
 
 import android.os.Bundle;
-
-import com.cluemodeler.model.BasicModel;
-import com.cluemodeler.model.Card;
-import com.cluemodeler.model.ImmutableScorecard;
-import com.cluemodeler.model.Model;
-
-import com.cluemodeler.model.Player;
-import com.cluemodeler.model.PlayerList;
-
+import android.widget.Toast;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.cluemodeler.databinding.ActivityModelBinding;
+import com.cluemodeler.model.*;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ModelActivity extends AppCompatActivity {
 
@@ -109,6 +103,58 @@ public class ModelActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        // set back button callback
+        this.getOnBackPressedDispatcher().addCallback(this, new BackCallback(binding.navView));
+    }
+
+    private class BackCallback extends OnBackPressedCallback {
+        private BottomNavigationView bar;
+
+        Toast toast = Toast.makeText(ModelActivity.this, R.string.toast_text, Toast.LENGTH_SHORT);
+        ToastCallBack tcb = new ToastCallBack();
+
+        public BackCallback(BottomNavigationView bar) {
+            super(true);
+            this.bar = bar;
+            toast.addCallback(tcb);
+        }
+
+        @Override
+        public void handleOnBackPressed() {
+            // if toodling about, go back to scoreboard
+            if (bar.getSelectedItemId() != R.id.navigation_scoreboard) {
+                bar.setSelectedItemId(R.id.navigation_scoreboard);
+                return;
+            }
+
+            // check for double back tap
+            if (!tcb.isShown()) {
+                // show toast and return
+                toast.show();
+                return;
+            }
+
+            toast.cancel();
+
+            finish();
+        }
+    }
+
+    static class ToastCallBack extends Toast.Callback {
+        private int shown = 0;
+
+        public void onToastHidden() {
+            shown--;
+        }
+
+        public void onToastShown() {
+            shown++;
+        }
+
+        public boolean isShown() {
+            return shown > 0;
+        }
     }
 
 }
