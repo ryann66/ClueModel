@@ -15,7 +15,7 @@
     <string name="button_import">Update Model</string>
 
     <string name="model_error">Model Error</string>
-    <string name="list_delim">", "</string>
+    <string name="list_delimiter">", "</string>
     <string name="dialog_prompt">" must have one card from each group"</string>
     <string name="dialog_title">Player Card Groups</string>
     <string name="toast_text">"Press back again to confirm"</string>

@@ -375,7 +375,7 @@ public class ScoreboardFragment extends Fragment {
             for (Card[] grp : groups) {
                 Button tv = new Button(requireContext());
                 StringBuilder txt = new StringBuilder(grp[0].toString());
-                for (int i = 1; i < grp.length; i++) txt.append(getString(R.string.list_delim)).append(grp[i].toString());
+                for (int i = 1; i < grp.length; i++) txt.append(getString(R.string.list_delimiter)).append(grp[i].toString());
                 tv.setText(txt.toString());
                 tv.setClickable(false);
                 tv.setPadding(20,20,20,20);

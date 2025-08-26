@@ -109,10 +109,10 @@ public class ModelActivity extends AppCompatActivity {
     }
 
     private class BackCallback extends OnBackPressedCallback {
-        private BottomNavigationView bar;
+        private final BottomNavigationView bar;
 
-        Toast toast = Toast.makeText(ModelActivity.this, R.string.toast_text, Toast.LENGTH_SHORT);
-        ToastCallBack tcb = new ToastCallBack();
+        final Toast toast = Toast.makeText(ModelActivity.this, R.string.toast_text, Toast.LENGTH_SHORT);
+        final ToastCallBack tcb = new ToastCallBack();
 
         public BackCallback(BottomNavigationView bar) {
             super(true);
