@@ -20,6 +20,7 @@ public class BasicModel extends AbstractModel {
 
 	@Override
 	public void addQuery(Query query) {
+        scorecard.commit();
 		if (query.answered() != null) {
 			if (query.answer() != null) {
 				// we know that the player has the card
@@ -45,7 +46,6 @@ public class BasicModel extends AbstractModel {
         try {
             // handle all our assertions (and subsequently triggered assertions
             handleAssertions();
-            scorecard.commit();
         } catch (IllegalStateException ise) {
             scorecard.restore();
             throw ise;

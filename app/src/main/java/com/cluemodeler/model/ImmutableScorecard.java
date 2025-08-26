@@ -6,6 +6,17 @@ import java.util.Map;
  * Immutable view at the scorecard
  */
 public interface ImmutableScorecard {
+    /**
+     * Rejects all the changes to the scorecard since the last commit/restore
+     */
+    void restore();
+
+    /**
+     * Checks if the scorecard has been modified since last commit
+     * @return if the scorecard has been modified since it was committed/restored
+     */
+    boolean isDirty();
+
 	/**
 	 * Gets the knowledge associated with player p and card c
 	 * @param p the player to get knowledge for

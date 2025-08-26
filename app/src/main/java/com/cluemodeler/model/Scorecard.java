@@ -1,6 +1,7 @@
 package com.cluemodeler.model;
 
 interface Scorecard extends ImmutableScorecard {
+
 	/**
 	 * Marks the scorecard for the given player and card with knowledge k
 	 * @param p the player to mark
@@ -21,11 +22,6 @@ interface Scorecard extends ImmutableScorecard {
 	 * Commits all changes to the scorecard since the last commit/restore
 	 */
 	void commit();
-
-	/**
-	 * Rejects all the changes to the scorecard since the last commit/restore
-	 */
-	void restore();
 
 	/**
 	 * A mutable view of a player's scorecard

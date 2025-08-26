@@ -13,11 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.cluemodeler.ModelActivity;
 import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentScoreboardBinding;
-import com.cluemodeler.model.ImmutableScorecard;
-import com.cluemodeler.model.Knowledge;
-import com.cluemodeler.model.PlayerList;
-import com.cluemodeler.model.Player;
-import com.cluemodeler.model.Card;
+import com.cluemodeler.model.*;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -29,6 +25,8 @@ public class ScoreboardFragment extends Fragment {
     private ImmutableScorecard card;
     private PlayerList players;
 
+    private Button undobutton;
+
     private final TileOnClickListener tocl = new TileOnClickListener();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -38,6 +36,10 @@ public class ScoreboardFragment extends Fragment {
 
         binding = FragmentScoreboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        undobutton = binding.undoButton;
+        undobutton.setEnabled(card.isDirty());
+        undobutton.setOnClickListener(new UndoOnClickListener());
 
         // make all unused tiles GONE
         if (players.getPlayerCount() < 6) {
@@ -116,6 +118,12 @@ public class ScoreboardFragment extends Fragment {
             }
         }
 
+        buildScorecardView();
+
+        return root;
+    }
+
+    private void buildScorecardView() {
         // set names
         // set values
         Iterator<Player> piter = players.iterator();
@@ -144,7 +152,7 @@ public class ScoreboardFragment extends Fragment {
         setupButton(pcard.get(Card.KITCHEN), binding.kitchen);
         setupButton(pcard.get(Card.DINING_ROOM), binding.dining);
         setupButton(pcard.get(Card.LIVING_ROOM), binding.living);
-        
+
         if (piter.hasNext()) {
             p = piter.next();
             pcard = card.get(p);
@@ -171,7 +179,7 @@ public class ScoreboardFragment extends Fragment {
             setupButton(pcard.get(Card.KITCHEN), binding.kitchen2);
             setupButton(pcard.get(Card.DINING_ROOM), binding.dining2);
             setupButton(pcard.get(Card.LIVING_ROOM), binding.living2);
-            
+
             if (piter.hasNext()) {
                 p = piter.next();
                 pcard = card.get(p);
@@ -284,8 +292,6 @@ public class ScoreboardFragment extends Fragment {
                 }
             }
         }
-
-        return root;
     }
 
     private void setupButton(Knowledge k, ImageButton img) {
@@ -390,6 +396,16 @@ public class ScoreboardFragment extends Fragment {
             builder.setIcon(R.drawable.ic_scoreboard_might_have);
             AlertDialog dial = builder.create();
             dial.show();
+        }
+    }
+
+    private class UndoOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            card.restore();
+            buildScorecardView();
+            undobutton.setEnabled(false);
         }
     }
 }

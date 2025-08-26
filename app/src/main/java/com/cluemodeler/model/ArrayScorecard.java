@@ -27,6 +27,8 @@ class ArrayScorecard implements Scorecard {
 	int[][] bkpkarr;
 	Queue<Card[]> bkpmighthave;
 
+    boolean dirty;
+
 	ArrayScorecard(PlayerList players) {
 		parr = new Player[players.getPlayerCount()];
 		karr = new Knowledge[parr.length][Card.NUM_CARDS];
@@ -45,10 +47,16 @@ class ArrayScorecard implements Scorecard {
         commit();
 	}
 
+    @Override
+    public boolean isDirty() {
+        return dirty;
+    }
+
 	@Override
 	public void mark(Player p, Card c, Knowledge k) {
 		int i = getPlayerIndex(p);
 		karr[i][c.ordinal()] = k;
+        dirty = true;
 	}
 
 	@Override
@@ -65,6 +73,7 @@ class ArrayScorecard implements Scorecard {
 
 	@Override
 	public void commit() {
+        if (!isDirty()) return;
 		// overwrite backup
 		bkpmighthave.clear();
 		for (int i = 0; i < karr.length; i++) {
@@ -86,10 +95,13 @@ class ArrayScorecard implements Scorecard {
 				}
 			}
 		}
+
+        dirty = false;
 	}
 
 	@Override
 	public void restore() {
+        if (!isDirty()) return;
 		// overwrite karr with correct type data
 		for (int i = 0; i < karr.length; i++) {
 			for (int j = 0; j < karr[i].length; j++) {
@@ -113,6 +125,8 @@ class ArrayScorecard implements Scorecard {
 					}
 				};
 			}
+
+            dirty = false;
 		}
 
 		// stitch group knowledge back together
@@ -161,6 +175,7 @@ class ArrayScorecard implements Scorecard {
 		@Override
 		public void mark(Card c, Knowledge k) {
 			karr[pidx][c.ordinal()] = k;
+            dirty = true;
 		}
 
 		@Override
