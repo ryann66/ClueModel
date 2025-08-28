@@ -1,6 +1,5 @@
 package com.cluemodeler.ui.scoreboard;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.text.TextPaint;
@@ -8,7 +7,6 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.TextView;
 
-@SuppressLint("AppCompatCustomView")
 public class VerticalTextView extends TextView
 {
     final boolean topDown;
