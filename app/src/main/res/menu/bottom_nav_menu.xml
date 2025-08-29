@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_scoreboard"
-        android:icon="@drawable/ic_scoreboard_black_24dp"
+        android:icon="@drawable/scoreboard_logo"
         android:title="@string/title_scoreboard" />
 
     <item
         android:id="@+id/navigation_import"
-        android:icon="@drawable/ic_import_black_24dp"
+        android:icon="@drawable/import_logo"
         android:title="@string/title_import" />
 
     <item
         android:id="@+id/navigation_questions"
-        android:icon="@drawable/ic_questions_black_24dp"
+        android:icon="@drawable/questions_logo"
         android:title="@string/title_question" />
 
 </menu>

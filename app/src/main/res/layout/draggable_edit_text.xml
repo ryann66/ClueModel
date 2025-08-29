@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/ic_launcher_reorder"/>
+        android:src="@drawable/launcher_reorder"/>
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -19,5 +19,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/ic_launcher_remove_player"/>
+        android:src="@drawable/launcher_remove_player"/>
 </LinearLayout>

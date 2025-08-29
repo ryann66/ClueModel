@@ -296,14 +296,14 @@ public class ScoreboardFragment extends Fragment {
 
     private void setupButton(Knowledge k, ImageButton img) {
         int id = switch (k.t) {
-            case HAS -> R.drawable.ic_scoreboard_has;
-            case NO_HAS -> R.drawable.ic_scoreboard_no_has;
-            case MIGHT_HAVE -> k == Knowledge.MIGHT_HAVE_DEFAULT ? R.drawable.ic_scoreboard_unknown : R.drawable.ic_scoreboard_might_have;
-            case KNOWN -> R.drawable.ic_scoreboard_known;
+            case HAS -> R.drawable.scoreboard_has;
+            case NO_HAS -> R.drawable.scoreboard_no_has;
+            case MIGHT_HAVE -> k == Knowledge.MIGHT_HAVE_DEFAULT ? R.drawable.scoreboard_unknown : R.drawable.coreboard_might_have;
+            case KNOWN -> R.drawable.scoreboard_known;
         };
         
         img.setImageResource(id);
-        if (id == R.drawable.ic_scoreboard_might_have) img.setOnClickListener(tocl);
+        if (id == R.drawable.coreboard_might_have) img.setOnClickListener(tocl);
         else img.setClickable(false);
     }
 
@@ -393,7 +393,7 @@ public class ScoreboardFragment extends Fragment {
             builder.setView(ll);
             builder.setCancelable(true);
             builder.setTitle(getString(R.string.dialog_title));
-            builder.setIcon(R.drawable.ic_scoreboard_might_have);
+            builder.setIcon(R.drawable.coreboard_might_have);
             AlertDialog dial = builder.create();
             dial.show();
         }

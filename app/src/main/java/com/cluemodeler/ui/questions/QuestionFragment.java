@@ -134,7 +134,7 @@ public class QuestionFragment extends Fragment {
                 dial.setCancelable(true);
                 dial.setTitle(getString(R.string.model_error));
                 dial.setMessage(ise.getMessage());
-                dial.setIcon(R.drawable.ic_dialog_error);
+                dial.setIcon(R.drawable.dialog_error);
                 dial.show();
             }
         }
