@@ -12,72 +12,72 @@
       </config>
     </shared>
     <layouts>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_dialog_error.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/app_icon.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_import_black_24dp.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/app_icon_background.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/app_icon_foreground.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/coreboard_might_have.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_foreground.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/dialog_error.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_remove_player.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/import_logo.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_reorder.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/launcher_remove_player.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_questions_black_24dp.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/launcher_reorder.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_black_24dp.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/questions_logo.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_has.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/scoreboard_has.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_known.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/scoreboard_known.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_might_have.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/scoreboard_logo.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_no_has.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/scoreboard_no_has.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_scoreboard_unknown.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/scoreboard_unknown.xml">
         <config>
           <theme>@style/Theme.ClueModeler</theme>
         </config>
@@ -129,13 +129,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2ed014e-5805-405b-9417-8523402d146c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_remove_player.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_reorder.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/draggable_edit_text.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/CustomEditText.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_launcher.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/ReorderableEditTextContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/ReorderableEditTextContainer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +140,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\Ryan Nelson\.android\avd\Pixel_3a.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=R5CY13PQDJA)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

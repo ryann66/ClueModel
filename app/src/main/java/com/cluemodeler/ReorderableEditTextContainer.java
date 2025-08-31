@@ -22,7 +22,7 @@ public class ReorderableEditTextContainer extends ViewGroup {
     }
 
     @Override
-    protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
+    protected void onLayout(boolean ch, int l, int t, int r, int b) {
         // args: box to layout inside of
 
         // TODO: call layout() on children with specified bounds
