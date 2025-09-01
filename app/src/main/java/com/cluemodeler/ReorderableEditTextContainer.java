@@ -2,9 +2,9 @@ package com.cluemodeler;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class ReorderableEditTextContainer extends ViewGroup {
+public class ReorderableEditTextContainer extends ConstraintLayout {
     public ReorderableEditTextContainer(Context context) {
         super(context);
     }
