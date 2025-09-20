@@ -21,16 +21,10 @@ public class ReorderableEditTextContainer extends ConstraintLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    @Override
-    protected void onLayout(boolean ch, int l, int t, int r, int b) {
-        // args: box to layout inside of
+    /**
+     * Initializes the children of this
+     */
+    private void ctor() {
 
-        // TODO: call layout() on children with specified bounds
-
-
-
-        // maybe use a constraint layout with unsatisfiable constraints?
-        // might allow for smoother animation
-        // onDragEvent()
     }
 }
