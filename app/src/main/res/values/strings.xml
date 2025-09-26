@@ -13,6 +13,9 @@
     <string name="question_answer">Answer</string>
     <string name="question_question">Question</string>
     <string name="button_import">Update Model</string>
+    <string name="start_game">Start</string>
+    <string name="add_player">Add Player</string>
+    <string name="remove_player">Remove Player</string>
 
     <string name="model_error">Model Error</string>
     <string name="list_delimiter">", "</string>
