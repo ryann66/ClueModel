@@ -16,6 +16,8 @@
     <string name="start_game">Start</string>
     <string name="add_player">Add Player</string>
     <string name="remove_player">Remove Player</string>
+    <string name="known_cards">Common Cards</string>
+    <string name="owned_cards">Owned Cards</string>
 
     <string name="model_error">Model Error</string>
     <string name="list_delimiter">", "</string>
