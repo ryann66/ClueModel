@@ -3,11 +3,12 @@
   <component name="AndroidLayouts">
     <shared>
       <config>
+        <device id="_device_class_phone" />
+        <device id="wearos_square" />
         <device id="pixel_3" />
         <device id="small_phone" />
         <device id="pixel_3a_xl" />
         <device id="pixel_8" />
-        <device id="_device_class_phone" />
         <device id="_device_class_tablet" />
       </config>
     </shared>
@@ -135,14 +136,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b2ed014e-5805-405b-9417-8523402d146c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/ui/scoreboard/ScoreboardFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/ui/scoreboard/ScoreboardFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/coreboard_might_have.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/scoreboard_might_have.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/launcher_remove_player.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/launcher_remove_player.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/launcher_reorder.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/launcher_add_player.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_launcher.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/draggable_edit_text.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/draggable_edit_text.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -4,22 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-            android:id="@+id/launch_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/activity_vertical_margin"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-            android:text="@string/start_game"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
     <ScrollView
             android:id="@+id/launcher_sv1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintVertical_weight="1"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/launcher_sv2"
+            app:layout_constraintBottom_toTopOf="@id/add_player"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -29,14 +20,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/activity_grid_margin">
-                <ImageButton
-                        android:layout_marginVertical="2dp"
-                        android:src="@drawable/launcher_add_player"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/plus"
-                        android:contentDescription="@string/add_player"
-                        android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
                 <EditText
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -51,6 +34,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/minus"
+                        android:backgroundTint="@color/grey"
                         android:contentDescription="@string/remove_player"
                         android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
             </TableRow>
@@ -59,14 +43,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/activity_grid_margin">
-                <ImageButton
-                        android:layout_marginVertical="2dp"
-                        android:src="@drawable/launcher_add_player"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/plus2"
-                        android:contentDescription="@string/add_player"
-                        android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
                 <EditText
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -81,6 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/minus2"
+                        android:backgroundTint="@color/grey"
                         android:contentDescription="@string/remove_player"
                         android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
             </TableRow>
@@ -89,14 +66,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/activity_grid_margin">
-                <ImageButton
-                        android:layout_marginVertical="2dp"
-                        android:src="@drawable/launcher_add_player"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/plus3"
-                        android:contentDescription="@string/add_player"
-                        android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
                 <EditText
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -111,6 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/minus3"
+                        android:backgroundTint="@color/grey"
                         android:contentDescription="@string/remove_player"
                         android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
             </TableRow>
@@ -119,14 +89,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/activity_grid_margin">
-                <ImageButton
-                        android:layout_marginVertical="2dp"
-                        android:src="@drawable/launcher_add_player"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/plus4"
-                        android:contentDescription="@string/add_player"
-                        android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
                 <EditText
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -141,6 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/minus4"
+                        android:backgroundTint="@color/grey"
                         android:contentDescription="@string/remove_player"
                         android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
             </TableRow>
@@ -149,14 +112,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/activity_grid_margin">
-                <ImageButton
-                        
-                        android:src="@drawable/launcher_add_player"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/plus5"
-                        android:contentDescription="@string/add_player"
-                        android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
                 <EditText
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -171,6 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/minus5"
+                        android:backgroundTint="@color/grey"
                         android:contentDescription="@string/remove_player"
                         android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
             </TableRow>
@@ -179,14 +135,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/activity_grid_margin">
-                <ImageButton
-                        android:layout_marginVertical="2dp"
-                        android:src="@drawable/launcher_add_player"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/plus6"
-                        android:contentDescription="@string/add_player"
-                        android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
                 <EditText
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -201,14 +149,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/minus6"
+                        android:backgroundTint="@color/grey"
                         android:contentDescription="@string/remove_player"
                         android:layout_marginHorizontal="@dimen/activity_horizontal_shortened_margin"/>
             </TableRow>
         </LinearLayout>
     </ScrollView>
+    <Button
+            android:id="@+id/add_player"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/activity_vertical_margin"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:text="@string/add_player"
+            android:drawableStart="@drawable/launcher_add_player"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:backgroundTint="@color/grey"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/launcher_sv1"
+            app:layout_constraintBottom_toTopOf="@id/launcher_sv2"/>
     <ScrollView
             android:id="@+id/launcher_sv2"
-            app:layout_constraintTop_toBottomOf="@id/launcher_sv1"
+            app:layout_constraintTop_toBottomOf="@id/add_player"
             app:layout_constraintBottom_toTopOf="@id/launch_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -255,4 +219,13 @@
                     android:id="@+id/card_selector6"/>
         </LinearLayout>
     </ScrollView>
+    <Button
+            android:id="@+id/launch_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/activity_vertical_margin"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:text="@string/start_game"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
