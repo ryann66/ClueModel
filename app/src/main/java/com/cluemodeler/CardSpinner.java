@@ -36,7 +36,7 @@ public class CardSpinner extends Spinner {
         super.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                value = Card.toCard(view.toString());
+                value = Card.toCard(adapterView.getSelectedItem().toString());
                 if (oisl != null) oisl.onItemSelected(adapterView, view, i, l);
             }
 
