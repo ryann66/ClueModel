@@ -119,6 +119,6 @@ public enum Card {
 		else if (cardstr.contains("kitchen")) return KITCHEN;
 		else if (cardstr.contains("dining")) return DINING_ROOM;
 		else if (cardstr.contains("living")) return LIVING_ROOM;
-		else throw new NoSuchElementException("Unknown card");
+		else throw new NoSuchElementException("Unknown card: " + cardstr);
 	}
 }

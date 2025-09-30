@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cluemodeler.databinding.ActivityLauncherBinding;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
 
 import com.cluemodeler.model.Card;
 
@@ -25,7 +27,7 @@ public class LauncherActivity extends AppCompatActivity {
     private int ncommon = (Card.NUM_CARDS - 3) % nplayers;
     private int nowned = (Card.NUM_CARDS - 3) / nplayers;
 
-    private TextView[] tvs = new TextView[6];
+    private EditText[] tvs = new EditText[6];
     private ImageButton[] psbtns = new ImageButton[6];
     private TableRow[] tbrs = new TableRow[6];
 
@@ -114,9 +116,37 @@ public class LauncherActivity extends AppCompatActivity {
             List<Card> ownedCards = new ArrayList<>(nowned);
             List<String> playerNames = new ArrayList<>(nplayers);
 
-            // todo read fields to populate lists
+            Set<String> play = new HashSet<>(nplayers);
+            for (int i = 0; i < nplayers; i++) {
+                String name = tvs[i].getText().toString();
+                if (!play.add(name)) {
+                    // todo error out: duplicate name
+                    return;
+                }
+                if (!validName(name)) {
+                    // todo error out: bad name
+                    return;
+                }
+                playerNames.add(name);
+            }
 
-            // todo call check function to ensure owned cards and players is reasonable
+            Set<Card> inplay = new HashSet<>(ncommon + nowned);
+            for (int i = 0; i < ncommon; i++) {
+                Card c = known[i].getValue();
+                if (!inplay.add(c)) {
+                    // todo error out: card in play twice
+                    return;
+                }
+                knownCards.add(c);
+            }
+            for (int i = 0; i < nowned; i++) {
+                Card c = owned[i].getValue();
+                if (!inplay.add(c)) {
+                    // todo error out: card in play twice
+                    return;
+                }
+                ownedCards.add(c);
+            }
 
             Intent intent = new Intent(LauncherActivity.this, ModelActivity.class);
             Bundle bundle = new Bundle(4);
@@ -162,5 +192,10 @@ public class LauncherActivity extends AppCompatActivity {
             nplayers++;
             setComponentStates();
         }
+    }
+
+    private static boolean validName(String name) {
+        return true;
+        // todo actual implementation
     }
 }

@@ -135,11 +135,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2ed014e-5805-405b-9417-8523402d146c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/CardSpinner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/LauncherActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/LauncherActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Card.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
