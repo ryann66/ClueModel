@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cluemodeler.databinding.ActivityLauncherBinding;
@@ -29,11 +26,11 @@ public class LauncherActivity extends AppCompatActivity {
     private int nowned = (Card.NUM_CARDS - 3) / nplayers;
 
     private TextView[] tvs = new TextView[6];
-    private Button[] psbtns = new Button[6];
+    private ImageButton[] psbtns = new ImageButton[6];
     private TableRow[] tbrs = new TableRow[6];
 
-    private Spinner[] known = new Spinner[6];
-    private Spinner[] owned = new Spinner[3];
+    private CardSpinner[] known = new CardSpinner[3];
+    private CardSpinner[] owned = new CardSpinner[6];
 
     private Button addPlayer;
     private TextView commonLabel;
@@ -66,16 +63,16 @@ public class LauncherActivity extends AppCompatActivity {
         tbrs[4] = findViewById(R.id.row5);
         tbrs[5] = findViewById(R.id.row6);
 
-        known[0] = findViewById(R.id.card_selector);
-        known[1] = findViewById(R.id.card_selector2);
-        known[2] = findViewById(R.id.card_selector3);
-        known[3] = findViewById(R.id.card_selector4);
-        known[4] = findViewById(R.id.card_selector5);
-        known[5] = findViewById(R.id.card_selector6);
+        owned[0] = findViewById(R.id.card_selector);
+        owned[1] = findViewById(R.id.card_selector2);
+        owned[2] = findViewById(R.id.card_selector3);
+        owned[3] = findViewById(R.id.card_selector4);
+        owned[4] = findViewById(R.id.card_selector5);
+        owned[5] = findViewById(R.id.card_selector6);
 
-        owned[0] = findViewById(R.id.card_selector7);
-        owned[1] = findViewById(R.id.card_selector8);
-        owned[2] = findViewById(R.id.card_selector9);
+        known[0] = findViewById(R.id.card_selector7);
+        known[1] = findViewById(R.id.card_selector8);
+        known[2] = findViewById(R.id.card_selector9);
 
         addPlayer = findViewById(R.id.add_player);
         commonLabel = findViewById(R.id.known_cards);
@@ -85,10 +82,6 @@ public class LauncherActivity extends AppCompatActivity {
         }
         findViewById(R.id.launch_button).setOnClickListener(new StartGameListener());
         findViewById(R.id.add_player).setOnClickListener(new AddPlayerListener());
-
-        // todo set spinner contents
-
-        // todo modify spinner adapter onclick to not have any cards already selected in it
 
         setComponentStates();
     }
@@ -113,8 +106,6 @@ public class LauncherActivity extends AppCompatActivity {
         for (int i = ncommon; i < 3; i++) known[i].setVisibility(GONE);
 
         commonLabel.setVisibility((ncommon == 0) ? GONE : VISIBLE);
-
-        // todo ensure that no card is used in common and/or known twice (uniqueness)
     }
 
     class StartGameListener implements View.OnClickListener {
