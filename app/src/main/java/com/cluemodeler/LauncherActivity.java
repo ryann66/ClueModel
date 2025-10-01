@@ -118,7 +118,7 @@ public class LauncherActivity extends AppCompatActivity {
 
             Set<String> play = new HashSet<>(nplayers);
             for (int i = 0; i < nplayers; i++) {
-                String name = tvs[i].getText().toString();
+                String name = tvs[i].getText().toString().trim();
                 if (!play.add(name)) {
                     // todo error out: duplicate name
                     return;
@@ -195,7 +195,6 @@ public class LauncherActivity extends AppCompatActivity {
     }
 
     private static boolean validName(String name) {
-        return true;
-        // todo actual implementation
+        return (!name.isEmpty());
     }
 }
