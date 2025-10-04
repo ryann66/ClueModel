@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import android.widget.*;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cluemodeler.databinding.ActivityLauncherBinding;
@@ -119,12 +120,18 @@ public class LauncherActivity extends AppCompatActivity {
             Set<String> play = new HashSet<>(nplayers);
             for (int i = 0; i < nplayers; i++) {
                 String name = tvs[i].getText().toString().trim();
+                if (name.isBlank()) {
+                    showError(getString(R.string.empty_name));
+                    return;
+                }
                 if (!play.add(name)) {
-                    // todo error out: duplicate name
+                    // error out: duplicate name
+                    showError(getString(R.string.double_name) + name);
                     return;
                 }
                 if (!validName(name)) {
-                    // todo error out: bad name
+                    // error out: bad name
+                    showError(getString(R.string.invalid_name) + name);
                     return;
                 }
                 playerNames.add(name);
@@ -134,7 +141,8 @@ public class LauncherActivity extends AppCompatActivity {
             for (int i = 0; i < ncommon; i++) {
                 Card c = known[i].getValue();
                 if (!inplay.add(c)) {
-                    // todo error out: card in play twice
+                    // error out: card in play twice
+                    showError(getString(R.string.double_card) + c.toString());
                     return;
                 }
                 knownCards.add(c);
@@ -142,7 +150,8 @@ public class LauncherActivity extends AppCompatActivity {
             for (int i = 0; i < nowned; i++) {
                 Card c = owned[i].getValue();
                 if (!inplay.add(c)) {
-                    // todo error out: card in play twice
+                    // error out: card in play twice
+                    showError(getString(R.string.double_card) + c.toString());
                     return;
                 }
                 ownedCards.add(c);
@@ -198,6 +207,14 @@ public class LauncherActivity extends AppCompatActivity {
     }
 
     private static boolean validName(String name) {
-        return (!name.isEmpty());
+        return name.length() <= 20;
+    }
+
+    private void showError(String error) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.dialog_error);
+        builder.setTitle(R.string.invalid_error);
+        builder.setMessage(error);
+        builder.show();
     }
 }

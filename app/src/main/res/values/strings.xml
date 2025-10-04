@@ -20,6 +20,12 @@
     <string name="owned_cards">Owned Cards</string>
     <string name="name">Name</string>
 
+    <string name="invalid_error">Invalid Configuration</string>
+    <string name="double_card">"Card in play twice: "</string>
+    <string name="double_name">"Name in use twice: "</string>
+    <string name="empty_name">Empty name field</string>
+    <string name="invalid_name">Name cannot be used</string>
+
     <string name="model_error">Model Error</string>
     <string name="list_delimiter">", "</string>
     <string name="dialog_prompt">" must have one card from each group"</string>
