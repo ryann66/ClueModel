@@ -25,6 +25,9 @@ public class BasicModel extends AbstractModel {
 			if (query.answer() != null) {
 				// we know that the player has the card
 				unhandledAssertions.add(new PlayerHasAssertion(query.answered(), query.answer()));
+
+                // we know that the person who asked knows this card
+                scorecard.mark(query.asker(), query.answer(), Knowledge.KNOWN());
 			} else {
 				// we know that the player who answered must have one of the three cards
 				unhandledAssertions.add(new PlayerHasOneOfAssertion(query.answered(), query.cards()));

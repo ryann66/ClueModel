@@ -55,8 +55,12 @@ class ArrayScorecard implements Scorecard {
 	@Override
 	public void mark(Player p, Card c, Knowledge k) {
 		int i = getPlayerIndex(p);
-		karr[i][c.ordinal()] = k;
-        dirty = true;
+
+        // do not update if overwriting a known marker with a no has
+        if (karr[i][c.ordinal()] == null || karr[i][c.ordinal()].t != Knowledge.T.KNOWN || k.t != Knowledge.T.NO_HAS) {
+		    karr[i][c.ordinal()] = k;
+            dirty = true;
+        }
 	}
 
 	@Override

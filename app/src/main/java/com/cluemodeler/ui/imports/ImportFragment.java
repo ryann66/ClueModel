@@ -28,12 +28,14 @@ public class ImportFragment extends Fragment {
 
     private Model model;
 
+    private Player self;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         model = ((ModelActivity) requireActivity()).getModel();
         plist = ((ModelActivity) requireActivity()).getPlist();
         Player last = ((ModelActivity) requireActivity()).getLasttoplay();
-        Player self = ((ModelActivity) requireActivity()).getSelf();
+        self = ((ModelActivity) requireActivity()).getSelf();
 
         // find next to play
         Player next = plist.nextPlayer(last);
@@ -63,6 +65,12 @@ public class ImportFragment extends Fragment {
         binding.spinnerPerson.setAdapter(adp);
         adp = new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, toStringArr(Card.LOCATIONS.toArray()));
         binding.spinnerLocation.setAdapter(adp);
+        adp = new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        ImmutableScorecard sc = model.getFullScorecard();
+        for (Card c : Card.values()) {
+            if (sc.get(self, c).t == Knowledge.T.HAS) adp.add(c.toString());
+        }
+        binding.spinnerResponse.setAdapter(adp);
 
         setAnswerer();
 
@@ -97,6 +105,20 @@ public class ImportFragment extends Fragment {
         ArrayAdapter<String> adp = new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, parr);
         binding.spinnerAnswered.setAdapter(adp);
         binding.spinnerAnswered.setSelection(0);
+
+        binding.spinnerAnswered.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                onAnsweredChange(binding.spinnerAnswered.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                throw new UnsupportedOperationException("Spinner must select something");
+            }
+        });
+
+        onAnsweredChange(binding.spinnerAnswered.getSelectedItem().toString());
     }
 
     public static <T> String[] toStringArr(T[] obj) {
@@ -134,7 +156,12 @@ public class ImportFragment extends Fragment {
             Player ans = null;
             if (binding.spinnerAnswered.getSelectedItemPosition() != 0) ans = plist.get(binding.spinnerAnswered.getSelectedItem().toString());
 
-            Query q = new Query(ask, ans, new Card[]{wep, per, loc}, null);
+            Card rep = null;
+            if (self.equals(ans)) {
+                rep = Card.toCard(binding.spinnerResponse.getSelectedItem().toString());
+            }
+
+            Query q = new Query(ask, ans, new Card[]{wep, per, loc}, rep);
 
             try {
                 model.addQuery(q);
@@ -150,5 +177,9 @@ public class ImportFragment extends Fragment {
                 dial.show();
             }
         }
+    }
+
+    private void onAnsweredChange(String pname) {
+        binding.spinnerResponse.setVisibility(pname.equals(self.name()) ? View.VISIBLE : View.INVISIBLE);
     }
 }
