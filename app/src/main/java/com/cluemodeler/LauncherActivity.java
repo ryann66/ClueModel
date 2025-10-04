@@ -179,9 +179,12 @@ public class LauncherActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            // todo move all text below this one up one
-            // todo reset the text contents of the last edittext
+            for (int i = idx; i < nplayers - 1; i++) {
+                tvs[i].setText(tvs[i+1].getText());
+            }
             nplayers--;
+            tvs[nplayers].setText("");
+
             setComponentStates();
         }
     }
