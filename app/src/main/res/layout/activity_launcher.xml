@@ -242,6 +242,12 @@
                     android:layout_marginVertical="@dimen/activity_grid_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector6"/>
+            <View
+                    android:id="@+id/launcher_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
         </LinearLayout>
     </ScrollView>
     <Button

@@ -62,8 +62,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider"
+        android:layout_height="@dimen/scoreboard_section_gap"
+        android:background="@color/divider_grey"
         app:layout_constraintBottom_toTopOf="@id/scrollview"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -107,7 +107,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/rope2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/pipebar" />
 
             <ImageButton
                 android:id="@+id/rope2"
@@ -167,17 +167,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/rope5"
-                app:layout_constraintTop_toTopOf="@id/rope"
-                app:layout_constraintBaseline_toTopOf="@id/ropebar"/>
+                app:layout_constraintTop_toTopOf="@id/rope"/>
 
             <View
                 android:id="@+id/ropebar"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="?android:attr/listDivider"
-                android:layout_marginTop="@dimen/scoreboard_tile_height"
+                android:layout_height="@dimen/scoreboard_section_gap"
+                android:background="@color/divider_grey"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/rope" />
 
 
             <TextView
@@ -201,7 +199,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/candle2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/ropebar" />
+                app:layout_constraintTop_toBottomOf="@id/wrenchbar" />
 
             <ImageButton
                 android:id="@+id/candle2"
@@ -293,7 +291,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/pipe2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/candlebar" />
+                app:layout_constraintTop_toBottomOf="@id/pistolbar" />
 
             <ImageButton
                 android:id="@+id/pipe2"
@@ -384,7 +382,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/pipe2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/pipebar" />
+                app:layout_constraintTop_toBottomOf="@id/daggerbar" />
 
             <ImageButton
                 android:id="@+id/pistol2"
@@ -476,7 +474,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/dagger2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/pistolbar" />
+                app:layout_constraintTop_toBottomOf="@id/candlebar" />
 
             <ImageButton
                 android:id="@+id/dagger2"
@@ -568,7 +566,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/wrench2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/daggerbar" />
+                app:layout_constraintTop_toBottomOf="@id/whitebar" />
 
             <ImageButton
                 android:id="@+id/wrench2"
@@ -660,7 +658,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/green2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/wrenchbar" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/green2"
@@ -936,7 +934,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/white2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/peacockbar" />
+                app:layout_constraintTop_toBottomOf="@id/scarletbar" />
 
             <ImageButton
                 android:id="@+id/white2"
@@ -1001,8 +999,8 @@
             <View
                 android:id="@+id/whitebar"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="?android:attr/listDivider"
+                android:layout_height="@dimen/scoreboard_section_gap"
+                android:background="@color/divider_grey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/white" />
 
@@ -1028,7 +1026,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/plum2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/whitebar" />
+                app:layout_constraintTop_toBottomOf="@id/peacockbar" />
 
             <ImageButton
                 android:id="@+id/plum2"
@@ -1212,7 +1210,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/courtyard2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/scarletbar" />
+                app:layout_constraintTop_toBottomOf="@id/kitchenbar" />
 
             <ImageButton
                 android:id="@+id/courtyard2"
@@ -1304,7 +1302,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/garage2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/courtyardbar" />
+                app:layout_constraintTop_toBottomOf="@id/gamebar" />
 
             <ImageButton
                 android:id="@+id/garage2"
@@ -1396,7 +1394,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/game2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/garagebar" />
+                app:layout_constraintTop_toBottomOf="@id/diningbar" />
 
             <ImageButton
                 android:id="@+id/game2"
@@ -1488,7 +1486,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/bedroom2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/gamebar" />
+                app:layout_constraintTop_toBottomOf="@id/garagebar" />
 
             <ImageButton
                 android:id="@+id/bedroom2"
@@ -1580,7 +1578,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/bathroom2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/bedroombar" />
+                app:layout_constraintTop_toBottomOf="@id/ropebar" />
 
             <ImageButton
                 android:id="@+id/bathroom2"
@@ -1764,7 +1762,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/kitchen2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/officebar" />
+                app:layout_constraintTop_toBottomOf="@id/livingbar" />
 
             <ImageButton
                 android:id="@+id/kitchen2"
@@ -1856,7 +1854,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/dining2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/kitchenbar" />
+                app:layout_constraintTop_toBottomOf="@id/officebar" />
 
             <ImageButton
                 android:id="@+id/dining2"
@@ -1948,7 +1946,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/living2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/diningbar" />
+                app:layout_constraintTop_toBottomOf="@id/bedroombar" />
 
             <ImageButton
                 android:id="@+id/living2"

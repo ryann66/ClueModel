@@ -9,4 +9,5 @@
     <dimen name="scoreboard_tile_height">40dp</dimen>
     <dimen name="scoreboard_tile_width">40dp</dimen>
     <dimen name="scoreboard_six_tile_width">240dp</dimen>
+    <dimen name="scoreboard_section_gap">12dp</dimen>
 </resources>
