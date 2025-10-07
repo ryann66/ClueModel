@@ -157,6 +157,28 @@ public class LauncherActivity extends AppCompatActivity {
                 ownedCards.add(c);
             }
 
+            // check for all of a category being in play at the start of the game
+            int wep = 0, pep = 0, loc = 0;
+            for (Card c : inplay) {
+                switch (c.type) {
+                    case WEAPON -> wep++;
+                    case PERSON -> pep++;
+                    case LOCATION -> loc++;
+                }
+            }
+            if (wep >= Card.WEAPONS.size()) {
+                showError(getString(R.string.all_weapons));
+                return;
+            }
+            if (pep >= Card.PEOPLE.size()) {
+                showError(getString(R.string.all_people));
+                return;
+            }
+            if (loc >= Card.LOCATIONS.size()) {
+                showError(getString(R.string.all_locations));
+                return;
+            }
+
             Intent intent = new Intent(LauncherActivity.this, ModelActivity.class);
             Bundle bundle = new Bundle(4);
 

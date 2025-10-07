@@ -1,5 +1,6 @@
 package com.cluemodeler;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
@@ -58,35 +59,47 @@ public class ModelActivity extends AppCompatActivity {
         int[] ownedCards = args.getIntArray(ARG_TOKEN_CARD_INDICES_OWNED);
         int[] knownCards = args.getIntArray(ARG_TOKEN_CARD_INDICES_KNOWN);
 
-        // validate args
-        if (playerNames == null || ownedCards == null || knownCards == null)
-            throw new IllegalArgumentException("Missing argument");
-        if (playerNames.length < 3 || playerNames.length > 6)
-            throw new IllegalArgumentException("Wrong player count");
-        if ((Card.NUM_CARDS - 3) % playerNames.length != knownCards.length ||
-                (Card.NUM_CARDS - 3) / playerNames.length != ownedCards.length) {
-            throw new IllegalArgumentException("Invalid number of cards");
-        }
+        try {
 
-        // create player list
-        Player[] parr = new Player[playerNames.length];
-        for (int i = 0; i < parr.length; i++) parr[i] = new Player(playerNames[i], ownedCards.length);
-        PlayerList plist = new PlayerList(parr);
-        lasttoplay = self = parr[0];
+            // validate args
+            if (playerNames == null || ownedCards == null || knownCards == null)
+                throw new IllegalArgumentException("Missing argument");
+            if (playerNames.length < 3 || playerNames.length > 6)
+                throw new IllegalArgumentException("Wrong player count");
+            if ((Card.NUM_CARDS - 3) % playerNames.length != knownCards.length ||
+                    (Card.NUM_CARDS - 3) / playerNames.length != ownedCards.length) {
+                throw new IllegalArgumentException("Invalid number of cards");
+            }
 
-        // convert args from int[] to enum[]
-        Card[] cards = Card.values();
-        Card[] known = new Card[knownCards.length];
-        for (int i = 0; i < known.length; i++) {
-            known[i] = cards[knownCards[i]];
-        }
-        Card[] owned = new Card[ownedCards.length];
-        for (int i = 0; i < owned.length; i++) {
-            owned[i] = cards[ownedCards[i]];
-        }
+            // create player list
+            Player[] parr = new Player[playerNames.length];
+            for (int i = 0; i < parr.length; i++) parr[i] = new Player(playerNames[i], ownedCards.length);
+            PlayerList plist = new PlayerList(parr);
+            lasttoplay = self = parr[0];
 
-        // build model
-        Model model = new BasicModel(plist, parr[0], known, owned);
+            // convert args from int[] to enum[]
+            Card[] cards = Card.values();
+            Card[] known = new Card[knownCards.length];
+            for (int i = 0; i < known.length; i++) {
+                known[i] = cards[knownCards[i]];
+            }
+            Card[] owned = new Card[ownedCards.length];
+            for (int i = 0; i < owned.length; i++) {
+                owned[i] = cards[ownedCards[i]];
+            }
+
+            // build model
+            Model model = new BasicModel(plist, parr[0], known, owned);
+        } catch (RuntimeException re) {
+            AlertDialog.Builder dial = new AlertDialog.Builder(this);
+            dial.setCancelable(true);
+            dial.setTitle(getString(R.string.model_error));
+            dial.setMessage(re.getMessage());
+            dial.setIcon(R.drawable.dialog_error);
+            dial.show();
+
+            finish();
+        }
 
         this.scorecard = model.getFullScorecard();
         this.model = model;

@@ -25,6 +25,9 @@
     <string name="double_name">"Name in use twice: "</string>
     <string name="empty_name">Empty name field</string>
     <string name="invalid_name">Name cannot be used</string>
+    <string name="all_weapons">All weapons are in play (none in envelope)</string>
+    <string name="all_people">All people are in play (none in envelope)</string>
+    <string name="all_locations">All locations are in play (none in envelope)</string>
 
     <string name="model_error">Model Error</string>
     <string name="list_delimiter">", "</string>
