@@ -130,163 +130,168 @@ public class ScoreboardFragment extends Fragment {
         Player p = piter.next();
         ImmutableScorecard.ImmutablePlayerScorecard pcard = card.get(p);
 
+        boolean[] murder = new boolean[Card.values().length];
+        for (int i = 0; i < Card.values().length; i++) {
+            murder[i] = card.isMurder(Card.values()[i]);
+        }
+
         binding.name.setText(p.name());
-        setupButton(pcard.get(Card.ROPE), binding.rope);
-        setupButton(pcard.get(Card.CANDLESTICK), binding.candle);
-        setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe);
-        setupButton(pcard.get(Card.PISTOL), binding.pistol);
-        setupButton(pcard.get(Card.DAGGER), binding.dagger);
-        setupButton(pcard.get(Card.WRENCH), binding.wrench);
-        setupButton(pcard.get(Card.GREEN), binding.green);
-        setupButton(pcard.get(Card.MUSTARD), binding.mustard);
-        setupButton(pcard.get(Card.PEACOCK), binding.peacock);
-        setupButton(pcard.get(Card.WHITE), binding.white);
-        setupButton(pcard.get(Card.PLUM), binding.plum);
-        setupButton(pcard.get(Card.SCARLET), binding.scarlet);
-        setupButton(pcard.get(Card.COURTYARD), binding.courtyard);
-        setupButton(pcard.get(Card.GARAGE), binding.garage);
-        setupButton(pcard.get(Card.GAME_ROOM), binding.game);
-        setupButton(pcard.get(Card.BEDROOM), binding.bedroom);
-        setupButton(pcard.get(Card.BATHROOM), binding.bathroom);
-        setupButton(pcard.get(Card.OFFICE), binding.office);
-        setupButton(pcard.get(Card.KITCHEN), binding.kitchen);
-        setupButton(pcard.get(Card.DINING_ROOM), binding.dining);
-        setupButton(pcard.get(Card.LIVING_ROOM), binding.living);
+        setupButton(pcard.get(Card.ROPE), murder[Card.ROPE.ordinal()], binding.rope);
+        setupButton(pcard.get(Card.CANDLESTICK), murder[Card.CANDLESTICK.ordinal()], binding.candle);
+        setupButton(pcard.get(Card.LEAD_PIPE), murder[Card.LEAD_PIPE.ordinal()], binding.pipe);
+        setupButton(pcard.get(Card.PISTOL), murder[Card.PISTOL.ordinal()], binding.pistol);
+        setupButton(pcard.get(Card.DAGGER), murder[Card.DAGGER.ordinal()], binding.dagger);
+        setupButton(pcard.get(Card.WRENCH), murder[Card.WRENCH.ordinal()], binding.wrench);
+        setupButton(pcard.get(Card.GREEN), murder[Card.GREEN.ordinal()], binding.green);
+        setupButton(pcard.get(Card.MUSTARD), murder[Card.MUSTARD.ordinal()], binding.mustard);
+        setupButton(pcard.get(Card.PEACOCK), murder[Card.PEACOCK.ordinal()], binding.peacock);
+        setupButton(pcard.get(Card.WHITE), murder[Card.WHITE.ordinal()], binding.white);
+        setupButton(pcard.get(Card.PLUM), murder[Card.PLUM.ordinal()], binding.plum);
+        setupButton(pcard.get(Card.SCARLET), murder[Card.SCARLET.ordinal()], binding.scarlet);
+        setupButton(pcard.get(Card.COURTYARD), murder[Card.COURTYARD.ordinal()], binding.courtyard);
+        setupButton(pcard.get(Card.GARAGE), murder[Card.GARAGE.ordinal()], binding.garage);
+        setupButton(pcard.get(Card.GAME_ROOM), murder[Card.GAME_ROOM.ordinal()], binding.game);
+        setupButton(pcard.get(Card.BEDROOM), murder[Card.BEDROOM.ordinal()], binding.bedroom);
+        setupButton(pcard.get(Card.BATHROOM), murder[Card.BATHROOM.ordinal()], binding.bathroom);
+        setupButton(pcard.get(Card.OFFICE), murder[Card.OFFICE.ordinal()], binding.office);
+        setupButton(pcard.get(Card.KITCHEN), murder[Card.KITCHEN.ordinal()], binding.kitchen);
+        setupButton(pcard.get(Card.DINING_ROOM), murder[Card.DINING_ROOM.ordinal()], binding.dining);
+        setupButton(pcard.get(Card.LIVING_ROOM), murder[Card.LIVING_ROOM.ordinal()], binding.living);
 
         if (piter.hasNext()) {
             p = piter.next();
             pcard = card.get(p);
 
             binding.name2.setText(p.name());
-            setupButton(pcard.get(Card.ROPE), binding.rope2);
-            setupButton(pcard.get(Card.CANDLESTICK), binding.candle2);
-            setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe2);
-            setupButton(pcard.get(Card.PISTOL), binding.pistol2);
-            setupButton(pcard.get(Card.DAGGER), binding.dagger2);
-            setupButton(pcard.get(Card.WRENCH), binding.wrench2);
-            setupButton(pcard.get(Card.GREEN), binding.green2);
-            setupButton(pcard.get(Card.MUSTARD), binding.mustard2);
-            setupButton(pcard.get(Card.PEACOCK), binding.peacock2);
-            setupButton(pcard.get(Card.WHITE), binding.white2);
-            setupButton(pcard.get(Card.PLUM), binding.plum2);
-            setupButton(pcard.get(Card.SCARLET), binding.scarlet2);
-            setupButton(pcard.get(Card.COURTYARD), binding.courtyard2);
-            setupButton(pcard.get(Card.GARAGE), binding.garage2);
-            setupButton(pcard.get(Card.GAME_ROOM), binding.game2);
-            setupButton(pcard.get(Card.BEDROOM), binding.bedroom2);
-            setupButton(pcard.get(Card.BATHROOM), binding.bathroom2);
-            setupButton(pcard.get(Card.OFFICE), binding.office2);
-            setupButton(pcard.get(Card.KITCHEN), binding.kitchen2);
-            setupButton(pcard.get(Card.DINING_ROOM), binding.dining2);
-            setupButton(pcard.get(Card.LIVING_ROOM), binding.living2);
+            setupButton(pcard.get(Card.ROPE), murder[Card.ROPE.ordinal()], binding.rope2);
+            setupButton(pcard.get(Card.CANDLESTICK), murder[Card.CANDLESTICK.ordinal()], binding.candle2);
+            setupButton(pcard.get(Card.LEAD_PIPE), murder[Card.LEAD_PIPE.ordinal()], binding.pipe2);
+            setupButton(pcard.get(Card.PISTOL), murder[Card.PISTOL.ordinal()], binding.pistol2);
+            setupButton(pcard.get(Card.DAGGER), murder[Card.DAGGER.ordinal()], binding.dagger2);
+            setupButton(pcard.get(Card.WRENCH), murder[Card.WRENCH.ordinal()], binding.wrench2);
+            setupButton(pcard.get(Card.GREEN), murder[Card.GREEN.ordinal()], binding.green2);
+            setupButton(pcard.get(Card.MUSTARD), murder[Card.MUSTARD.ordinal()], binding.mustard2);
+            setupButton(pcard.get(Card.PEACOCK), murder[Card.PEACOCK.ordinal()], binding.peacock2);
+            setupButton(pcard.get(Card.WHITE), murder[Card.WHITE.ordinal()], binding.white2);
+            setupButton(pcard.get(Card.PLUM), murder[Card.PLUM.ordinal()], binding.plum2);
+            setupButton(pcard.get(Card.SCARLET), murder[Card.SCARLET.ordinal()], binding.scarlet2);
+            setupButton(pcard.get(Card.COURTYARD), murder[Card.COURTYARD.ordinal()], binding.courtyard2);
+            setupButton(pcard.get(Card.GARAGE), murder[Card.GARAGE.ordinal()], binding.garage2);
+            setupButton(pcard.get(Card.GAME_ROOM), murder[Card.GAME_ROOM.ordinal()], binding.game2);
+            setupButton(pcard.get(Card.BEDROOM), murder[Card.BEDROOM.ordinal()], binding.bedroom2);
+            setupButton(pcard.get(Card.BATHROOM), murder[Card.BATHROOM.ordinal()], binding.bathroom2);
+            setupButton(pcard.get(Card.OFFICE), murder[Card.OFFICE.ordinal()], binding.office2);
+            setupButton(pcard.get(Card.KITCHEN), murder[Card.KITCHEN.ordinal()], binding.kitchen2);
+            setupButton(pcard.get(Card.DINING_ROOM), murder[Card.DINING_ROOM.ordinal()], binding.dining2);
+            setupButton(pcard.get(Card.LIVING_ROOM), murder[Card.LIVING_ROOM.ordinal()], binding.living2);
 
             if (piter.hasNext()) {
                 p = piter.next();
                 pcard = card.get(p);
 
                 binding.name3.setText(p.name());
-                setupButton(pcard.get(Card.ROPE), binding.rope3);
-                setupButton(pcard.get(Card.CANDLESTICK), binding.candle3);
-                setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe3);
-                setupButton(pcard.get(Card.PISTOL), binding.pistol3);
-                setupButton(pcard.get(Card.DAGGER), binding.dagger3);
-                setupButton(pcard.get(Card.WRENCH), binding.wrench3);
-                setupButton(pcard.get(Card.GREEN), binding.green3);
-                setupButton(pcard.get(Card.MUSTARD), binding.mustard3);
-                setupButton(pcard.get(Card.PEACOCK), binding.peacock3);
-                setupButton(pcard.get(Card.WHITE), binding.white3);
-                setupButton(pcard.get(Card.PLUM), binding.plum3);
-                setupButton(pcard.get(Card.SCARLET), binding.scarlet3);
-                setupButton(pcard.get(Card.COURTYARD), binding.courtyard3);
-                setupButton(pcard.get(Card.GARAGE), binding.garage3);
-                setupButton(pcard.get(Card.GAME_ROOM), binding.game3);
-                setupButton(pcard.get(Card.BEDROOM), binding.bedroom3);
-                setupButton(pcard.get(Card.BATHROOM), binding.bathroom3);
-                setupButton(pcard.get(Card.OFFICE), binding.office3);
-                setupButton(pcard.get(Card.KITCHEN), binding.kitchen3);
-                setupButton(pcard.get(Card.DINING_ROOM), binding.dining3);
-                setupButton(pcard.get(Card.LIVING_ROOM), binding.living3);
+                setupButton(pcard.get(Card.ROPE), murder[Card.ROPE.ordinal()], binding.rope3);
+                setupButton(pcard.get(Card.CANDLESTICK), murder[Card.CANDLESTICK.ordinal()], binding.candle3);
+                setupButton(pcard.get(Card.LEAD_PIPE), murder[Card.LEAD_PIPE.ordinal()], binding.pipe3);
+                setupButton(pcard.get(Card.PISTOL), murder[Card.PISTOL.ordinal()], binding.pistol3);
+                setupButton(pcard.get(Card.DAGGER), murder[Card.DAGGER.ordinal()], binding.dagger3);
+                setupButton(pcard.get(Card.WRENCH), murder[Card.WRENCH.ordinal()], binding.wrench3);
+                setupButton(pcard.get(Card.GREEN), murder[Card.GREEN.ordinal()], binding.green3);
+                setupButton(pcard.get(Card.MUSTARD), murder[Card.MUSTARD.ordinal()], binding.mustard3);
+                setupButton(pcard.get(Card.PEACOCK), murder[Card.PEACOCK.ordinal()], binding.peacock3);
+                setupButton(pcard.get(Card.WHITE), murder[Card.WHITE.ordinal()], binding.white3);
+                setupButton(pcard.get(Card.PLUM), murder[Card.PLUM.ordinal()], binding.plum3);
+                setupButton(pcard.get(Card.SCARLET), murder[Card.SCARLET.ordinal()], binding.scarlet3);
+                setupButton(pcard.get(Card.COURTYARD), murder[Card.COURTYARD.ordinal()], binding.courtyard3);
+                setupButton(pcard.get(Card.GARAGE), murder[Card.GARAGE.ordinal()], binding.garage3);
+                setupButton(pcard.get(Card.GAME_ROOM), murder[Card.GAME_ROOM.ordinal()], binding.game3);
+                setupButton(pcard.get(Card.BEDROOM), murder[Card.BEDROOM.ordinal()], binding.bedroom3);
+                setupButton(pcard.get(Card.BATHROOM), murder[Card.BATHROOM.ordinal()], binding.bathroom3);
+                setupButton(pcard.get(Card.OFFICE), murder[Card.OFFICE.ordinal()], binding.office3);
+                setupButton(pcard.get(Card.KITCHEN), murder[Card.KITCHEN.ordinal()], binding.kitchen3);
+                setupButton(pcard.get(Card.DINING_ROOM), murder[Card.DINING_ROOM.ordinal()], binding.dining3);
+                setupButton(pcard.get(Card.LIVING_ROOM), murder[Card.LIVING_ROOM.ordinal()], binding.living3);
 
                 if (piter.hasNext()) {
                     p = piter.next();
                     pcard = card.get(p);
 
                     binding.name4.setText(p.name());
-                    setupButton(pcard.get(Card.ROPE), binding.rope4);
-                    setupButton(pcard.get(Card.CANDLESTICK), binding.candle4);
-                    setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe4);
-                    setupButton(pcard.get(Card.PISTOL), binding.pistol4);
-                    setupButton(pcard.get(Card.DAGGER), binding.dagger4);
-                    setupButton(pcard.get(Card.WRENCH), binding.wrench4);
-                    setupButton(pcard.get(Card.GREEN), binding.green4);
-                    setupButton(pcard.get(Card.MUSTARD), binding.mustard4);
-                    setupButton(pcard.get(Card.PEACOCK), binding.peacock4);
-                    setupButton(pcard.get(Card.WHITE), binding.white4);
-                    setupButton(pcard.get(Card.PLUM), binding.plum4);
-                    setupButton(pcard.get(Card.SCARLET), binding.scarlet4);
-                    setupButton(pcard.get(Card.COURTYARD), binding.courtyard4);
-                    setupButton(pcard.get(Card.GARAGE), binding.garage4);
-                    setupButton(pcard.get(Card.GAME_ROOM), binding.game4);
-                    setupButton(pcard.get(Card.BEDROOM), binding.bedroom4);
-                    setupButton(pcard.get(Card.BATHROOM), binding.bathroom4);
-                    setupButton(pcard.get(Card.OFFICE), binding.office4);
-                    setupButton(pcard.get(Card.KITCHEN), binding.kitchen4);
-                    setupButton(pcard.get(Card.DINING_ROOM), binding.dining4);
-                    setupButton(pcard.get(Card.LIVING_ROOM), binding.living4);
+                    setupButton(pcard.get(Card.ROPE), murder[Card.ROPE.ordinal()], binding.rope4);
+                    setupButton(pcard.get(Card.CANDLESTICK), murder[Card.CANDLESTICK.ordinal()], binding.candle4);
+                    setupButton(pcard.get(Card.LEAD_PIPE), murder[Card.LEAD_PIPE.ordinal()], binding.pipe4);
+                    setupButton(pcard.get(Card.PISTOL), murder[Card.PISTOL.ordinal()], binding.pistol4);
+                    setupButton(pcard.get(Card.DAGGER), murder[Card.DAGGER.ordinal()], binding.dagger4);
+                    setupButton(pcard.get(Card.WRENCH), murder[Card.WRENCH.ordinal()], binding.wrench4);
+                    setupButton(pcard.get(Card.GREEN), murder[Card.GREEN.ordinal()], binding.green4);
+                    setupButton(pcard.get(Card.MUSTARD), murder[Card.MUSTARD.ordinal()], binding.mustard4);
+                    setupButton(pcard.get(Card.PEACOCK), murder[Card.PEACOCK.ordinal()], binding.peacock4);
+                    setupButton(pcard.get(Card.WHITE), murder[Card.WHITE.ordinal()], binding.white4);
+                    setupButton(pcard.get(Card.PLUM), murder[Card.PLUM.ordinal()], binding.plum4);
+                    setupButton(pcard.get(Card.SCARLET), murder[Card.SCARLET.ordinal()], binding.scarlet4);
+                    setupButton(pcard.get(Card.COURTYARD), murder[Card.COURTYARD.ordinal()], binding.courtyard4);
+                    setupButton(pcard.get(Card.GARAGE), murder[Card.GARAGE.ordinal()], binding.garage4);
+                    setupButton(pcard.get(Card.GAME_ROOM), murder[Card.GAME_ROOM.ordinal()], binding.game4);
+                    setupButton(pcard.get(Card.BEDROOM), murder[Card.BEDROOM.ordinal()], binding.bedroom4);
+                    setupButton(pcard.get(Card.BATHROOM), murder[Card.BATHROOM.ordinal()], binding.bathroom4);
+                    setupButton(pcard.get(Card.OFFICE), murder[Card.OFFICE.ordinal()], binding.office4);
+                    setupButton(pcard.get(Card.KITCHEN), murder[Card.KITCHEN.ordinal()], binding.kitchen4);
+                    setupButton(pcard.get(Card.DINING_ROOM), murder[Card.DINING_ROOM.ordinal()], binding.dining4);
+                    setupButton(pcard.get(Card.LIVING_ROOM), murder[Card.LIVING_ROOM.ordinal()], binding.living4);
 
                     if (piter.hasNext()) {
                         p = piter.next();
                         pcard = card.get(p);
 
                         binding.name5.setText(p.name());
-                        setupButton(pcard.get(Card.ROPE), binding.rope5);
-                        setupButton(pcard.get(Card.CANDLESTICK), binding.candle5);
-                        setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe5);
-                        setupButton(pcard.get(Card.PISTOL), binding.pistol5);
-                        setupButton(pcard.get(Card.DAGGER), binding.dagger5);
-                        setupButton(pcard.get(Card.WRENCH), binding.wrench5);
-                        setupButton(pcard.get(Card.GREEN), binding.green5);
-                        setupButton(pcard.get(Card.MUSTARD), binding.mustard5);
-                        setupButton(pcard.get(Card.PEACOCK), binding.peacock5);
-                        setupButton(pcard.get(Card.WHITE), binding.white5);
-                        setupButton(pcard.get(Card.PLUM), binding.plum5);
-                        setupButton(pcard.get(Card.SCARLET), binding.scarlet5);
-                        setupButton(pcard.get(Card.COURTYARD), binding.courtyard5);
-                        setupButton(pcard.get(Card.GARAGE), binding.garage5);
-                        setupButton(pcard.get(Card.GAME_ROOM), binding.game5);
-                        setupButton(pcard.get(Card.BEDROOM), binding.bedroom5);
-                        setupButton(pcard.get(Card.BATHROOM), binding.bathroom5);
-                        setupButton(pcard.get(Card.OFFICE), binding.office5);
-                        setupButton(pcard.get(Card.KITCHEN), binding.kitchen5);
-                        setupButton(pcard.get(Card.DINING_ROOM), binding.dining5);
-                        setupButton(pcard.get(Card.LIVING_ROOM), binding.living5);
+                        setupButton(pcard.get(Card.ROPE), murder[Card.ROPE.ordinal()], binding.rope5);
+                        setupButton(pcard.get(Card.CANDLESTICK), murder[Card.CANDLESTICK.ordinal()], binding.candle5);
+                        setupButton(pcard.get(Card.LEAD_PIPE), murder[Card.LEAD_PIPE.ordinal()], binding.pipe5);
+                        setupButton(pcard.get(Card.PISTOL), murder[Card.PISTOL.ordinal()], binding.pistol5);
+                        setupButton(pcard.get(Card.DAGGER), murder[Card.DAGGER.ordinal()], binding.dagger5);
+                        setupButton(pcard.get(Card.WRENCH), murder[Card.WRENCH.ordinal()], binding.wrench5);
+                        setupButton(pcard.get(Card.GREEN), murder[Card.GREEN.ordinal()], binding.green5);
+                        setupButton(pcard.get(Card.MUSTARD), murder[Card.MUSTARD.ordinal()], binding.mustard5);
+                        setupButton(pcard.get(Card.PEACOCK), murder[Card.PEACOCK.ordinal()], binding.peacock5);
+                        setupButton(pcard.get(Card.WHITE), murder[Card.WHITE.ordinal()], binding.white5);
+                        setupButton(pcard.get(Card.PLUM), murder[Card.PLUM.ordinal()], binding.plum5);
+                        setupButton(pcard.get(Card.SCARLET), murder[Card.SCARLET.ordinal()], binding.scarlet5);
+                        setupButton(pcard.get(Card.COURTYARD), murder[Card.COURTYARD.ordinal()], binding.courtyard5);
+                        setupButton(pcard.get(Card.GARAGE), murder[Card.GARAGE.ordinal()], binding.garage5);
+                        setupButton(pcard.get(Card.GAME_ROOM), murder[Card.GAME_ROOM.ordinal()], binding.game5);
+                        setupButton(pcard.get(Card.BEDROOM), murder[Card.BEDROOM.ordinal()], binding.bedroom5);
+                        setupButton(pcard.get(Card.BATHROOM), murder[Card.BATHROOM.ordinal()], binding.bathroom5);
+                        setupButton(pcard.get(Card.OFFICE), murder[Card.OFFICE.ordinal()], binding.office5);
+                        setupButton(pcard.get(Card.KITCHEN), murder[Card.KITCHEN.ordinal()], binding.kitchen5);
+                        setupButton(pcard.get(Card.DINING_ROOM), murder[Card.DINING_ROOM.ordinal()], binding.dining5);
+                        setupButton(pcard.get(Card.LIVING_ROOM), murder[Card.LIVING_ROOM.ordinal()], binding.living5);
 
                         if (piter.hasNext()) {
                             p = piter.next();
                             pcard = card.get(p);
 
                             binding.name6.setText(p.name());
-                            setupButton(pcard.get(Card.ROPE), binding.rope6);
-                            setupButton(pcard.get(Card.CANDLESTICK), binding.candle6);
-                            setupButton(pcard.get(Card.LEAD_PIPE), binding.pipe6);
-                            setupButton(pcard.get(Card.PISTOL), binding.pistol6);
-                            setupButton(pcard.get(Card.DAGGER), binding.dagger6);
-                            setupButton(pcard.get(Card.WRENCH), binding.wrench6);
-                            setupButton(pcard.get(Card.GREEN), binding.green6);
-                            setupButton(pcard.get(Card.MUSTARD), binding.mustard6);
-                            setupButton(pcard.get(Card.PEACOCK), binding.peacock6);
-                            setupButton(pcard.get(Card.WHITE), binding.white6);
-                            setupButton(pcard.get(Card.PLUM), binding.plum6);
-                            setupButton(pcard.get(Card.SCARLET), binding.scarlet6);
-                            setupButton(pcard.get(Card.COURTYARD), binding.courtyard6);
-                            setupButton(pcard.get(Card.GARAGE), binding.garage6);
-                            setupButton(pcard.get(Card.GAME_ROOM), binding.game6);
-                            setupButton(pcard.get(Card.BEDROOM), binding.bedroom6);
-                            setupButton(pcard.get(Card.BATHROOM), binding.bathroom6);
-                            setupButton(pcard.get(Card.OFFICE), binding.office6);
-                            setupButton(pcard.get(Card.KITCHEN), binding.kitchen6);
-                            setupButton(pcard.get(Card.DINING_ROOM), binding.dining6);
-                            setupButton(pcard.get(Card.LIVING_ROOM), binding.living6);
+                            setupButton(pcard.get(Card.ROPE), murder[Card.ROPE.ordinal()], binding.rope6);
+                            setupButton(pcard.get(Card.CANDLESTICK), murder[Card.CANDLESTICK.ordinal()], binding.candle6);
+                            setupButton(pcard.get(Card.LEAD_PIPE), murder[Card.LEAD_PIPE.ordinal()], binding.pipe6);
+                            setupButton(pcard.get(Card.PISTOL), murder[Card.PISTOL.ordinal()], binding.pistol6);
+                            setupButton(pcard.get(Card.DAGGER), murder[Card.DAGGER.ordinal()], binding.dagger6);
+                            setupButton(pcard.get(Card.WRENCH), murder[Card.WRENCH.ordinal()], binding.wrench6);
+                            setupButton(pcard.get(Card.GREEN), murder[Card.GREEN.ordinal()], binding.green6);
+                            setupButton(pcard.get(Card.MUSTARD), murder[Card.MUSTARD.ordinal()], binding.mustard6);
+                            setupButton(pcard.get(Card.PEACOCK), murder[Card.PEACOCK.ordinal()], binding.peacock6);
+                            setupButton(pcard.get(Card.WHITE), murder[Card.WHITE.ordinal()], binding.white6);
+                            setupButton(pcard.get(Card.PLUM), murder[Card.PLUM.ordinal()], binding.plum6);
+                            setupButton(pcard.get(Card.SCARLET), murder[Card.SCARLET.ordinal()], binding.scarlet6);
+                            setupButton(pcard.get(Card.COURTYARD), murder[Card.COURTYARD.ordinal()], binding.courtyard6);
+                            setupButton(pcard.get(Card.GARAGE), murder[Card.GARAGE.ordinal()], binding.garage6);
+                            setupButton(pcard.get(Card.GAME_ROOM), murder[Card.GAME_ROOM.ordinal()], binding.game6);
+                            setupButton(pcard.get(Card.BEDROOM), murder[Card.BEDROOM.ordinal()], binding.bedroom6);
+                            setupButton(pcard.get(Card.BATHROOM), murder[Card.BATHROOM.ordinal()], binding.bathroom6);
+                            setupButton(pcard.get(Card.OFFICE), murder[Card.OFFICE.ordinal()], binding.office6);
+                            setupButton(pcard.get(Card.KITCHEN), murder[Card.KITCHEN.ordinal()], binding.kitchen6);
+                            setupButton(pcard.get(Card.DINING_ROOM), murder[Card.DINING_ROOM.ordinal()], binding.dining6);
+                            setupButton(pcard.get(Card.LIVING_ROOM), murder[Card.LIVING_ROOM.ordinal()], binding.living6);
                         }
                     }
                 }
@@ -294,17 +299,26 @@ public class ScoreboardFragment extends Fragment {
         }
     }
 
-    private void setupButton(Knowledge k, ImageButton img) {
-        int id = switch (k.t) {
-            case HAS -> R.drawable.scoreboard_has;
-            case NO_HAS -> R.drawable.scoreboard_no_has;
-            case MIGHT_HAVE -> k == Knowledge.MIGHT_HAVE_DEFAULT ? R.drawable.scoreboard_unknown : R.drawable.scoreboard_might_have;
-            case KNOWN -> R.drawable.scoreboard_known;
-        };
-        
-        img.setImageResource(id);
-        if (id == R.drawable.scoreboard_might_have) img.setOnClickListener(tocl);
-        else img.setClickable(false);
+    private void setupButton(Knowledge k, boolean murder, ImageButton img) {
+        if (murder) {
+            img.setBackgroundColor(R.color.red);
+            img.setClickable(false);
+        }
+        else {
+            int id = switch (k.t) {
+                case HAS -> R.drawable.scoreboard_has;
+                case NO_HAS -> R.drawable.scoreboard_no_has;
+                case MIGHT_HAVE -> k == Knowledge.MIGHT_HAVE_DEFAULT ? R.drawable.scoreboard_unknown : R.drawable.scoreboard_might_have;
+                case KNOWN -> R.drawable.scoreboard_known;
+            };
+
+            img.setImageResource(id);
+            if (id == R.drawable.scoreboard_might_have) {
+                img.setClickable(true);
+                img.setOnClickListener(tocl);
+            }
+            else img.setClickable(false);
+        }
     }
 
     @Override

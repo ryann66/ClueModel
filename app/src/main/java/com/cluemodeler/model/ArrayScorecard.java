@@ -73,7 +73,7 @@ class ArrayScorecard implements Scorecard {
     @Override
     public boolean isMurder(Card c) {
         for (Knowledge[] knowledges : karr) {
-            if (knowledges[c.ordinal()].t != Knowledge.T.NO_HAS) return false;
+            if (knowledges[c.ordinal()] == null || knowledges[c.ordinal()].t != Knowledge.T.NO_HAS) return false;
         }
         return true;
     }
