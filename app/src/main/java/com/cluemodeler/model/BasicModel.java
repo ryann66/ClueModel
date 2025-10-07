@@ -369,6 +369,46 @@ public class BasicModel extends AbstractModel {
 			// set this card as not had
 			scorecard.mark(player, card, Knowledge.NO_HAS());
 			modifiedPlayers.add(player);
+
+            // check for process of elimination holders (possible only if we know the murder card)
+            List<Card> category = switch (card.type) {
+                case WEAPON -> Card.WEAPONS;
+                case PERSON -> Card.PEOPLE;
+                case LOCATION -> Card.LOCATIONS;
+            };
+            for (Card c : category) {
+                if (scorecard.isMurder(c)) {
+                    // category is finished, players must hold all other cards in the category
+                    // check each card in the category to see if only 1 player could possibly hold it
+                    cardloop: for (Card cd : category) {
+                        // find the player(s) that could be holding the card
+                        Player sus = null;
+                        for (Player p : players) {
+                            Knowledge k = scorecard.get(p, cd);
+                            switch (k.t) {
+                                case HAS:
+                                case KNOWN:
+                                    // a player (or common) already has it
+                                    continue cardloop;
+                                case MIGHT_HAVE:
+                                    // multiple people could hold the card
+                                    if (sus != null) continue cardloop;
+                                    sus = p;
+                                    break;
+                            }
+                        }
+
+                        // nobody could hold the card, and it is not common (must be murder)
+                        if (sus == null) {
+                            assert cd == c;
+                            continue cardloop;
+                        }
+
+                        // only one player could hold this card
+                        unhandledAssertions.add(new PlayerHasAssertion(sus, cd));
+                    }
+                }
+            }
 		}
 	}
 

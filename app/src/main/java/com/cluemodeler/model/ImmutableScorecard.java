@@ -26,6 +26,13 @@ public interface ImmutableScorecard {
 	 */
 	Knowledge get(Player p, Card c);
 
+    /**
+     * Checks if we know that no player has the card
+     * @param c the card to check if is murder
+     * @return true iff the card is in the envelope
+     */
+    boolean isMurder(Card c);
+
 	/**
 	 * Gets an immutable view of the scorecard for a single player
 	 * @param p the player to get a scorecard for

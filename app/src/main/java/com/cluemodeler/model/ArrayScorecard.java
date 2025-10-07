@@ -70,6 +70,14 @@ class ArrayScorecard implements Scorecard {
 		return ret;
 	}
 
+    @Override
+    public boolean isMurder(Card c) {
+        for (Knowledge[] knowledges : karr) {
+            if (knowledges[c.ordinal()].t != Knowledge.T.NO_HAS) return false;
+        }
+        return true;
+    }
+
 	@Override
 	public PlayerScorecard get(Player p) {
 		return new ArrayPlayerScorecard(getPlayerIndex(p));
