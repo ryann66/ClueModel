@@ -1,4 +1,4 @@
-package com.cluemodeler;
+package com.cluemodeler.ui.model;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.cluemodeler.R;
 import com.cluemodeler.databinding.ActivityModelBinding;
 import com.cluemodeler.model.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

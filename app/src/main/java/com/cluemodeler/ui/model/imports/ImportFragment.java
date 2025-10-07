@@ -1,4 +1,4 @@
-package com.cluemodeler.ui.imports;
+package com.cluemodeler.ui.model.imports;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.cluemodeler.ModelActivity;
+import com.cluemodeler.ui.model.ModelActivity;
 import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentImportBinding;
 

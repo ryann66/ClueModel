@@ -1,4 +1,4 @@
-package com.cluemodeler.ui.scoreboard;
+package com.cluemodeler.ui.model.scoreboard;
 
 import androidx.lifecycle.ViewModel;
 

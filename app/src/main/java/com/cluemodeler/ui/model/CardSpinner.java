@@ -1,4 +1,4 @@
-package com.cluemodeler;
+package com.cluemodeler.ui.model;
 
 import android.content.Context;
 import android.util.AttributeSet;

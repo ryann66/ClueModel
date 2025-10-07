@@ -1,4 +1,4 @@
-package com.cluemodeler.ui.scoreboard;
+package com.cluemodeler.ui.model.scoreboard;
 
 import android.app.AlertDialog;
 import android.graphics.drawable.ColorDrawable;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.cluemodeler.ModelActivity;
+import com.cluemodeler.ui.model.ModelActivity;
 import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentScoreboardBinding;
 import com.cluemodeler.model.*;

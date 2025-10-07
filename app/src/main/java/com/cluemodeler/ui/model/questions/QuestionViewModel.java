@@ -1,4 +1,4 @@
-package com.cluemodeler.ui.questions;
+package com.cluemodeler.ui.model.questions;
 
 import androidx.lifecycle.ViewModel;
 

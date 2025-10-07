@@ -1,4 +1,4 @@
-package com.cluemodeler.ui.imports;
+package com.cluemodeler.ui.model.imports;
 
 import androidx.lifecycle.ViewModel;
 

@@ -1,4 +1,4 @@
-package com.cluemodeler;
+package com.cluemodeler.ui.launcher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cluemodeler.ui.model.CardSpinner;
+import com.cluemodeler.ui.model.ModelActivity;
+import com.cluemodeler.R;
 import com.cluemodeler.databinding.ActivityLauncherBinding;
 
 import java.util.HashSet;

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_scoreboard"
-        android:name="com.cluemodeler.ui.scoreboard.ScoreboardFragment"
+        android:name="com.cluemodeler.ui.model.scoreboard.ScoreboardFragment"
         android:label="@string/title_scoreboard"
         tools:layout="@layout/fragment_scoreboard" />
 
     <fragment
         android:id="@+id/navigation_import"
-        android:name="com.cluemodeler.ui.imports.ImportFragment"
+        android:name="com.cluemodeler.ui.model.imports.ImportFragment"
         android:label="@string/title_import"
         tools:layout="@layout/fragment_import" />
 
     <fragment
         android:id="@+id/navigation_questions"
-        android:name="com.cluemodeler.ui.questions.QuestionFragment"
+        android:name="com.cluemodeler.ui.model.questions.QuestionFragment"
         android:label="@string/title_question"
         tools:layout="@layout/fragment_questions" />
 

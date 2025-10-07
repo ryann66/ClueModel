@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    tools:context="com.cluemodeler.ui.scoreboard.ScoreboardFragment">
+    tools:context="com.cluemodeler.ui.model.scoreboard.ScoreboardFragment">
 
     <View
         android:id="@+id/vbar6"
@@ -2019,7 +2019,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <com.cluemodeler.ui.scoreboard.VerticalTextView
+    <com.cluemodeler.ui.model.scoreboard.VerticalTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -2031,7 +2031,7 @@
         app:layout_constraintStart_toEndOf="@id/vbar"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.cluemodeler.ui.scoreboard.VerticalTextView
+    <com.cluemodeler.ui.model.scoreboard.VerticalTextView
         android:id="@+id/name2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -2043,7 +2043,7 @@
         app:layout_constraintStart_toEndOf="@id/vbar2"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.cluemodeler.ui.scoreboard.VerticalTextView
+    <com.cluemodeler.ui.model.scoreboard.VerticalTextView
         android:id="@+id/name3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -2055,7 +2055,7 @@
         app:layout_constraintStart_toEndOf="@id/vbar3"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.cluemodeler.ui.scoreboard.VerticalTextView
+    <com.cluemodeler.ui.model.scoreboard.VerticalTextView
         android:id="@+id/name4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -2067,7 +2067,7 @@
         app:layout_constraintStart_toEndOf="@id/vbar4"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.cluemodeler.ui.scoreboard.VerticalTextView
+    <com.cluemodeler.ui.model.scoreboard.VerticalTextView
         android:id="@+id/name5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -2079,7 +2079,7 @@
         app:layout_constraintStart_toEndOf="@id/vbar5"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.cluemodeler.ui.scoreboard.VerticalTextView
+    <com.cluemodeler.ui.model.scoreboard.VerticalTextView
         android:id="@+id/name6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

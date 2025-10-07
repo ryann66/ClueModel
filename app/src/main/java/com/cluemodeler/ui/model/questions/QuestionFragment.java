@@ -1,4 +1,4 @@
-package com.cluemodeler.ui.questions;
+package com.cluemodeler.ui.model.questions;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.cluemodeler.ModelActivity;
+import com.cluemodeler.ui.model.ModelActivity;
 import com.cluemodeler.R;
 import com.cluemodeler.databinding.FragmentQuestionsBinding;
 
@@ -20,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Iterator;
 
-import static com.cluemodeler.ui.imports.ImportFragment.toStringArr;
+import static com.cluemodeler.ui.model.imports.ImportFragment.toStringArr;
 
 public class QuestionFragment extends Fragment {
 
