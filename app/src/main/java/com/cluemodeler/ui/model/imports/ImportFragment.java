@@ -20,6 +20,7 @@ import com.cluemodeler.model.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ImportFragment extends Fragment {
 
@@ -74,6 +75,10 @@ public class ImportFragment extends Fragment {
         binding.spinnerResponse.setAdapter(adp);
 
         binding.spinnerAsk.setOnItemSelectedListener(new AskChangeListener());
+        CardChangeListener acl = new CardChangeListener();
+        binding.spinnerPerson.setOnItemSelectedListener(acl);
+        binding.spinnerWeapon.setOnItemSelectedListener(acl);
+        binding.spinnerLocation.setOnItemSelectedListener(acl);
         binding.button.setOnClickListener(new ButtonUpdateListener());
 
         return root;
@@ -102,37 +107,17 @@ public class ImportFragment extends Fragment {
         binding = null;
     }
 
-    private void setAnswerer() {
-        // set contents of answerer field
-        String[] parr = new String[plist.getPlayerCount()];
-        Iterator<Player> iter = plist.iterator();
-        for (int i = 1; i < parr.length; i++) {
-            String p = iter.next().name();
-            if (p.equals(binding.spinnerAsk.getSelectedItem().toString())) {
-                // skip item
-                i--;
-                continue;
-            }
-            parr[i] = p;
+    private void setPossibleCards() {
+        Card wep = Card.toCard(binding.spinnerWeapon.getSelectedItem().toString());
+        Card per = Card.toCard(binding.spinnerPerson.getSelectedItem().toString());
+        Card loc = Card.toCard(binding.spinnerLocation.getSelectedItem().toString());
+        ImmutableScorecard sc = model.getFullScorecard();
+        ArrayAdapter<String> adp = new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        for (Card c : Card.values()) {
+            if (sc.get(self, c).t == Knowledge.T.HAS && (c.equals(wep) || c.equals(per) || c.equals(loc))) adp.add(c.toString());
         }
-        parr[0] = getString(R.string.no_player);
-        ArrayAdapter<String> adp = new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, parr);
-        binding.spinnerAnswered.setAdapter(adp);
-        binding.spinnerAnswered.setSelection(0);
-
-        binding.spinnerAnswered.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                onAnsweredChange(binding.spinnerAnswered.getSelectedItem().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                throw new UnsupportedOperationException("Spinner must select something");
-            }
-        });
-
-        onAnsweredChange(binding.spinnerAnswered.getSelectedItem().toString());
+        if (adp.getCount() == 0) adp.add(getString(R.string.none_possible));
+        binding.spinnerResponse.setAdapter(adp);
     }
 
     public static <T> String[] toStringArr(T[] obj) {
@@ -145,9 +130,50 @@ public class ImportFragment extends Fragment {
 
     private class AskChangeListener implements AdapterView.OnItemSelectedListener {
         @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int a, long l) {
+            setPossibleCards();
+            // set contents of answerer field
+            String[] parr = new String[plist.getPlayerCount()];
+            Iterator<Player> iter = plist.iterator();
+            for (int i = 1; i < parr.length; i++) {
+                String p = iter.next().name();
+                if (p.equals(binding.spinnerAsk.getSelectedItem().toString())) {
+                    // skip item
+                    i--;
+                    continue;
+                }
+                parr[i] = p;
+            }
+            parr[0] = getString(R.string.no_player);
+            ArrayAdapter<String> adp = new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, parr);
+            binding.spinnerAnswered.setAdapter(adp);
+
+            binding.spinnerAnswered.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    onAnsweredChange(binding.spinnerAnswered.getSelectedItem().toString());
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    throw new UnsupportedOperationException("Spinner must select something");
+                }
+            });
+            binding.spinnerAnswered.setSelection(0);
+
+            onAnsweredChange(binding.spinnerAnswered.getSelectedItem().toString());
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    }
+
+    private class CardChangeListener implements AdapterView.OnItemSelectedListener {
+        @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            int a = 0;
-            setAnswerer();
+            setPossibleCards();
         }
 
         @Override
@@ -173,12 +199,21 @@ public class ImportFragment extends Fragment {
 
             Card rep = null;
             if (self.equals(ans)) {
-                rep = Card.toCard(binding.spinnerResponse.getSelectedItem().toString());
+                try {
+                    rep = Card.toCard(binding.spinnerResponse.getSelectedItem().toString());
+                } catch (NoSuchElementException nsee) {
+                    AlertDialog.Builder dial = new AlertDialog.Builder(getContext());
+                    dial.setCancelable(true);
+                    dial.setTitle(getString(R.string.invalid_error));
+                    dial.setMessage(getString(R.string.invalid_selection));
+                    dial.setIcon(R.drawable.dialog_error);
+                    dial.show();
+                    return;
+                }
             }
 
-            Query q = new Query(ask, ans, new Card[]{wep, per, loc}, rep);
-
             try {
+                Query q = new Query(ask, ans, new Card[]{wep, per, loc}, rep);
                 model.addQuery(q);
 
                 BottomNavigationView bar = requireActivity().findViewById(R.id.nav_view);
@@ -191,7 +226,7 @@ public class ImportFragment extends Fragment {
                 dial.setIcon(R.drawable.dialog_error);
                 dial.show();
             }
-            
+
             Player last = ((ModelActivity) requireActivity()).getLasttoplay();
             // find next to play
             Player next = plist.nextPlayer(last);

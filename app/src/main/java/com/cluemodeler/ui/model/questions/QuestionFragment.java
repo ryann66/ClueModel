@@ -124,9 +124,9 @@ public class QuestionFragment extends Fragment {
             ((ModelActivity)requireActivity()).setLasttoplay(self);
 
 
-            Query q = new Query(self, answered, cards, answer);
 
             try {
+                Query q = new Query(self, answered, cards, answer);
                 model.addQuery(q);
 
                 BottomNavigationView bar = requireActivity().findViewById(R.id.nav_view);

@@ -21,6 +21,7 @@
     <string name="name">Name</string>
 
     <string name="invalid_error">Invalid Configuration</string>
+    <string name="invalid_selection">Must select a valid card</string>
     <string name="double_card">"Card in play twice: "</string>
     <string name="double_name">"Name in use twice: "</string>
     <string name="empty_name">Empty name field</string>
@@ -28,6 +29,7 @@
     <string name="all_weapons">All weapons are in play (none in envelope)</string>
     <string name="all_people">All people are in play (none in envelope)</string>
     <string name="all_locations">All locations are in play (none in envelope)</string>
+    <string name="none_possible">No possibilities</string>
 
     <string name="model_error">Model Error</string>
     <string name="list_delimiter">", "</string>
