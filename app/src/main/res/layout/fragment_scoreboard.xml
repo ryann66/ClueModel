@@ -2096,7 +2096,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="name,name2,name3,name4,name5,name6"/>
+        app:constraint_referenced_ids="undo_button,name,name2,name3,name4,name5,name6"/>
 
     <Button
             android:text="@string/undo"
