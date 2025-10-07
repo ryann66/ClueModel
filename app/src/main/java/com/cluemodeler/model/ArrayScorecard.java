@@ -78,6 +78,14 @@ class ArrayScorecard implements Scorecard {
         return true;
     }
 
+    @Override
+    public boolean isKnown(Card c) {
+        for (Knowledge[] knowledges : karr) {
+            if (knowledges[c.ordinal()] != null && (knowledges[c.ordinal()].t == Knowledge.T.KNOWN || knowledges[c.ordinal()].t == Knowledge.T.HAS)) return true;
+        }
+        return false;
+    }
+
 	@Override
 	public PlayerScorecard get(Player p) {
 		return new ArrayPlayerScorecard(getPlayerIndex(p));

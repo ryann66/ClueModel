@@ -328,6 +328,30 @@ public class BasicModel extends AbstractModel {
 
 			// assert that we (self) know this card
 			scorecard.mark(self, card, Knowledge.KNOWN());
+
+            // check cards in this category to see if we now know the murder card
+            List<Card> category = switch (card.type) {
+                case WEAPON -> Card.WEAPONS;
+                case PERSON -> Card.PEOPLE;
+                case LOCATION -> Card.LOCATIONS;
+            };
+            Card unknown = null;
+            for (Card c : category) {
+                if (!scorecard.isKnown(c)) {
+                    // return if multiple unknown cards
+                    if (unknown == null) unknown = c;
+                    else return;
+                }
+            }
+
+            // assertion: at least one card must be unknown
+            assert unknown != null;
+
+            // no player can have this card (must be in envelope)
+            for (Player p : players) {
+                unhandledAssertions.add(new PlayerDoesNotHaveAssertion(p, unknown));
+            }
+
 		}
 	}
 

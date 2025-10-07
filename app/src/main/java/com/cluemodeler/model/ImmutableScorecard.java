@@ -33,6 +33,13 @@ public interface ImmutableScorecard {
      */
     boolean isMurder(Card c);
 
+    /**
+     * Checks if we know is anyone holds the card?
+     * @param c the card to check
+     * @return true if we know who is holding the card, false if the card is unknown or murder
+     */
+    boolean isKnown(Card c);
+
 	/**
 	 * Gets an immutable view of the scorecard for a single player
 	 * @param p the player to get a scorecard for
