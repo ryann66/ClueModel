@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/guideline_margin"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -2097,6 +2097,13 @@
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="undo_button,name,name2,name3,name4,name5,name6"/>
+
+    <Space
+            android:id="@+id/guideline_margin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/guideline"
+    />
 
     <Button
             android:text="@string/undo"

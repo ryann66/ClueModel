@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import android.widget.SpinnerAdapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -72,14 +73,27 @@ public class ImportFragment extends Fragment {
         }
         binding.spinnerResponse.setAdapter(adp);
 
-        setAnswerer();
-
         binding.spinnerAsk.setOnItemSelectedListener(new AskChangeListener());
-        binding.spinnerAsk.setSelection(idx);
-
         binding.button.setOnClickListener(new ButtonUpdateListener());
 
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Player last = ((ModelActivity) requireActivity()).getLasttoplay();
+        // find next to play
+        Player next = plist.nextPlayer(last);
+        String name = next.name();
+
+        SpinnerAdapter adp = binding.spinnerAsk.getAdapter();
+        for (int i = 0; true; i++) {
+            if (adp.getItem(i).toString().equals(name)) {
+                binding.spinnerAsk.setSelection(i);
+                return;
+            }
+        }
     }
 
     @Override
@@ -132,6 +146,7 @@ public class ImportFragment extends Fragment {
     private class AskChangeListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            int a = 0;
             setAnswerer();
         }
 
@@ -175,6 +190,19 @@ public class ImportFragment extends Fragment {
                 dial.setMessage(ise.getMessage());
                 dial.setIcon(R.drawable.dialog_error);
                 dial.show();
+            }
+            
+            Player last = ((ModelActivity) requireActivity()).getLasttoplay();
+            // find next to play
+            Player next = plist.nextPlayer(last);
+            String name = next.name();
+
+            SpinnerAdapter adp = binding.spinnerAsk.getAdapter();
+            for (int i = 0; true; i++) {
+                if (adp.getItem(i).toString().equals(name)) {
+                    binding.spinnerAsk.setSelection(i);
+                    return;
+                }
             }
         }
     }

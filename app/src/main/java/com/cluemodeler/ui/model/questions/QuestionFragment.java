@@ -121,6 +121,8 @@ public class QuestionFragment extends Fragment {
                 Card.toCard(binding.spinnerLocation.getSelectedItem().toString())
             };
 
+            ((ModelActivity)requireActivity()).setLasttoplay(self);
+
 
             Query q = new Query(self, answered, cards, answer);
 
