@@ -74,7 +74,7 @@ public class ModelActivity extends AppCompatActivity {
             // create player list
             Player[] parr = new Player[playerNames.length];
             for (int i = 0; i < parr.length; i++) parr[i] = new Player(playerNames[i], ownedCards.length);
-            PlayerList plist = new PlayerList(parr);
+            plist = new PlayerList(parr);
             lasttoplay = self = parr[0];
 
             // convert args from int[] to enum[]
@@ -89,7 +89,7 @@ public class ModelActivity extends AppCompatActivity {
             }
 
             // build model
-            Model model = new BasicModel(plist, parr[0], known, owned);
+            model = new BasicModel(plist, parr[0], known, owned);
         } catch (RuntimeException re) {
             AlertDialog.Builder dial = new AlertDialog.Builder(this);
             dial.setCancelable(true);
@@ -102,8 +102,6 @@ public class ModelActivity extends AppCompatActivity {
         }
 
         this.scorecard = model.getFullScorecard();
-        this.model = model;
-        this.plist = plist;
 
         ActivityModelBinding binding = ActivityModelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
