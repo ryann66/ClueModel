@@ -1,6 +1,7 @@
 package com.cluemodeler.ui.scoreboard;
 
 import android.app.AlertDialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 
 import android.widget.*;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.cluemodeler.ModelActivity;
@@ -300,24 +302,22 @@ public class ScoreboardFragment extends Fragment {
     }
 
     private void setupButton(Knowledge k, boolean murder, ImageButton img) {
-        if (murder) {
-            img.setBackgroundColor(R.color.red);
-            img.setClickable(false);
-        }
-        else {
-            int id = switch (k.t) {
-                case HAS -> R.drawable.scoreboard_has;
-                case NO_HAS -> R.drawable.scoreboard_no_has;
-                case MIGHT_HAVE -> k == Knowledge.MIGHT_HAVE_DEFAULT ? R.drawable.scoreboard_unknown : R.drawable.scoreboard_might_have;
-                case KNOWN -> R.drawable.scoreboard_known;
-            };
+        int id = switch (k.t) {
+            case HAS -> R.drawable.scoreboard_has;
+            case NO_HAS -> R.drawable.scoreboard_no_has;
+            case MIGHT_HAVE -> k == Knowledge.MIGHT_HAVE_DEFAULT ? R.drawable.scoreboard_unknown : R.drawable.scoreboard_might_have;
+            case KNOWN -> R.drawable.scoreboard_known;
+        };
 
-            img.setImageResource(id);
-            if (id == R.drawable.scoreboard_might_have) {
-                img.setClickable(true);
-                img.setOnClickListener(tocl);
-            }
-            else img.setClickable(false);
+        img.setImageResource(id);
+        if (id == R.drawable.scoreboard_might_have) {
+            img.setClickable(true);
+            img.setOnClickListener(tocl);
+        }
+        else img.setClickable(false);
+        if (murder) {
+            img.setBackground(new ColorDrawable(ContextCompat.getColor(requireContext(), R.color.red)));
+            img.setClickable(false);
         }
     }
 
