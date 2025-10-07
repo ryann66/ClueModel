@@ -49,6 +49,8 @@ public class BasicModel extends AbstractModel {
         try {
             // handle all our assertions (and subsequently triggered assertions
             handleAssertions();
+
+            scorecard.verifyState(players);
         } catch (IllegalStateException ise) {
             scorecard.restore();
             throw ise;

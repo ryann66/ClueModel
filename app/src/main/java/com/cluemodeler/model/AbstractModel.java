@@ -48,6 +48,7 @@ abstract class AbstractModel implements Model {
 			}
 		}
 
+        scorecard.verifyState(players);
         scorecard.commit();
 	}
 
