@@ -149,12 +149,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2ed014e-5805-405b-9417-8523402d146c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Guess.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Guess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cluemodeler/model/Query.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/app_icon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/app_icon.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/app_icon_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/app_icon_foreground.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +162,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\Ryan Nelson\.android\avd\Pixel_3a.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=R9WTC0B58QM)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -282,10 +280,10 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Ryan Nelson/CodeProjects/ClueModel",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+    "settings.editor.selected.configurable": "android.project.structure"
   }
 }]]></component>
   <component name="PsdUISettings">

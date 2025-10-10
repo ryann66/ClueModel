@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-        android:width="10dp"
-        android:height="10dp"
+        android:width="108dp"
+        android:height="108dp"
         android:viewportWidth="50"
-        android:viewportHeight="50">
+        android:viewportHeight="50"
+>
 
     <group
+            android:name="dagger"
             android:scaleX="1.2"
             android:scaleY="1.2"
             android:translateX="2.5"
@@ -33,6 +35,7 @@
 
 
     <group
+            android:name="magnifying glass"
             android:translateY="2.5"
             android:translateX="-2.5">
         <path
