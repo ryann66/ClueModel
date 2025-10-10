@@ -4,10 +4,18 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Record for players
- * @param name the name of the player
- * @param numCards the number of cards the player is holding
+ * name: the name of the player
+ * numCards: the number of cards the player is holding
  */
-public record Player(String name, int numCards) {
+public class Player {
+    private final String name;
+    private final int numCards;
+
+    public Player(String name, int numCards) {
+        this.name = name;
+        this.numCards = numCards;
+    }
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -24,4 +32,12 @@ public record Player(String name, int numCards) {
 	public @NotNull String toString() {
 		return name;
 	}
+
+    public String name() {
+        return name;
+    }
+
+    public int numCards() {
+        return numCards;
+    }
 }
