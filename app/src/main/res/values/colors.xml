@@ -6,6 +6,13 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
+    <color name="steel_grey">#FF71797E</color>
+    <color name="gold_yellow">#FFD4AF37</color>
+    <color name="wood_brown">#FF4F200F</color>
+    <color name="glass_blue">#50A8CCA7</color>
+    <color name="background_edge">#FF1B4060</color>
+    <color name="background_core">#FF1E1F39</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="alert_red">#FFE20000</color>
