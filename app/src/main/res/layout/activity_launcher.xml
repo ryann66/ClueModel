@@ -189,19 +189,19 @@
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector7"/>
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector8"/>
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector9"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -209,37 +209,37 @@
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector"/>
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector2"/>
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector3"/>
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector4"/>
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector5"/>
             <com.cluemodeler.ui.model.CardSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_grid_margin"
+                    android:layout_marginVertical="@dimen/activity_scrolled_spinner_margin"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/card_selector6"/>
             <View
