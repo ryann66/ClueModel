@@ -93,7 +93,7 @@ public class ImportFragment extends Fragment {
         String name = next.name();
 
         SpinnerAdapter adp = binding.spinnerAsk.getAdapter();
-        for (int i = 0; true; i++) {
+        for (int i = 0; i < adp.getCount(); i++) {
             if (adp.getItem(i).toString().equals(name)) {
                 binding.spinnerAsk.setSelection(i);
                 return;
